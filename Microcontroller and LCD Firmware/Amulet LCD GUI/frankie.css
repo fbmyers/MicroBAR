@@ -1,0 +1,10 @@
+.style1      {color: black; font-weight:plain; font-size:12pt; font-family:Arial; line-height: 100%;}
+.style1Light {color: white; font-weight:plain; font-size:12pt; font-family:Arial;}
+.style2      {color: black; font-weight:bold; font-size:12pt; font-family:Arial;}
+.style3      {color: black; font-weight:plain; font-size:10pt; font-family:Arial;}
+.style4     {color: black; font-weight:plain; font-size:6pt; font-family:Arial;}
+.style3Bold  {color: black; font-weight:bold; font-size:10pt; font-family:Arial;}
+.styleMenu   {color: white; font-weight:bold; font-size:12pt; font-family:Arial;}
+.wells      {color: black; font-weight:bold; font-size:12pt; font-family:Arial;}
+.numbutton {width: 50; height: 50;}
+.alphabutton {width: 50; height: 50;}

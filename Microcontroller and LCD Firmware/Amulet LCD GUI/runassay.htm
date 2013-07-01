@@ -1,0 +1,1194 @@
+<html>
+<head>
+<LINK REL="StyleSheet" HREF="frankie.css" TYPE="text/css" MEDIA="screen">
+<meta name="Amulet" content="DualFrameBuffer">
+
+</head>
+
+<body>
+
+<div style="width:480px; height:272px; position:absolute; left:0px; top:0px; z-index:1;"></div>
+
+<!-- Assay Header -->
+<div style="width:480px; height:20px; position:absolute; left:0px; top:0px; z-index:1; background-color:#00FF00" class="style2">
+  <p align="center">ASSAY STATUS</p>
+</div>
+<div style="width:240px; height:12px; position:absolute; left:0px; top:20px; z-index:1;" class="style2">
+	<applet code="StringField.class" width="150" height="12">
+		<param name="href" value="Amulet:InternalRAM.string(2).value()">
+		<param name="printf" value="Assay: %s">
+		<param name="updateRate" value="0.2">
+		<param name="class" value="style2">	
+	 </applet> 
+</div>
+<div style="width:240px; height:12px; position:absolute; left:0px; top:33px; z-index:1;" class="style2">
+	<applet code="StringField.class" width="150" height="12">
+		<param name="href" value="Amulet:InternalRAM.string(7).value()">
+		<param name="printf" value="Batt: %s">
+		<param name="updateRate" value="0.2">
+		<param name="class" value="style2">	
+	 </applet> 
+</div>
+
+<div style="width:240px; height:12px; position:absolute; left:240px; top:20px; z-index:1;" class="style2">
+  <p align="right">Date: 2012-11-28</p>
+</div>
+<div style="width:240px; height:12px; position:absolute; left:240px; top:33px; z-index:1;" class="style2">
+  <p align="right">Time: 13:48</p>
+</div>
+<div style="width:240px; height:12px; position:absolute; left:240px; top:46px; z-index:1;" class="style2">
+  <p align="right">GPS: 20'98'110/30'22'189</p>
+</div>
+
+<!-- Well Grid -->
+<div style="width:480px; height:200px; position:absolute; left:0px; top:59px; z-index:1;" class="wells"></div>
+
+
+<div style="width:15px; height:15px; position:absolute; left:10px; top:70px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(1).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:10px; top:90px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(13).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:10px; top:110px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(25).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:10px; top:130px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(37).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:10px; top:150px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(49).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:10px; top:170px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(61).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:10px; top:190px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(73).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:10px; top:210px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(85).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+
+<div style="width:15px; height:15px; position:absolute; left:30px; top:70px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(2).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:30px; top:90px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(14).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:30px; top:110px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(26).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:30px; top:130px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(38).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:30px; top:150px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(50).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:30px; top:170px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(62).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:30px; top:190px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(74).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:30px; top:210px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(86).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+
+<div style="width:15px; height:15px; position:absolute; left:50px; top:70px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(3).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:50px; top:90px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(15).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:50px; top:110px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(27).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:50px; top:130px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(39).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:50px; top:150px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(51).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:50px; top:170px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(63).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:50px; top:190px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(75).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:50px; top:210px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(87).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+
+<div style="width:15px; height:15px; position:absolute; left:70px; top:70px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(4).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:70px; top:90px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(16).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:70px; top:110px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(28).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:70px; top:130px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(40).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:70px; top:150px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(52).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:70px; top:170px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(64).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:70px; top:190px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(76).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:70px; top:210px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(88).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+
+<div style="width:15px; height:15px; position:absolute; left:90px; top:70px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(5).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:90px; top:90px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(17).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:90px; top:110px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(29).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:90px; top:130px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(41).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:90px; top:150px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(53).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:90px; top:170px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(65).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:90px; top:190px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(77).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:90px; top:210px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(89).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+
+<div style="width:15px; height:15px; position:absolute; left:110px; top:70px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(6).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:110px; top:90px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(18).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:110px; top:110px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(30).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:110px; top:130px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(42).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:110px; top:150px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(54).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:110px; top:170px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(66).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:110px; top:190px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(78).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:110px; top:210px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(90).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+
+<div style="width:15px; height:15px; position:absolute; left:130px; top:70px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(7).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:130px; top:90px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(19).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:130px; top:110px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(31).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:130px; top:130px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(43).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:130px; top:150px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(55).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:130px; top:170px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(67).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:130px; top:190px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(79).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:130px; top:210px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(91).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+
+<div style="width:15px; height:15px; position:absolute; left:150px; top:70px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(8).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:150px; top:90px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(20).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:150px; top:110px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(32).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:150px; top:130px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(44).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:150px; top:150px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(56).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:150px; top:170px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(68).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:150px; top:190px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(80).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:150px; top:210px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(92).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+
+<div style="width:15px; height:15px; position:absolute; left:170px; top:70px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(9).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:170px; top:90px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(21).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:170px; top:110px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(33).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:170px; top:130px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(45).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:170px; top:150px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(57).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:170px; top:170px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(69).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:170px; top:190px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(81).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:170px; top:210px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(93).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+
+<div style="width:15px; height:15px; position:absolute; left:190px; top:70px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(10).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:190px; top:90px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(22).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:190px; top:110px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(34).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:190px; top:130px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(46).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:190px; top:150px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(58).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:190px; top:170px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(70).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:190px; top:190px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(82).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:190px; top:210px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(94).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+
+<div style="width:15px; height:15px; position:absolute; left:210px; top:70px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(11).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:210px; top:90px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(23).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:210px; top:110px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(35).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:210px; top:130px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(47).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:210px; top:150px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(59).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:210px; top:170px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(71).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:210px; top:190px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(83).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:210px; top:210px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(95).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+
+<div style="width:15px; height:15px; position:absolute; left:230px; top:70px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(12).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:230px; top:90px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(24).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:230px; top:110px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(36).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:230px; top:130px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(48).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:230px; top:150px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(60).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:230px; top:170px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(72).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:230px; top:190px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(84).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+<div style="width:15px; height:15px; position:absolute; left:230px; top:210px; z-index:1; background-color:#3300FF" class="wells">
+	<applet code="BarGraph.class" width="15" height="15">
+		<param name="href" value="Amulet:InternalRAM.word(96).value()">
+		<param name="updateRate" value="0.2">
+		<param name="min" value="0">
+		<param name="max" value="512">				
+		<param name="fillColor" value="rgb(0,0,255)">
+		<param name="backgroundColor" value="rgb(0,0,0)">	
+		<param name="sweepFrom" value="BOTTOM">				
+	 </applet> 
+</div>
+
+
+
+<div style="width:150px; height:12px; position:absolute; left:260px; top:90px; z-index:1;" class="style2">
+	<applet code="StringField.class" width="150" height="12">
+		<param name="href" value="Amulet:InternalRAM.string(5).value()">
+		<param name="printf" value="State: %s">
+		<param name="updateRate" value="0.2">
+		<param name="class" value="style2">	
+	 </applet> 
+</div>
+<div style="width:150px; height:12px; position:absolute; left:260px; top:110px; z-index:1;" class="style2">
+	<applet code="StringField.class" width="150" height="12">
+		<param name="href" value="Amulet:InternalRAM.string(6).value()">
+		<param name="printf" value="Step: %s">
+		<param name="updateRate" value="0.2">
+		<param name="class" value="style2">	
+	 </applet> 
+</div>
+<div style="width:150px; height:12px; position:absolute; left:260px; top:130px; z-index:1;" class="style2">
+	<applet code="StringField.class" width="150" height="12">
+		<param name="href" value="Amulet:InternalRAM.string(4).value()">
+		<param name="printf" value="Time: %s">
+		<param name="updateRate" value="0.2">
+		<param name="class" value="style2">	
+	 </applet>  
+</div>
+<div style="width:150px; height:12px; position:absolute; left:260px; top:150px; z-index:1;" class="style2">
+	<applet code="StringField.class" width="150" height="12">
+		<param name="href" value="Amulet:InternalRAM.string(8).value()">
+		<param name="printf" value="Temp: %s">
+		<param name="updateRate" value="0.2">
+		<param name="class" value="style2">	
+	 </applet>  
+</div>
+<div style="width:150px; height:12px; position:absolute; left:260px; top:170px; z-index:1;" class="style2">
+	<applet code="StringField.class" width="150" height="12">
+		<param name="href" value="Amulet:InternalRAM.string(9).value()">
+		<param name="printf" value="Temp SP: %s">
+		<param name="updateRate" value="0.2">
+		<param name="class" value="style2">	
+	 </applet>  
+</div>
+<div style="width:150px; height:12px; position:absolute; left:260px; top:190px; z-index:1;" class="style2">
+	<applet code="StringField.class" width="150" height="12">
+		<param name="href" value="Amulet:InternalRAM.string(0x0A).value()">
+		<param name="printf" value="Lights: %s">
+		<param name="updateRate" value="0.2">
+		<param name="class" value="style2">	
+	 </applet>  
+</div>
+
+
+ 
+<div style="width:480px; height:50px; position:absolute; left:0px; top:235px; z-index:1;" class="style2">
+
+<p align="center">
+	<applet code="FunctionButton.class" width="100" height="30" align="BOTTOM">
+		<param name="href" value="mainmenu.htm">
+		<param name="label" value="Main Menu">
+		<param name="buttonType" value="SPRING-LOADED">
+		<param name="onButtonPress" value="DEPRESS">
+	  </applet>
+	<applet code="FunctionButton.class" width="100" height="30" align="BOTTOM">
+		<param name="href" value="Amulet:UART.byteOut(0x00),Amulet:UART.stringOut('STARTASSAY'),Amulet:UART.byteOut(0x0A)">
+		<param name="label" value="Run">
+		<param name="buttonType" value="SPRING-LOADED">
+		<param name="onButtonPress" value="DEPRESS">
+	  </applet>
+	<applet code="FunctionButton.class" width="100" height="30" align="BOTTOM">
+		<param name="href" value="Amulet:UART.byteOut(0x00),Amulet:UART.stringOut('ABORTASSAY'),Amulet:UART.byteOut(0x0A)">
+		<param name="label" value="Abort">
+		<param name="buttonType" value="SPRING-LOADED">
+		<param name="onButtonPress" value="DEPRESS">
+	  </applet>
+</p>
+
+</div>
+
+</body>
+</html>

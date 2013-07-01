@@ -1,0 +1,2378 @@
+   1               		.file	"TCP.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               		.section	.text.TCP_Init,"ax",@progbits
+  17               	.global	TCP_Init
+  19               	TCP_Init:
+  20               	.LFB104:
+  21               	.LSM0:
+  22               	/* prologue: function */
+  23               	/* frame size = 0 */
+  24               	.LBB34:
+  25               	.LSM1:
+  26 0000 1092 0000 		sts PortStateTable+2,__zero_reg__
+  27               	.LBE34:
+  28               	.LBB35:
+  29               	.LSM2:
+  30 0004 8AE0      		ldi r24,lo8(10)
+  31 0006 8093 0000 		sts ConnectionStateTable+533,r24
+  32 000a 8093 0000 		sts ConnectionStateTable+1067,r24
+  33 000e 8093 0000 		sts ConnectionStateTable+1601,r24
+  34               	/* epilogue start */
+  35               	.LBE35:
+  36               	.LSM3:
+  37 0012 0895      		ret
+  38               	.LFE104:
+  40               		.section	.text.TCP_SetPortState,"ax",@progbits
+  41               	.global	TCP_SetPortState
+  43               	TCP_SetPortState:
+  44               	.LFB105:
+  45               	.LSM4:
+  46               	.LVL0:
+  47               	/* prologue: function */
+  48               	/* frame size = 0 */
+  49 0000 9C01      		movw r18,r24
+  50               	.LBB36:
+  51               	.LSM5:
+  52 0002 8091 0000 		lds r24,PortStateTable
+  53 0006 9091 0000 		lds r25,(PortStateTable)+1
+  54               	.LVL1:
+  55 000a 8217      		cp r24,r18
+  56 000c 9307      		cpc r25,r19
+  57 000e 01F4      		brne .L4
+  58 0010 80E0      		ldi r24,lo8(0)
+  59 0012 90E0      		ldi r25,hi8(0)
+  60 0014 00C0      		rjmp .L5
+  61               	.L4:
+  62 0016 8091 0000 		lds r24,PortStateTable+5
+  63 001a 9091 0000 		lds r25,(PortStateTable+5)+1
+  64 001e 8217      		cp r24,r18
+  65 0020 9307      		cpc r25,r19
+  66 0022 01F4      		brne .L6
+  67 0024 81E0      		ldi r24,lo8(1)
+  68 0026 90E0      		ldi r25,hi8(1)
+  69 0028 00C0      		rjmp .L5
+  70               	.L6:
+  71 002a 8091 0000 		lds r24,PortStateTable+10
+  72 002e 9091 0000 		lds r25,(PortStateTable+10)+1
+  73 0032 8217      		cp r24,r18
+  74 0034 9307      		cpc r25,r19
+  75 0036 01F4      		brne .L7
+  76 0038 82E0      		ldi r24,lo8(2)
+  77 003a 90E0      		ldi r25,hi8(2)
+  78               	.L5:
+  79               	.LSM6:
+  80 003c FC01      		movw r30,r24
+  81 003e EE0F      		lsl r30
+  82 0040 FF1F      		rol r31
+  83 0042 EE0F      		lsl r30
+  84 0044 FF1F      		rol r31
+  85 0046 E80F      		add r30,r24
+  86 0048 F91F      		adc r31,r25
+  87 004a E050      		subi r30,lo8(-(PortStateTable))
+  88 004c F040      		sbci r31,hi8(-(PortStateTable))
+  89 004e 6283      		std Z+2,r22
+  90               	.LSM7:
+  91 0050 5483      		std Z+4,r21
+  92 0052 4383      		std Z+3,r20
+  93 0054 00C0      		rjmp .L15
+  94               	.L7:
+  95               	.LBE36:
+  96               	.LSM8:
+  97 0056 6130      		cpi r22,lo8(1)
+  98 0058 01F0      		breq .L9
+  99               	.L15:
+ 100 005a 81E0      		ldi r24,lo8(1)
+ 101 005c 0895      		ret
+ 102               	.L9:
+ 103               	.LBB37:
+ 104               	.LSM9:
+ 105 005e 8091 0000 		lds r24,PortStateTable+2
+ 106 0062 8823      		tst r24
+ 107 0064 01F4      		brne .L10
+ 108 0066 80E0      		ldi r24,lo8(0)
+ 109 0068 90E0      		ldi r25,hi8(0)
+ 110 006a 00C0      		rjmp .L11
+ 111               	.L10:
+ 112 006c 8091 0000 		lds r24,PortStateTable+7
+ 113 0070 8823      		tst r24
+ 114 0072 01F4      		brne .L12
+ 115 0074 81E0      		ldi r24,lo8(1)
+ 116 0076 90E0      		ldi r25,hi8(1)
+ 117 0078 00C0      		rjmp .L11
+ 118               	.L12:
+ 119 007a 8091 0000 		lds r24,PortStateTable+12
+ 120 007e 8823      		tst r24
+ 121 0080 01F0      		breq .L13
+ 122 0082 80E0      		ldi r24,lo8(0)
+ 123 0084 0895      		ret
+ 124               	.L13:
+ 125 0086 82E0      		ldi r24,lo8(2)
+ 126 0088 90E0      		ldi r25,hi8(2)
+ 127               	.L11:
+ 128               	.LSM10:
+ 129 008a FC01      		movw r30,r24
+ 130 008c EE0F      		lsl r30
+ 131 008e FF1F      		rol r31
+ 132 0090 EE0F      		lsl r30
+ 133 0092 FF1F      		rol r31
+ 134               	.LVL2:
+ 135 0094 E80F      		add r30,r24
+ 136 0096 F91F      		adc r31,r25
+ 137 0098 E050      		subi r30,lo8(-(PortStateTable))
+ 138 009a F040      		sbci r31,hi8(-(PortStateTable))
+ 139 009c 3183      		std Z+1,r19
+ 140 009e 2083      		st Z,r18
+ 141               	.LSM11:
+ 142 00a0 81E0      		ldi r24,lo8(1)
+ 143 00a2 8283      		std Z+2,r24
+ 144               	.LSM12:
+ 145 00a4 5483      		std Z+4,r21
+ 146 00a6 4383      		std Z+3,r20
+ 147               	.LBE37:
+ 148               	.LSM13:
+ 149 00a8 0895      		ret
+ 150               	.LFE105:
+ 152               		.section	.text.TCP_GetPortState,"ax",@progbits
+ 153               	.global	TCP_GetPortState
+ 155               	TCP_GetPortState:
+ 156               	.LFB106:
+ 157               	.LSM14:
+ 158               	.LVL3:
+ 159               	/* prologue: function */
+ 160               	/* frame size = 0 */
+ 161 0000 9C01      		movw r18,r24
+ 162               	.LBB38:
+ 163               	.LSM15:
+ 164 0002 8091 0000 		lds r24,PortStateTable
+ 165 0006 9091 0000 		lds r25,(PortStateTable)+1
+ 166               	.LVL4:
+ 167 000a 8217      		cp r24,r18
+ 168 000c 9307      		cpc r25,r19
+ 169 000e 01F4      		brne .L17
+ 170 0010 80E0      		ldi r24,lo8(0)
+ 171 0012 90E0      		ldi r25,hi8(0)
+ 172 0014 00C0      		rjmp .L18
+ 173               	.L17:
+ 174 0016 8091 0000 		lds r24,PortStateTable+5
+ 175 001a 9091 0000 		lds r25,(PortStateTable+5)+1
+ 176 001e 8217      		cp r24,r18
+ 177 0020 9307      		cpc r25,r19
+ 178 0022 01F4      		brne .L19
+ 179 0024 81E0      		ldi r24,lo8(1)
+ 180 0026 90E0      		ldi r25,hi8(1)
+ 181 0028 00C0      		rjmp .L18
+ 182               	.L19:
+ 183 002a 8091 0000 		lds r24,PortStateTable+10
+ 184 002e 9091 0000 		lds r25,(PortStateTable+10)+1
+ 185 0032 8217      		cp r24,r18
+ 186 0034 9307      		cpc r25,r19
+ 187 0036 01F0      		breq .L20
+ 188 0038 80E0      		ldi r24,lo8(0)
+ 189 003a 0895      		ret
+ 190               	.L20:
+ 191 003c 82E0      		ldi r24,lo8(2)
+ 192 003e 90E0      		ldi r25,hi8(2)
+ 193               	.L18:
+ 194               	.LSM16:
+ 195 0040 FC01      		movw r30,r24
+ 196 0042 EE0F      		lsl r30
+ 197 0044 FF1F      		rol r31
+ 198 0046 EE0F      		lsl r30
+ 199 0048 FF1F      		rol r31
+ 200 004a E80F      		add r30,r24
+ 201 004c F91F      		adc r31,r25
+ 202 004e E050      		subi r30,lo8(-(PortStateTable))
+ 203 0050 F040      		sbci r31,hi8(-(PortStateTable))
+ 204 0052 8281      		ldd r24,Z+2
+ 205               	.LBE38:
+ 206               	.LSM17:
+ 207 0054 0895      		ret
+ 208               	.LFE106:
+ 210               		.section	.text.TCP_Checksum16,"ax",@progbits
+ 212               	TCP_Checksum16:
+ 213               	.LFB111:
+ 214               	.LSM18:
+ 215               	.LVL5:
+ 216 0000 2F92      		push r2
+ 217 0002 3F92      		push r3
+ 218 0004 4F92      		push r4
+ 219 0006 5F92      		push r5
+ 220 0008 6F92      		push r6
+ 221 000a 7F92      		push r7
+ 222 000c 8F92      		push r8
+ 223 000e 9F92      		push r9
+ 224 0010 AF92      		push r10
+ 225 0012 BF92      		push r11
+ 226 0014 CF92      		push r12
+ 227 0016 DF92      		push r13
+ 228 0018 EF92      		push r14
+ 229               	.LVL6:
+ 230 001a FF92      		push r15
+ 231 001c 0F93      		push r16
+ 232 001e 1F93      		push r17
+ 233 0020 DF93      		push r29
+ 234 0022 CF93      		push r28
+ 235 0024 CDB7      		in r28,__SP_L__
+ 236 0026 DEB7      		in r29,__SP_H__
+ 237 0028 2A97      		sbiw r28,10
+ 238 002a 0FB6      		in __tmp_reg__,__SREG__
+ 239 002c F894      		cli
+ 240 002e DEBF      		out __SP_H__,r29
+ 241 0030 0FBE      		out __SREG__,__tmp_reg__
+ 242 0032 CDBF      		out __SP_L__,r28
+ 243               	/* prologue: function */
+ 244               	/* frame size = 10 */
+ 245 0034 9A87      		std Y+10,r25
+ 246 0036 8987      		std Y+9,r24
+ 247 0038 3A01      		movw r6,r20
+ 248 003a 4983      		std Y+1,r20
+ 249 003c 5A83      		std Y+2,r21
+ 250 003e 6B83      		std Y+3,r22
+ 251 0040 7C83      		std Y+4,r23
+ 252 0042 5801      		movw r10,r16
+ 253 0044 0D83      		std Y+5,r16
+ 254 0046 1E83      		std Y+6,r17
+ 255 0048 2F83      		std Y+7,r18
+ 256 004a 3887      		std Y+8,r19
+ 257 004c B701      		movw r22,r14
+ 258               	.LVL7:
+ 259               	.LSM19:
+ 260 004e 8824      		clr r8
+ 261 0050 9924      		clr r9
+ 262               	.LSM20:
+ 263 0052 EB80      		ldd r14,Y+3
+ 264 0054 FC80      		ldd r15,Y+4
+ 265               	.LVL8:
+ 266 0056 00E0      		ldi r16,lo8(0)
+ 267 0058 10E0      		ldi r17,hi8(0)
+ 268               	.LSM21:
+ 269 005a CC24      		clr r12
+ 270 005c DD24      		clr r13
+ 271               	.LSM22:
+ 272 005e 2F81      		ldd r18,Y+7
+ 273 0060 3885      		ldd r19,Y+8
+ 274 0062 40E0      		ldi r20,lo8(0)
+ 275 0064 50E0      		ldi r21,hi8(0)
+ 276               	.LBB39:
+ 277               	.LBB40:
+ 278               	.LSM23:
+ 279 0066 872F      		mov r24,r23
+ 280               	.LVL9:
+ 281               	.LSM24:
+ 282 0068 962F      		mov r25,r22
+ 283               	.LVL10:
+ 284               	.LBE40:
+ 285               	.LBE39:
+ 286               	.LSM25:
+ 287 006a 1C01      		movw r2,r24
+ 288               	.LVL11:
+ 289 006c 4424      		clr r4
+ 290 006e 5524      		clr r5
+ 291               	.LVL12:
+ 292 0070 80E0      		ldi r24,lo8(1536)
+ 293 0072 96E0      		ldi r25,hi8(1536)
+ 294 0074 A0E0      		ldi r26,hlo8(1536)
+ 295 0076 B0E0      		ldi r27,hhi8(1536)
+ 296               	.LVL13:
+ 297 0078 280E      		add r2,r24
+ 298 007a 391E      		adc r3,r25
+ 299 007c 4A1E      		adc r4,r26
+ 300 007e 5B1E      		adc r5,r27
+ 301               	.LVL14:
+ 302               	.LSM26:
+ 303 0080 260C      		add r2,r6
+ 304 0082 371C      		adc r3,r7
+ 305 0084 481C      		adc r4,r8
+ 306 0086 591C      		adc r5,r9
+ 307               	.LSM27:
+ 308 0088 2A0C      		add r2,r10
+ 309 008a 3B1C      		adc r3,r11
+ 310 008c 4C1C      		adc r4,r12
+ 311 008e 5D1C      		adc r5,r13
+ 312               	.LSM28:
+ 313 0090 2E0C      		add r2,r14
+ 314 0092 3F1C      		adc r3,r15
+ 315 0094 401E      		adc r4,r16
+ 316 0096 511E      		adc r5,r17
+ 317               	.LSM29:
+ 318 0098 220E      		add r2,r18
+ 319 009a 331E      		adc r3,r19
+ 320 009c 441E      		adc r4,r20
+ 321 009e 551E      		adc r5,r21
+ 322               	.LBB41:
+ 323               	.LSM30:
+ 324 00a0 FB01      		movw r30,r22
+ 325 00a2 F695      		lsr r31
+ 326 00a4 E795      		ror r30
+ 327 00a6 4985      		ldd r20,Y+9
+ 328 00a8 5A85      		ldd r21,Y+10
+ 329 00aa 20E0      		ldi r18,lo8(0)
+ 330 00ac 30E0      		ldi r19,hi8(0)
+ 331               	.LVL15:
+ 332 00ae 00C0      		rjmp .L24
+ 333               	.L25:
+ 334               	.LSM31:
+ 335 00b0 DA01      		movw r26,r20
+ 336 00b2 8D91      		ld r24,X+
+ 337 00b4 9D91      		ld r25,X+
+ 338 00b6 AD01      		movw r20,r26
+ 339 00b8 A0E0      		ldi r26,lo8(0)
+ 340 00ba B0E0      		ldi r27,hi8(0)
+ 341 00bc 280E      		add r2,r24
+ 342 00be 391E      		adc r3,r25
+ 343 00c0 4A1E      		adc r4,r26
+ 344 00c2 5B1E      		adc r5,r27
+ 345               	.LSM32:
+ 346 00c4 2F5F      		subi r18,lo8(-(1))
+ 347 00c6 3F4F      		sbci r19,hi8(-(1))
+ 348               	.L24:
+ 349 00c8 2E17      		cp r18,r30
+ 350 00ca 3F07      		cpc r19,r31
+ 351 00cc 00F0      		brlo .L25
+ 352               	.LBE41:
+ 353               	.LSM33:
+ 354 00ce 60FF      		sbrs r22,0
+ 355 00d0 00C0      		rjmp .L29
+ 356               	.LSM34:
+ 357 00d2 EE0F      		lsl r30
+ 358 00d4 FF1F      		rol r31
+ 359 00d6 8985      		ldd r24,Y+9
+ 360 00d8 9A85      		ldd r25,Y+10
+ 361 00da E80F      		add r30,r24
+ 362 00dc F91F      		adc r31,r25
+ 363 00de 8081      		ld r24,Z
+ 364 00e0 280E      		add r2,r24
+ 365 00e2 311C      		adc r3,__zero_reg__
+ 366 00e4 411C      		adc r4,__zero_reg__
+ 367 00e6 511C      		adc r5,__zero_reg__
+ 368 00e8 00C0      		rjmp .L29
+ 369               	.L27:
+ 370               	.LSM35:
+ 371 00ea D201      		movw r26,r4
+ 372 00ec C101      		movw r24,r2
+ 373 00ee A070      		andi r26,hlo8(65535)
+ 374 00f0 B070      		andi r27,hhi8(65535)
+ 375 00f2 1201      		movw r2,r4
+ 376 00f4 4424      		clr r4
+ 377 00f6 5524      		clr r5
+ 378 00f8 280E      		add r2,r24
+ 379 00fa 391E      		adc r3,r25
+ 380 00fc 4A1E      		adc r4,r26
+ 381 00fe 5B1E      		adc r5,r27
+ 382               	.L29:
+ 383               	.LSM36:
+ 384 0100 D201      		movw r26,r4
+ 385 0102 C101      		movw r24,r2
+ 386 0104 8070      		andi r24,lo8(-65536)
+ 387 0106 9070      		andi r25,hi8(-65536)
+ 388 0108 0097      		sbiw r24,0
+ 389 010a A105      		cpc r26,__zero_reg__
+ 390 010c B105      		cpc r27,__zero_reg__
+ 391 010e 01F4      		brne .L27
+ 392 0110 9101      		movw r18,r2
+ 393               	.LVL16:
+ 394 0112 2095      		com r18
+ 395 0114 3095      		com r19
+ 396               	.LSM37:
+ 397 0116 C901      		movw r24,r18
+ 398               	/* epilogue start */
+ 399 0118 2A96      		adiw r28,10
+ 400 011a 0FB6      		in __tmp_reg__,__SREG__
+ 401 011c F894      		cli
+ 402 011e DEBF      		out __SP_H__,r29
+ 403 0120 0FBE      		out __SREG__,__tmp_reg__
+ 404 0122 CDBF      		out __SP_L__,r28
+ 405 0124 CF91      		pop r28
+ 406 0126 DF91      		pop r29
+ 407 0128 1F91      		pop r17
+ 408 012a 0F91      		pop r16
+ 409 012c FF90      		pop r15
+ 410 012e EF90      		pop r14
+ 411 0130 DF90      		pop r13
+ 412 0132 CF90      		pop r12
+ 413 0134 BF90      		pop r11
+ 414 0136 AF90      		pop r10
+ 415 0138 9F90      		pop r9
+ 416 013a 8F90      		pop r8
+ 417 013c 7F90      		pop r7
+ 418 013e 6F90      		pop r6
+ 419 0140 5F90      		pop r5
+ 420 0142 4F90      		pop r4
+ 421               	.LVL17:
+ 422 0144 3F90      		pop r3
+ 423 0146 2F90      		pop r2
+ 424 0148 0895      		ret
+ 425               	.LFE111:
+ 427               		.section	.text.TCP_GetConnectionInfo,"ax",@progbits
+ 428               	.global	TCP_GetConnectionInfo
+ 430               	TCP_GetConnectionInfo:
+ 431               	.LFB109:
+ 432               	.LSM38:
+ 433               	.LVL18:
+ 434 0000 4F92      		push r4
+ 435 0002 5F92      		push r5
+ 436 0004 6F92      		push r6
+ 437 0006 7F92      		push r7
+ 438 0008 8F92      		push r8
+ 439 000a 9F92      		push r9
+ 440 000c AF92      		push r10
+ 441 000e BF92      		push r11
+ 442 0010 CF92      		push r12
+ 443 0012 DF92      		push r13
+ 444 0014 EF92      		push r14
+ 445 0016 FF92      		push r15
+ 446 0018 0F93      		push r16
+ 447 001a 1F93      		push r17
+ 448 001c DF93      		push r29
+ 449 001e CF93      		push r28
+ 450 0020 00D0      		rcall .
+ 451 0022 00D0      		rcall .
+ 452 0024 CDB7      		in r28,__SP_L__
+ 453 0026 DEB7      		in r29,__SP_H__
+ 454               	/* prologue: function */
+ 455               	/* frame size = 4 */
+ 456 0028 4C01      		movw r8,r24
+ 457 002a 4983      		std Y+1,r20
+ 458 002c 5A83      		std Y+2,r21
+ 459 002e 6B83      		std Y+3,r22
+ 460 0030 7C83      		std Y+4,r23
+ 461 0032 5901      		movw r10,r18
+ 462               	.LSM39:
+ 463 0034 20E0      		ldi r18,lo8(ConnectionStateTable)
+ 464 0036 E22E      		mov r14,r18
+ 465 0038 20E0      		ldi r18,hi8(ConnectionStateTable)
+ 466 003a F22E      		mov r15,r18
+ 467               	.LVL19:
+ 468 003c 00E0      		ldi r16,lo8(0)
+ 469 003e 10E0      		ldi r17,hi8(0)
+ 470               	.LBB42:
+ 471               	.LSM40:
+ 472 0040 96E1      		ldi r25,lo8(534)
+ 473 0042 492E      		mov r4,r25
+ 474 0044 92E0      		ldi r25,hi8(534)
+ 475 0046 592E      		mov r5,r25
+ 476 0048 3E01      		movw r6,r28
+ 477 004a 0894      		sec
+ 478 004c 611C      		adc r6,__zero_reg__
+ 479 004e 711C      		adc r7,__zero_reg__
+ 480               	.LVL20:
+ 481               	.L33:
+ 482 0050 F701      		movw r30,r14
+ 483 0052 8081      		ld r24,Z
+ 484 0054 9181      		ldd r25,Z+1
+ 485 0056 8815      		cp r24,r8
+ 486 0058 9905      		cpc r25,r9
+ 487 005a 01F4      		brne .L31
+ 488 005c 049D      		mul r16,r4
+ 489 005e 6001      		movw r12,r0
+ 490 0060 059D      		mul r16,r5
+ 491 0062 D00C      		add r13,r0
+ 492 0064 149D      		mul r17,r4
+ 493 0066 D00C      		add r13,r0
+ 494 0068 1124      		clr r1
+ 495 006a C601      		movw r24,r12
+ 496 006c 8050      		subi r24,lo8(-(ConnectionStateTable+4))
+ 497 006e 9040      		sbci r25,hi8(-(ConnectionStateTable+4))
+ 498 0070 B301      		movw r22,r6
+ 499 0072 44E0      		ldi r20,lo8(4)
+ 500 0074 50E0      		ldi r21,hi8(4)
+ 501 0076 0E94 0000 		call memcmp
+ 502 007a 0097      		sbiw r24,0
+ 503 007c 01F4      		brne .L31
+ 504 007e F701      		movw r30,r14
+ 505 0080 8281      		ldd r24,Z+2
+ 506 0082 9381      		ldd r25,Z+3
+ 507 0084 8A15      		cp r24,r10
+ 508 0086 9B05      		cpc r25,r11
+ 509 0088 01F4      		brne .L31
+ 510               	.LSM41:
+ 511 008a 9601      		movw r18,r12
+ 512 008c 2050      		subi r18,lo8(-(ConnectionStateTable+8))
+ 513 008e 3040      		sbci r19,hi8(-(ConnectionStateTable+8))
+ 514 0090 00C0      		rjmp .L32
+ 515               	.L31:
+ 516 0092 0F5F      		subi r16,lo8(-(1))
+ 517 0094 1F4F      		sbci r17,hi8(-(1))
+ 518 0096 86E1      		ldi r24,lo8(534)
+ 519 0098 92E0      		ldi r25,hi8(534)
+ 520 009a E80E      		add r14,r24
+ 521 009c F91E      		adc r15,r25
+ 522               	.LSM42:
+ 523 009e 0330      		cpi r16,3
+ 524 00a0 1105      		cpc r17,__zero_reg__
+ 525 00a2 01F4      		brne .L33
+ 526 00a4 20E0      		ldi r18,lo8(0)
+ 527 00a6 30E0      		ldi r19,hi8(0)
+ 528               	.L32:
+ 529               	.LBE42:
+ 530               	.LSM43:
+ 531 00a8 C901      		movw r24,r18
+ 532               	/* epilogue start */
+ 533 00aa 0F90      		pop __tmp_reg__
+ 534 00ac 0F90      		pop __tmp_reg__
+ 535 00ae 0F90      		pop __tmp_reg__
+ 536 00b0 0F90      		pop __tmp_reg__
+ 537 00b2 CF91      		pop r28
+ 538 00b4 DF91      		pop r29
+ 539 00b6 1F91      		pop r17
+ 540 00b8 0F91      		pop r16
+ 541 00ba FF90      		pop r15
+ 542 00bc EF90      		pop r14
+ 543 00be DF90      		pop r13
+ 544 00c0 CF90      		pop r12
+ 545 00c2 BF90      		pop r11
+ 546 00c4 AF90      		pop r10
+ 547               	.LVL21:
+ 548 00c6 9F90      		pop r9
+ 549 00c8 8F90      		pop r8
+ 550               	.LVL22:
+ 551 00ca 7F90      		pop r7
+ 552 00cc 6F90      		pop r6
+ 553 00ce 5F90      		pop r5
+ 554 00d0 4F90      		pop r4
+ 555 00d2 0895      		ret
+ 556               	.LFE109:
+ 558               		.section	.text.TCP_GetConnectionState,"ax",@progbits
+ 559               	.global	TCP_GetConnectionState
+ 561               	TCP_GetConnectionState:
+ 562               	.LFB108:
+ 563               	.LSM44:
+ 564               	.LVL23:
+ 565 0000 4F92      		push r4
+ 566 0002 5F92      		push r5
+ 567 0004 6F92      		push r6
+ 568 0006 7F92      		push r7
+ 569 0008 8F92      		push r8
+ 570 000a 9F92      		push r9
+ 571 000c AF92      		push r10
+ 572 000e BF92      		push r11
+ 573 0010 CF92      		push r12
+ 574 0012 DF92      		push r13
+ 575 0014 EF92      		push r14
+ 576 0016 FF92      		push r15
+ 577 0018 0F93      		push r16
+ 578 001a 1F93      		push r17
+ 579 001c DF93      		push r29
+ 580 001e CF93      		push r28
+ 581 0020 00D0      		rcall .
+ 582 0022 00D0      		rcall .
+ 583 0024 CDB7      		in r28,__SP_L__
+ 584 0026 DEB7      		in r29,__SP_H__
+ 585               	/* prologue: function */
+ 586               	/* frame size = 4 */
+ 587 0028 4C01      		movw r8,r24
+ 588 002a 4983      		std Y+1,r20
+ 589 002c 5A83      		std Y+2,r21
+ 590 002e 6B83      		std Y+3,r22
+ 591 0030 7C83      		std Y+4,r23
+ 592 0032 5901      		movw r10,r18
+ 593               	.LSM45:
+ 594 0034 40E0      		ldi r20,lo8(ConnectionStateTable)
+ 595 0036 E42E      		mov r14,r20
+ 596 0038 40E0      		ldi r20,hi8(ConnectionStateTable)
+ 597 003a F42E      		mov r15,r20
+ 598 003c 00E0      		ldi r16,lo8(0)
+ 599 003e 10E0      		ldi r17,hi8(0)
+ 600               	.LBB43:
+ 601               	.LSM46:
+ 602 0040 36E1      		ldi r19,lo8(534)
+ 603 0042 432E      		mov r4,r19
+ 604 0044 32E0      		ldi r19,hi8(534)
+ 605 0046 532E      		mov r5,r19
+ 606 0048 3E01      		movw r6,r28
+ 607 004a 0894      		sec
+ 608 004c 611C      		adc r6,__zero_reg__
+ 609 004e 711C      		adc r7,__zero_reg__
+ 610               	.LVL24:
+ 611               	.L39:
+ 612 0050 F701      		movw r30,r14
+ 613 0052 8081      		ld r24,Z
+ 614 0054 9181      		ldd r25,Z+1
+ 615 0056 8815      		cp r24,r8
+ 616 0058 9905      		cpc r25,r9
+ 617 005a 01F4      		brne .L37
+ 618 005c 049D      		mul r16,r4
+ 619 005e 6001      		movw r12,r0
+ 620 0060 059D      		mul r16,r5
+ 621 0062 D00C      		add r13,r0
+ 622 0064 149D      		mul r17,r4
+ 623 0066 D00C      		add r13,r0
+ 624 0068 1124      		clr r1
+ 625 006a C601      		movw r24,r12
+ 626 006c 8050      		subi r24,lo8(-(ConnectionStateTable+4))
+ 627 006e 9040      		sbci r25,hi8(-(ConnectionStateTable+4))
+ 628 0070 B301      		movw r22,r6
+ 629 0072 44E0      		ldi r20,lo8(4)
+ 630 0074 50E0      		ldi r21,hi8(4)
+ 631 0076 0E94 0000 		call memcmp
+ 632 007a 0097      		sbiw r24,0
+ 633 007c 01F4      		brne .L37
+ 634 007e F701      		movw r30,r14
+ 635 0080 8281      		ldd r24,Z+2
+ 636 0082 9381      		ldd r25,Z+3
+ 637 0084 8A15      		cp r24,r10
+ 638 0086 9B05      		cpc r25,r11
+ 639 0088 01F4      		brne .L37
+ 640               	.LSM47:
+ 641 008a F601      		movw r30,r12
+ 642 008c E050      		subi r30,lo8(-(ConnectionStateTable+533))
+ 643 008e F040      		sbci r31,hi8(-(ConnectionStateTable+533))
+ 644 0090 8081      		ld r24,Z
+ 645 0092 00C0      		rjmp .L38
+ 646               	.LVL25:
+ 647               	.L37:
+ 648 0094 0F5F      		subi r16,lo8(-(1))
+ 649 0096 1F4F      		sbci r17,hi8(-(1))
+ 650 0098 86E1      		ldi r24,lo8(534)
+ 651 009a 92E0      		ldi r25,hi8(534)
+ 652 009c E80E      		add r14,r24
+ 653 009e F91E      		adc r15,r25
+ 654               	.LSM48:
+ 655 00a0 0330      		cpi r16,3
+ 656 00a2 1105      		cpc r17,__zero_reg__
+ 657 00a4 01F4      		brne .L39
+ 658 00a6 8AE0      		ldi r24,lo8(10)
+ 659               	.L38:
+ 660               	/* epilogue start */
+ 661               	.LBE43:
+ 662               	.LSM49:
+ 663 00a8 0F90      		pop __tmp_reg__
+ 664 00aa 0F90      		pop __tmp_reg__
+ 665 00ac 0F90      		pop __tmp_reg__
+ 666 00ae 0F90      		pop __tmp_reg__
+ 667 00b0 CF91      		pop r28
+ 668 00b2 DF91      		pop r29
+ 669 00b4 1F91      		pop r17
+ 670 00b6 0F91      		pop r16
+ 671 00b8 FF90      		pop r15
+ 672 00ba EF90      		pop r14
+ 673 00bc DF90      		pop r13
+ 674 00be CF90      		pop r12
+ 675 00c0 BF90      		pop r11
+ 676 00c2 AF90      		pop r10
+ 677               	.LVL26:
+ 678 00c4 9F90      		pop r9
+ 679 00c6 8F90      		pop r8
+ 680               	.LVL27:
+ 681 00c8 7F90      		pop r7
+ 682 00ca 6F90      		pop r6
+ 683 00cc 5F90      		pop r5
+ 684 00ce 4F90      		pop r4
+ 685 00d0 0895      		ret
+ 686               	.LFE108:
+ 688               		.section	.text.TCP_SetConnectionState,"ax",@progbits
+ 689               	.global	TCP_SetConnectionState
+ 691               	TCP_SetConnectionState:
+ 692               	.LFB107:
+ 693               	.LSM50:
+ 694               	.LVL28:
+ 695 0000 3F92      		push r3
+ 696 0002 4F92      		push r4
+ 697 0004 5F92      		push r5
+ 698 0006 6F92      		push r6
+ 699 0008 7F92      		push r7
+ 700 000a 8F92      		push r8
+ 701 000c 9F92      		push r9
+ 702 000e AF92      		push r10
+ 703 0010 BF92      		push r11
+ 704 0012 CF92      		push r12
+ 705 0014 DF92      		push r13
+ 706 0016 EF92      		push r14
+ 707 0018 FF92      		push r15
+ 708 001a 0F93      		push r16
+ 709               	.LVL29:
+ 710 001c 1F93      		push r17
+ 711 001e DF93      		push r29
+ 712 0020 CF93      		push r28
+ 713 0022 00D0      		rcall .
+ 714 0024 00D0      		rcall .
+ 715 0026 CDB7      		in r28,__SP_L__
+ 716 0028 DEB7      		in r29,__SP_H__
+ 717               	/* prologue: function */
+ 718               	/* frame size = 4 */
+ 719 002a 5C01      		movw r10,r24
+ 720 002c 4983      		std Y+1,r20
+ 721 002e 5A83      		std Y+2,r21
+ 722 0030 6B83      		std Y+3,r22
+ 723 0032 7C83      		std Y+4,r23
+ 724 0034 4901      		movw r8,r18
+ 725 0036 302E      		mov r3,r16
+ 726               	.LVL30:
+ 727               	.LSM51:
+ 728 0038 70E0      		ldi r23,lo8(ConnectionStateTable)
+ 729 003a E72E      		mov r14,r23
+ 730 003c 70E0      		ldi r23,hi8(ConnectionStateTable)
+ 731 003e F72E      		mov r15,r23
+ 732 0040 00E0      		ldi r16,lo8(0)
+ 733 0042 10E0      		ldi r17,hi8(0)
+ 734               	.LVL31:
+ 735               	.LBB44:
+ 736               	.LSM52:
+ 737 0044 66E1      		ldi r22,lo8(534)
+ 738 0046 462E      		mov r4,r22
+ 739 0048 62E0      		ldi r22,hi8(534)
+ 740 004a 562E      		mov r5,r22
+ 741 004c 3E01      		movw r6,r28
+ 742 004e 0894      		sec
+ 743 0050 611C      		adc r6,__zero_reg__
+ 744 0052 711C      		adc r7,__zero_reg__
+ 745               	.LVL32:
+ 746               	.L45:
+ 747 0054 F701      		movw r30,r14
+ 748 0056 8081      		ld r24,Z
+ 749 0058 9181      		ldd r25,Z+1
+ 750 005a 8A15      		cp r24,r10
+ 751 005c 9B05      		cpc r25,r11
+ 752 005e 01F4      		brne .L43
+ 753 0060 049D      		mul r16,r4
+ 754 0062 6001      		movw r12,r0
+ 755 0064 059D      		mul r16,r5
+ 756 0066 D00C      		add r13,r0
+ 757 0068 149D      		mul r17,r4
+ 758 006a D00C      		add r13,r0
+ 759 006c 1124      		clr r1
+ 760 006e C601      		movw r24,r12
+ 761 0070 8050      		subi r24,lo8(-(ConnectionStateTable+4))
+ 762 0072 9040      		sbci r25,hi8(-(ConnectionStateTable+4))
+ 763 0074 B301      		movw r22,r6
+ 764 0076 44E0      		ldi r20,lo8(4)
+ 765 0078 50E0      		ldi r21,hi8(4)
+ 766 007a 0E94 0000 		call memcmp
+ 767 007e 0097      		sbiw r24,0
+ 768 0080 01F4      		brne .L43
+ 769 0082 F701      		movw r30,r14
+ 770 0084 8281      		ldd r24,Z+2
+ 771 0086 9381      		ldd r25,Z+3
+ 772 0088 8815      		cp r24,r8
+ 773 008a 9905      		cpc r25,r9
+ 774 008c 01F4      		brne .L43
+ 775               	.LSM53:
+ 776 008e F601      		movw r30,r12
+ 777 0090 E050      		subi r30,lo8(-(ConnectionStateTable+533))
+ 778 0092 F040      		sbci r31,hi8(-(ConnectionStateTable+533))
+ 779 0094 00C0      		rjmp .L52
+ 780               	.LVL33:
+ 781               	.L43:
+ 782               	.LSM54:
+ 783 0096 0F5F      		subi r16,lo8(-(1))
+ 784 0098 1F4F      		sbci r17,hi8(-(1))
+ 785 009a 86E1      		ldi r24,lo8(534)
+ 786 009c 92E0      		ldi r25,hi8(534)
+ 787 009e E80E      		add r14,r24
+ 788 00a0 F91E      		adc r15,r25
+ 789               	.LSM55:
+ 790 00a2 0330      		cpi r16,3
+ 791 00a4 1105      		cpc r17,__zero_reg__
+ 792 00a6 01F4      		brne .L45
+ 793               	.LBE44:
+ 794               	.LBB45:
+ 795               	.LSM56:
+ 796 00a8 8091 0000 		lds r24,ConnectionStateTable+533
+ 797 00ac 8A30      		cpi r24,lo8(10)
+ 798 00ae 01F4      		brne .L46
+ 799 00b0 40E0      		ldi r20,lo8(0)
+ 800 00b2 50E0      		ldi r21,hi8(0)
+ 801 00b4 00C0      		rjmp .L47
+ 802               	.L46:
+ 803 00b6 8091 0000 		lds r24,ConnectionStateTable+1067
+ 804 00ba 8A30      		cpi r24,lo8(10)
+ 805 00bc 01F4      		brne .L48
+ 806 00be 41E0      		ldi r20,lo8(1)
+ 807 00c0 50E0      		ldi r21,hi8(1)
+ 808 00c2 00C0      		rjmp .L47
+ 809               	.L48:
+ 810 00c4 8091 0000 		lds r24,ConnectionStateTable+1601
+ 811 00c8 8A30      		cpi r24,lo8(10)
+ 812 00ca 01F0      		breq .L49
+ 813 00cc 80E0      		ldi r24,lo8(0)
+ 814 00ce 00C0      		rjmp .L44
+ 815               	.L49:
+ 816 00d0 42E0      		ldi r20,lo8(2)
+ 817 00d2 50E0      		ldi r21,hi8(2)
+ 818               	.L47:
+ 819               	.LSM57:
+ 820 00d4 86E1      		ldi r24,lo8(534)
+ 821 00d6 92E0      		ldi r25,hi8(534)
+ 822 00d8 489F      		mul r20,r24
+ 823 00da 9001      		movw r18,r0
+ 824 00dc 499F      		mul r20,r25
+ 825 00de 300D      		add r19,r0
+ 826 00e0 589F      		mul r21,r24
+ 827 00e2 300D      		add r19,r0
+ 828 00e4 1124      		clr r1
+ 829 00e6 2050      		subi r18,lo8(-(ConnectionStateTable))
+ 830 00e8 3040      		sbci r19,hi8(-(ConnectionStateTable))
+ 831 00ea F901      		movw r30,r18
+ 832 00ec B182      		std Z+1,r11
+ 833 00ee A082      		st Z,r10
+ 834               	.LSM58:
+ 835 00f0 8981      		ldd r24,Y+1
+ 836 00f2 9A81      		ldd r25,Y+2
+ 837 00f4 AB81      		ldd r26,Y+3
+ 838 00f6 BC81      		ldd r27,Y+4
+ 839 00f8 8483      		std Z+4,r24
+ 840 00fa 9583      		std Z+5,r25
+ 841 00fc A683      		std Z+6,r26
+ 842 00fe B783      		std Z+7,r27
+ 843               	.LSM59:
+ 844 0100 8BE0      		ldi r24,lo8(267)
+ 845 0102 91E0      		ldi r25,hi8(267)
+ 846 0104 489F      		mul r20,r24
+ 847 0106 F001      		movw r30,r0
+ 848 0108 499F      		mul r20,r25
+ 849 010a F00D      		add r31,r0
+ 850 010c 589F      		mul r21,r24
+ 851 010e F00D      		add r31,r0
+ 852 0110 1124      		clr r1
+ 853 0112 EE0F      		lsl r30
+ 854 0114 FF1F      		rol r31
+ 855 0116 E050      		subi r30,lo8(-(ConnectionStateTable+2))
+ 856 0118 F040      		sbci r31,hi8(-(ConnectionStateTable+2))
+ 857 011a 9182      		std Z+1,r9
+ 858 011c 8082      		st Z,r8
+ 859               	.LSM60:
+ 860 011e 2B5E      		subi r18,lo8(-(533))
+ 861 0120 3D4F      		sbci r19,hi8(-(533))
+ 862 0122 F901      		movw r30,r18
+ 863               	.L52:
+ 864 0124 3082      		st Z,r3
+ 865 0126 81E0      		ldi r24,lo8(1)
+ 866               	.LVL34:
+ 867               	.L44:
+ 868               	/* epilogue start */
+ 869               	.LBE45:
+ 870               	.LSM61:
+ 871 0128 0F90      		pop __tmp_reg__
+ 872 012a 0F90      		pop __tmp_reg__
+ 873 012c 0F90      		pop __tmp_reg__
+ 874 012e 0F90      		pop __tmp_reg__
+ 875 0130 CF91      		pop r28
+ 876 0132 DF91      		pop r29
+ 877 0134 1F91      		pop r17
+ 878 0136 0F91      		pop r16
+ 879 0138 FF90      		pop r15
+ 880 013a EF90      		pop r14
+ 881 013c DF90      		pop r13
+ 882 013e CF90      		pop r12
+ 883 0140 BF90      		pop r11
+ 884 0142 AF90      		pop r10
+ 885               	.LVL35:
+ 886 0144 9F90      		pop r9
+ 887 0146 8F90      		pop r8
+ 888               	.LVL36:
+ 889 0148 7F90      		pop r7
+ 890 014a 6F90      		pop r6
+ 891 014c 5F90      		pop r5
+ 892 014e 4F90      		pop r4
+ 893 0150 3F90      		pop r3
+ 894               	.LVL37:
+ 895 0152 0895      		ret
+ 896               	.LFE107:
+ 898               		.section	.text.TCP_ProcessTCPPacket,"ax",@progbits
+ 899               	.global	TCP_ProcessTCPPacket
+ 901               	TCP_ProcessTCPPacket:
+ 902               	.LFB110:
+ 903               	.LSM62:
+ 904               	.LVL38:
+ 905 0000 AF92      		push r10
+ 906 0002 BF92      		push r11
+ 907 0004 CF92      		push r12
+ 908 0006 DF92      		push r13
+ 909 0008 EF92      		push r14
+ 910 000a FF92      		push r15
+ 911 000c 0F93      		push r16
+ 912 000e 1F93      		push r17
+ 913 0010 CF93      		push r28
+ 914 0012 DF93      		push r29
+ 915               	/* prologue: function */
+ 916               	/* frame size = 0 */
+ 917 0014 7B01      		movw r14,r22
+ 918               	.LSM63:
+ 919 0016 5C01      		movw r10,r24
+ 920               	.LVL39:
+ 921               	.LSM64:
+ 922 0018 6A01      		movw r12,r20
+ 923               	.LVL40:
+ 924               	.LSM65:
+ 925 001a CB01      		movw r24,r22
+ 926 001c 0E94 0000 		call DecodeTCPHeader
+ 927               	.LVL41:
+ 928               	.LSM66:
+ 929 0020 D701      		movw r26,r14
+ 930 0022 1296      		adiw r26,2
+ 931 0024 8D91      		ld r24,X+
+ 932 0026 9C91      		ld r25,X
+ 933 0028 1397      		sbiw r26,2+1
+ 934 002a 0E94 0000 		call TCP_GetPortState
+ 935 002e 8130      		cpi r24,lo8(1)
+ 936 0030 01F0      		breq .+2
+ 937 0032 00C0      		rjmp .L54
+ 938               	.LSM67:
+ 939 0034 E701      		movw r28,r14
+ 940 0036 8D85      		ldd r24,Y+13
+ 941 0038 81FF      		sbrs r24,1
+ 942 003a 00C0      		rjmp .L55
+ 943               	.LSM68:
+ 944 003c F501      		movw r30,r10
+ 945               	.LVL42:
+ 946 003e 4485      		ldd r20,Z+12
+ 947 0040 5585      		ldd r21,Z+13
+ 948 0042 6685      		ldd r22,Z+14
+ 949 0044 7785      		ldd r23,Z+15
+ 950 0046 2881      		ld r18,Y
+ 951 0048 3981      		ldd r19,Y+1
+ 952 004a 8A81      		ldd r24,Y+2
+ 953 004c 9B81      		ldd r25,Y+3
+ 954 004e 00E0      		ldi r16,lo8(0)
+ 955 0050 0E94 0000 		call TCP_SetConnectionState
+ 956               	.L55:
+ 957               	.LSM69:
+ 958 0054 D701      		movw r26,r14
+ 959 0056 1D96      		adiw r26,13
+ 960 0058 8C91      		ld r24,X
+ 961 005a 1D97      		sbiw r26,13
+ 962 005c 1296      		adiw r26,2
+ 963 005e ED91      		ld r30,X+
+ 964 0060 FC91      		ld r31,X
+ 965 0062 1397      		sbiw r26,2+1
+ 966 0064 E501      		movw r28,r10
+ 967 0066 4C85      		ldd r20,Y+12
+ 968 0068 5D85      		ldd r21,Y+13
+ 969 006a 6E85      		ldd r22,Y+14
+ 970 006c 7F85      		ldd r23,Y+15
+ 971 006e 2D91      		ld r18,X+
+ 972 0070 3C91      		ld r19,X
+ 973 0072 82FF      		sbrs r24,2
+ 974 0074 00C0      		rjmp .L56
+ 975               	.LSM70:
+ 976 0076 CF01      		movw r24,r30
+ 977 0078 0AE0      		ldi r16,lo8(10)
+ 978 007a 0E94 0000 		call TCP_SetConnectionState
+ 979 007e 8823      		tst r24
+ 980 0080 01F4      		brne .+2
+ 981 0082 00C0      		rjmp .L57
+ 982               	.LSM71:
+ 983 0084 84E1      		ldi r24,lo8(20)
+ 984 0086 00C0      		rjmp .L81
+ 985               	.L56:
+ 986               	.LSM72:
+ 987 0088 CF01      		movw r24,r30
+ 988 008a 0E94 0000 		call TCP_GetConnectionState
+ 989 008e 8430      		cpi r24,lo8(4)
+ 990 0090 01F4      		brne .+2
+ 991 0092 00C0      		rjmp .L62
+ 992 0094 8530      		cpi r24,lo8(5)
+ 993 0096 00F4      		brsh .L66
+ 994 0098 8230      		cpi r24,lo8(2)
+ 995 009a 01F4      		brne .+2
+ 996 009c 00C0      		rjmp .L60
+ 997 009e 8330      		cpi r24,lo8(3)
+ 998 00a0 00F0      		brlo .+2
+ 999 00a2 00C0      		rjmp .L61
+ 1000 00a4 8823      		tst r24
+ 1001 00a6 01F0      		breq .L59
+ 1002 00a8 00C0      		rjmp .L57
+ 1003               	.L66:
+ 1004 00aa 8630      		cpi r24,lo8(6)
+ 1005 00ac 01F4      		brne .+2
+ 1006 00ae 00C0      		rjmp .L64
+ 1007 00b0 8630      		cpi r24,lo8(6)
+ 1008 00b2 00F4      		brsh .+2
+ 1009 00b4 00C0      		rjmp .L63
+ 1010 00b6 8730      		cpi r24,lo8(7)
+ 1011 00b8 01F0      		breq .+2
+ 1012 00ba 00C0      		rjmp .L57
+ 1013 00bc 00C0      		rjmp .L85
+ 1014               	.L59:
+ 1015               	.LSM73:
+ 1016 00be D701      		movw r26,r14
+ 1017 00c0 1D96      		adiw r26,13
+ 1018 00c2 8C91      		ld r24,X
+ 1019 00c4 1D97      		sbiw r26,13
+ 1020 00c6 8230      		cpi r24,lo8(2)
+ 1021 00c8 01F0      		breq .+2
+ 1022 00ca 00C0      		rjmp .L57
+ 1023               	.LSM74:
+ 1024 00cc E501      		movw r28,r10
+ 1025 00ce 4C85      		ldd r20,Y+12
+ 1026 00d0 5D85      		ldd r21,Y+13
+ 1027 00d2 6E85      		ldd r22,Y+14
+ 1028 00d4 7F85      		ldd r23,Y+15
+ 1029 00d6 2D91      		ld r18,X+
+ 1030 00d8 3C91      		ld r19,X
+ 1031 00da 1197      		sbiw r26,1
+ 1032 00dc 1296      		adiw r26,2
+ 1033 00de 8D91      		ld r24,X+
+ 1034 00e0 9C91      		ld r25,X
+ 1035 00e2 1397      		sbiw r26,2+1
+ 1036 00e4 02E0      		ldi r16,lo8(2)
+ 1037 00e6 0E94 0000 		call TCP_SetConnectionState
+ 1038 00ea 8823      		tst r24
+ 1039 00ec 01F0      		breq .L67
+ 1040               	.LSM75:
+ 1041 00ee 82E1      		ldi r24,lo8(18)
+ 1042 00f0 F601      		movw r30,r12
+ 1043               	.LVL43:
+ 1044 00f2 8587      		std Z+13,r24
+ 1045               	.LSM76:
+ 1046 00f4 4C85      		ldd r20,Y+12
+ 1047 00f6 5D85      		ldd r21,Y+13
+ 1048 00f8 6E85      		ldd r22,Y+14
+ 1049 00fa 7F85      		ldd r23,Y+15
+ 1050 00fc D701      		movw r26,r14
+ 1051 00fe 2D91      		ld r18,X+
+ 1052 0100 3C91      		ld r19,X
+ 1053 0102 1197      		sbiw r26,1
+ 1054 0104 1296      		adiw r26,2
+ 1055 0106 8D91      		ld r24,X+
+ 1056 0108 9C91      		ld r25,X
+ 1057 010a 1397      		sbiw r26,2+1
+ 1058 010c 0E94 0000 		call TCP_GetConnectionInfo
+ 1059 0110 FC01      		movw r30,r24
+ 1060               	.LVL44:
+ 1061               	.LBB46:
+ 1062               	.LBB47:
+ 1063               	.LSM77:
+ 1064 0112 E701      		movw r28,r14
+ 1065 0114 8C81      		ldd r24,Y+4
+ 1066 0116 9D81      		ldd r25,Y+5
+ 1067 0118 AE81      		ldd r26,Y+6
+ 1068 011a BF81      		ldd r27,Y+7
+ 1069               	.LVL45:
+ 1070               	.LSM78:
+ 1071 011c 282F      		mov r18,r24
+ 1072               	.LVL46:
+ 1073               	.LSM79:
+ 1074 011e 8B2F      		mov r24,r27
+ 1075               	.LVL47:
+ 1076               	.LSM80:
+ 1077 0120 B22F      		mov r27,r18
+ 1078               	.LVL48:
+ 1079               	.LSM81:
+ 1080 0122 292F      		mov r18,r25
+ 1081               	.LVL49:
+ 1082               	.LSM82:
+ 1083 0124 9A2F      		mov r25,r26
+ 1084               	.LVL50:
+ 1085               	.LSM83:
+ 1086 0126 A22F      		mov r26,r18
+ 1087               	.LVL51:
+ 1088               	.LBE47:
+ 1089               	.LBE46:
+ 1090               	.LSM84:
+ 1091 0128 0196      		adiw r24,1
+ 1092 012a A11D      		adc r26,__zero_reg__
+ 1093 012c B11D      		adc r27,__zero_reg__
+ 1094               	.LVL52:
+ 1095 012e 8083      		st Z,r24
+ 1096 0130 9183      		std Z+1,r25
+ 1097 0132 A283      		std Z+2,r26
+ 1098 0134 B383      		std Z+3,r27
+ 1099               	.LSM85:
+ 1100 0136 1482      		std Z+4,__zero_reg__
+ 1101 0138 1582      		std Z+5,__zero_reg__
+ 1102 013a 1682      		std Z+6,__zero_reg__
+ 1103 013c 1782      		std Z+7,__zero_reg__
+ 1104               	.LSM86:
+ 1105 013e E45F      		subi r30,lo8(-(524))
+ 1106 0140 FD4F      		sbci r31,hi8(-(524))
+ 1107 0142 1082      		st Z,__zero_reg__
+ 1108 0144 00C0      		rjmp .L58
+ 1109               	.LVL53:
+ 1110               	.L67:
+ 1111               	.LSM87:
+ 1112 0146 84E0      		ldi r24,lo8(4)
+ 1113               	.L81:
+ 1114 0148 F601      		movw r30,r12
+ 1115               	.LVL54:
+ 1116 014a 8587      		std Z+13,r24
+ 1117 014c 00C0      		rjmp .L58
+ 1118               	.LVL55:
+ 1119               	.L60:
+ 1120               	.LSM88:
+ 1121 014e D701      		movw r26,r14
+ 1122 0150 1D96      		adiw r26,13
+ 1123 0152 8C91      		ld r24,X
+ 1124 0154 1D97      		sbiw r26,13
+ 1125 0156 8031      		cpi r24,lo8(16)
+ 1126 0158 01F0      		breq .+2
+ 1127 015a 00C0      		rjmp .L57
+ 1128               	.LSM89:
+ 1129 015c E501      		movw r28,r10
+ 1130 015e 4C85      		ldd r20,Y+12
+ 1131 0160 5D85      		ldd r21,Y+13
+ 1132 0162 6E85      		ldd r22,Y+14
+ 1133 0164 7F85      		ldd r23,Y+15
+ 1134 0166 2D91      		ld r18,X+
+ 1135 0168 3C91      		ld r19,X
+ 1136 016a 1197      		sbiw r26,1
+ 1137 016c 1296      		adiw r26,2
+ 1138 016e 8D91      		ld r24,X+
+ 1139 0170 9C91      		ld r25,X
+ 1140 0172 1397      		sbiw r26,2+1
+ 1141 0174 03E0      		ldi r16,lo8(3)
+ 1142 0176 0E94 0000 		call TCP_SetConnectionState
+ 1143               	.LSM90:
+ 1144 017a 4C85      		ldd r20,Y+12
+ 1145 017c 5D85      		ldd r21,Y+13
+ 1146 017e 6E85      		ldd r22,Y+14
+ 1147 0180 7F85      		ldd r23,Y+15
+ 1148 0182 F701      		movw r30,r14
+ 1149 0184 2081      		ld r18,Z
+ 1150 0186 3181      		ldd r19,Z+1
+ 1151 0188 8281      		ldd r24,Z+2
+ 1152 018a 9381      		ldd r25,Z+3
+ 1153 018c 0E94 0000 		call TCP_GetConnectionInfo
+ 1154 0190 FC01      		movw r30,r24
+ 1155               	.LVL56:
+ 1156               	.LSM91:
+ 1157 0192 8481      		ldd r24,Z+4
+ 1158 0194 9581      		ldd r25,Z+5
+ 1159 0196 A681      		ldd r26,Z+6
+ 1160 0198 B781      		ldd r27,Z+7
+ 1161 019a 0196      		adiw r24,1
+ 1162 019c A11D      		adc r26,__zero_reg__
+ 1163 019e B11D      		adc r27,__zero_reg__
+ 1164 01a0 8483      		std Z+4,r24
+ 1165 01a2 9583      		std Z+5,r25
+ 1166 01a4 A683      		std Z+6,r26
+ 1167 01a6 B783      		std Z+7,r27
+ 1168 01a8 00C0      		rjmp .L57
+ 1169               	.LVL57:
+ 1170               	.L61:
+ 1171               	.LSM92:
+ 1172 01aa D701      		movw r26,r14
+ 1173 01ac 1D96      		adiw r26,13
+ 1174 01ae 8C91      		ld r24,X
+ 1175 01b0 1D97      		sbiw r26,13
+ 1176 01b2 8131      		cpi r24,lo8(17)
+ 1177 01b4 01F4      		brne .L69
+ 1178               	.LSM93:
+ 1179 01b6 E601      		movw r28,r12
+ 1180               	.LVL58:
+ 1181 01b8 8D87      		std Y+13,r24
+ 1182               	.LSM94:
+ 1183 01ba F501      		movw r30,r10
+ 1184 01bc 4485      		ldd r20,Z+12
+ 1185 01be 5585      		ldd r21,Z+13
+ 1186 01c0 6685      		ldd r22,Z+14
+ 1187 01c2 7785      		ldd r23,Z+15
+ 1188 01c4 2D91      		ld r18,X+
+ 1189 01c6 3C91      		ld r19,X
+ 1190 01c8 1197      		sbiw r26,1
+ 1191 01ca 1296      		adiw r26,2
+ 1192 01cc 8D91      		ld r24,X+
+ 1193 01ce 9C91      		ld r25,X
+ 1194 01d0 1397      		sbiw r26,2+1
+ 1195 01d2 06E0      		ldi r16,lo8(6)
+ 1196 01d4 0E94 0000 		call TCP_SetConnectionState
+ 1197               	.LSM95:
+ 1198 01d8 D501      		movw r26,r10
+ 1199 01da 1C96      		adiw r26,12
+ 1200 01dc 4D91      		ld r20,X+
+ 1201 01de 5D91      		ld r21,X+
+ 1202 01e0 6D91      		ld r22,X+
+ 1203 01e2 7C91      		ld r23,X
+ 1204 01e4 1F97      		sbiw r26,12+3
+ 1205 01e6 E701      		movw r28,r14
+ 1206 01e8 2881      		ld r18,Y
+ 1207 01ea 3981      		ldd r19,Y+1
+ 1208 01ec 8A81      		ldd r24,Y+2
+ 1209 01ee 9B81      		ldd r25,Y+3
+ 1210 01f0 0E94 0000 		call TCP_GetConnectionInfo
+ 1211 01f4 FC01      		movw r30,r24
+ 1212               	.LVL59:
+ 1213               	.LSM96:
+ 1214 01f6 8081      		ld r24,Z
+ 1215 01f8 9181      		ldd r25,Z+1
+ 1216 01fa A281      		ldd r26,Z+2
+ 1217 01fc B381      		ldd r27,Z+3
+ 1218 01fe 0196      		adiw r24,1
+ 1219 0200 A11D      		adc r26,__zero_reg__
+ 1220 0202 B11D      		adc r27,__zero_reg__
+ 1221 0204 8083      		st Z,r24
+ 1222 0206 9183      		std Z+1,r25
+ 1223 0208 A283      		std Z+2,r26
+ 1224 020a B383      		std Z+3,r27
+ 1225               	.LSM97:
+ 1226 020c 8481      		ldd r24,Z+4
+ 1227 020e 9581      		ldd r25,Z+5
+ 1228 0210 A681      		ldd r26,Z+6
+ 1229 0212 B781      		ldd r27,Z+7
+ 1230 0214 0196      		adiw r24,1
+ 1231 0216 A11D      		adc r26,__zero_reg__
+ 1232 0218 B11D      		adc r27,__zero_reg__
+ 1233 021a 8483      		std Z+4,r24
+ 1234 021c 9583      		std Z+5,r25
+ 1235 021e A683      		std Z+6,r26
+ 1236 0220 B783      		std Z+7,r27
+ 1237 0222 00C0      		rjmp .L58
+ 1238               	.LVL60:
+ 1239               	.L69:
+ 1240               	.LSM98:
+ 1241 0224 8031      		cpi r24,lo8(16)
+ 1242 0226 01F0      		breq .L70
+ 1243 0228 8831      		cpi r24,lo8(24)
+ 1244 022a 01F0      		breq .+2
+ 1245 022c 00C0      		rjmp .L57
+ 1246               	.L70:
+ 1247               	.LSM99:
+ 1248 022e F501      		movw r30,r10
+ 1249 0230 4485      		ldd r20,Z+12
+ 1250 0232 5585      		ldd r21,Z+13
+ 1251 0234 6685      		ldd r22,Z+14
+ 1252 0236 7785      		ldd r23,Z+15
+ 1253 0238 D701      		movw r26,r14
+ 1254 023a 2D91      		ld r18,X+
+ 1255 023c 3C91      		ld r19,X
+ 1256 023e 1197      		sbiw r26,1
+ 1257 0240 1296      		adiw r26,2
+ 1258 0242 8D91      		ld r24,X+
+ 1259 0244 9C91      		ld r25,X
+ 1260 0246 1397      		sbiw r26,2+1
+ 1261 0248 0E94 0000 		call TCP_GetConnectionInfo
+ 1262 024c EC01      		movw r28,r24
+ 1263               	.LVL61:
+ 1264               	.LSM100:
+ 1265 024e FC01      		movw r30,r24
+ 1266 0250 E45F      		subi r30,lo8(-(524))
+ 1267 0252 FD4F      		sbci r31,hi8(-(524))
+ 1268 0254 8081      		ld r24,Z
+ 1269 0256 8823      		tst r24
+ 1270 0258 01F4      		brne .L71
+ 1271 025a C55F      		subi r28,lo8(-(523))
+ 1272 025c DD4F      		sbci r29,hi8(-(523))
+ 1273 025e 8881      		ld r24,Y
+ 1274 0260 CB50      		subi r28,lo8(-(-523))
+ 1275 0262 D240      		sbci r29,hi8(-(-523))
+ 1276 0264 8823      		tst r24
+ 1277 0266 01F4      		brne .L71
+ 1278               	.LSM101:
+ 1279 0268 C65F      		subi r28,lo8(-(522))
+ 1280 026a DD4F      		sbci r29,hi8(-(522))
+ 1281 026c 1882      		st Y,__zero_reg__
+ 1282 026e CA50      		subi r28,lo8(-(-522))
+ 1283 0270 D240      		sbci r29,hi8(-(-522))
+ 1284               	.LSM102:
+ 1285 0272 81E0      		ldi r24,lo8(1)
+ 1286 0274 8083      		st Z,r24
+ 1287               	.LSM103:
+ 1288 0276 1986      		std Y+9,__zero_reg__
+ 1289 0278 1886      		std Y+8,__zero_reg__
+ 1290               	.L71:
+ 1291               	.LSM104:
+ 1292 027a C65F      		subi r28,lo8(-(522))
+ 1293 027c DD4F      		sbci r29,hi8(-(522))
+ 1294 027e 8881      		ld r24,Y
+ 1295 0280 CA50      		subi r28,lo8(-(-522))
+ 1296 0282 D240      		sbci r29,hi8(-(-522))
+ 1297 0284 8823      		tst r24
+ 1298 0286 01F0      		breq .+2
+ 1299 0288 00C0      		rjmp .L72
+ 1300 028a 6885      		ldd r22,Y+8
+ 1301 028c 7985      		ldd r23,Y+9
+ 1302 028e B2E0      		ldi r27,hi8(512)
+ 1303 0290 6030      		cpi r22,lo8(512)
+ 1304 0292 7B07      		cpc r23,r27
+ 1305 0294 01F4      		brne .+2
+ 1306 0296 00C0      		rjmp .L72
+ 1307               	.LBB48:
+ 1308               	.LSM105:
+ 1309 0298 F501      		movw r30,r10
+ 1310 029a 2081      		ld r18,Z
+ 1311 029c 2F70      		andi r18,lo8(15)
+ 1312 029e 30E0      		ldi r19,lo8(0)
+ 1313 02a0 220F      		lsl r18
+ 1314 02a2 331F      		rol r19
+ 1315 02a4 220F      		lsl r18
+ 1316 02a6 331F      		rol r19
+ 1317               	.LSM106:
+ 1318 02a8 D701      		movw r26,r14
+ 1319 02aa 1C96      		adiw r26,12
+ 1320 02ac 8C91      		ld r24,X
+ 1321 02ae 8295      		swap r24
+ 1322 02b0 8F70      		andi r24,lo8(15)
+ 1323 02b2 90E0      		ldi r25,lo8(0)
+ 1324               	.LVL62:
+ 1325 02b4 880F      		lsl r24
+ 1326 02b6 991F      		rol r25
+ 1327 02b8 880F      		lsl r24
+ 1328 02ba 991F      		rol r25
+ 1329               	.LVL63:
+ 1330               	.LBB49:
+ 1331               	.LBB50:
+ 1332               	.LSM107:
+ 1333 02bc 0281      		ldd r16,Z+2
+ 1334 02be 1381      		ldd r17,Z+3
+ 1335               	.LVL64:
+ 1336               	.LSM108:
+ 1337 02c0 402F      		mov r20,r16
+ 1338               	.LVL65:
+ 1339               	.LSM109:
+ 1340 02c2 012F      		mov r16,r17
+ 1341               	.LVL66:
+ 1342               	.LSM110:
+ 1343 02c4 142F      		mov r17,r20
+ 1344               	.LVL67:
+ 1345               	.LBE50:
+ 1346               	.LBE49:
+ 1347               	.LSM111:
+ 1348 02c6 021B      		sub r16,r18
+ 1349 02c8 130B      		sbc r17,r19
+ 1350               	.LVL68:
+ 1351 02ca 081B      		sub r16,r24
+ 1352 02cc 190B      		sbc r17,r25
+ 1353               	.LSM112:
+ 1354 02ce 9B01      		movw r18,r22
+ 1355 02d0 265F      		subi r18,lo8(-(10))
+ 1356 02d2 3F4F      		sbci r19,hi8(-(10))
+ 1357 02d4 2C0F      		add r18,r28
+ 1358 02d6 3D1F      		adc r19,r29
+ 1359 02d8 A701      		movw r20,r14
+ 1360               	.LVL69:
+ 1361 02da 480F      		add r20,r24
+ 1362 02dc 591F      		adc r21,r25
+ 1363 02de C901      		movw r24,r18
+ 1364               	.LVL70:
+ 1365 02e0 BA01      		movw r22,r20
+ 1366 02e2 A801      		movw r20,r16
+ 1367               	.LVL71:
+ 1368 02e4 0E94 0000 		call memcpy
+ 1369               	.LVL72:
+ 1370               	.LSM113:
+ 1371 02e8 9801      		movw r18,r16
+ 1372               	.LVL73:
+ 1373 02ea 40E0      		ldi r20,lo8(0)
+ 1374 02ec 50E0      		ldi r21,hi8(0)
+ 1375               	.LVL74:
+ 1376 02ee 8881      		ld r24,Y
+ 1377 02f0 9981      		ldd r25,Y+1
+ 1378 02f2 AA81      		ldd r26,Y+2
+ 1379 02f4 BB81      		ldd r27,Y+3
+ 1380 02f6 820F      		add r24,r18
+ 1381 02f8 931F      		adc r25,r19
+ 1382 02fa A41F      		adc r26,r20
+ 1383 02fc B51F      		adc r27,r21
+ 1384 02fe 8883      		st Y,r24
+ 1385 0300 9983      		std Y+1,r25
+ 1386 0302 AA83      		std Y+2,r26
+ 1387 0304 BB83      		std Y+3,r27
+ 1388               	.LSM114:
+ 1389 0306 8885      		ldd r24,Y+8
+ 1390 0308 9985      		ldd r25,Y+9
+ 1391 030a 800F      		add r24,r16
+ 1392 030c 911F      		adc r25,r17
+ 1393 030e 9987      		std Y+9,r25
+ 1394 0310 8887      		std Y+8,r24
+ 1395               	.LSM115:
+ 1396 0312 8050      		subi r24,lo8(512)
+ 1397 0314 9240      		sbci r25,hi8(512)
+ 1398 0316 01F0      		breq .L74
+ 1399 0318 F701      		movw r30,r14
+ 1400 031a 8585      		ldd r24,Z+13
+ 1401 031c 83FF      		sbrs r24,3
+ 1402 031e 00C0      		rjmp .L57
+ 1403               	.L74:
+ 1404               	.LSM116:
+ 1405 0320 C45F      		subi r28,lo8(-(524))
+ 1406 0322 DD4F      		sbci r29,hi8(-(524))
+ 1407 0324 1882      		st Y,__zero_reg__
+ 1408               	.LSM117:
+ 1409 0326 FE01      		movw r30,r28
+ 1410 0328 81E0      		ldi r24,lo8(1)
+ 1411 032a 8293      		st -Z,r24
+ 1412               	.LSM118:
+ 1413 032c 80E1      		ldi r24,lo8(16)
+ 1414 032e D601      		movw r26,r12
+ 1415               	.LVL75:
+ 1416 0330 1D96      		adiw r26,13
+ 1417 0332 8C93      		st X,r24
+ 1418 0334 00C0      		rjmp .L58
+ 1419               	.LVL76:
+ 1420               	.L85:
+ 1421               	.LBE48:
+ 1422               	.LSM119:
+ 1423 0336 E501      		movw r28,r10
+ 1424 0338 4C85      		ldd r20,Y+12
+ 1425 033a 5D85      		ldd r21,Y+13
+ 1426 033c 6E85      		ldd r22,Y+14
+ 1427 033e 7F85      		ldd r23,Y+15
+ 1428 0340 F701      		movw r30,r14
+ 1429 0342 2081      		ld r18,Z
+ 1430 0344 3181      		ldd r19,Z+1
+ 1431 0346 8281      		ldd r24,Z+2
+ 1432 0348 9381      		ldd r25,Z+3
+ 1433 034a 0E94 0000 		call TCP_GetConnectionInfo
+ 1434               	.LSM120:
+ 1435 034e 21E1      		ldi r18,lo8(17)
+ 1436 0350 D601      		movw r26,r12
+ 1437               	.LVL77:
+ 1438 0352 1D96      		adiw r26,13
+ 1439 0354 2C93      		st X,r18
+ 1440               	.LSM121:
+ 1441 0356 FC01      		movw r30,r24
+ 1442 0358 E45F      		subi r30,lo8(-(524))
+ 1443 035a FD4F      		sbci r31,hi8(-(524))
+ 1444 035c 1082      		st Z,__zero_reg__
+ 1445               	.LSM122:
+ 1446 035e 4C85      		ldd r20,Y+12
+ 1447 0360 5D85      		ldd r21,Y+13
+ 1448 0362 6E85      		ldd r22,Y+14
+ 1449 0364 7F85      		ldd r23,Y+15
+ 1450 0366 E701      		movw r28,r14
+ 1451 0368 2881      		ld r18,Y
+ 1452 036a 3981      		ldd r19,Y+1
+ 1453 036c 8A81      		ldd r24,Y+2
+ 1454 036e 9B81      		ldd r25,Y+3
+ 1455 0370 04E0      		ldi r16,lo8(4)
+ 1456 0372 00C0      		rjmp .L83
+ 1457               	.LVL78:
+ 1458               	.L62:
+ 1459               	.LSM123:
+ 1460 0374 F701      		movw r30,r14
+ 1461 0376 8585      		ldd r24,Z+13
+ 1462 0378 8131      		cpi r24,lo8(17)
+ 1463 037a 01F4      		brne .L75
+ 1464               	.LSM124:
+ 1465 037c D501      		movw r26,r10
+ 1466 037e 1C96      		adiw r26,12
+ 1467 0380 4D91      		ld r20,X+
+ 1468 0382 5D91      		ld r21,X+
+ 1469 0384 6D91      		ld r22,X+
+ 1470 0386 7C91      		ld r23,X
+ 1471 0388 1F97      		sbiw r26,12+3
+ 1472 038a 2081      		ld r18,Z
+ 1473 038c 3181      		ldd r19,Z+1
+ 1474 038e 8281      		ldd r24,Z+2
+ 1475 0390 9381      		ldd r25,Z+3
+ 1476 0392 0E94 0000 		call TCP_GetConnectionInfo
+ 1477 0396 FC01      		movw r30,r24
+ 1478               	.LVL79:
+ 1479               	.LSM125:
+ 1480 0398 80E1      		ldi r24,lo8(16)
+ 1481 039a E601      		movw r28,r12
+ 1482               	.LVL80:
+ 1483 039c 8D87      		std Y+13,r24
+ 1484               	.LSM126:
+ 1485 039e 8081      		ld r24,Z
+ 1486 03a0 9181      		ldd r25,Z+1
+ 1487 03a2 A281      		ldd r26,Z+2
+ 1488 03a4 B381      		ldd r27,Z+3
+ 1489 03a6 0196      		adiw r24,1
+ 1490 03a8 A11D      		adc r26,__zero_reg__
+ 1491 03aa B11D      		adc r27,__zero_reg__
+ 1492 03ac 8083      		st Z,r24
+ 1493 03ae 9183      		std Z+1,r25
+ 1494 03b0 A283      		std Z+2,r26
+ 1495 03b2 B383      		std Z+3,r27
+ 1496               	.LSM127:
+ 1497 03b4 8481      		ldd r24,Z+4
+ 1498 03b6 9581      		ldd r25,Z+5
+ 1499 03b8 A681      		ldd r26,Z+6
+ 1500 03ba B781      		ldd r27,Z+7
+ 1501 03bc 0196      		adiw r24,1
+ 1502 03be A11D      		adc r26,__zero_reg__
+ 1503 03c0 B11D      		adc r27,__zero_reg__
+ 1504 03c2 8483      		std Z+4,r24
+ 1505 03c4 9583      		std Z+5,r25
+ 1506 03c6 A683      		std Z+6,r26
+ 1507 03c8 B783      		std Z+7,r27
+ 1508               	.LSM128:
+ 1509 03ca F501      		movw r30,r10
+ 1510               	.LVL81:
+ 1511 03cc 4485      		ldd r20,Z+12
+ 1512 03ce 5585      		ldd r21,Z+13
+ 1513 03d0 6685      		ldd r22,Z+14
+ 1514 03d2 7785      		ldd r23,Z+15
+ 1515 03d4 D701      		movw r26,r14
+ 1516 03d6 2D91      		ld r18,X+
+ 1517 03d8 3C91      		ld r19,X
+ 1518 03da 1197      		sbiw r26,1
+ 1519 03dc 1296      		adiw r26,2
+ 1520 03de 8D91      		ld r24,X+
+ 1521 03e0 9C91      		ld r25,X
+ 1522 03e2 1397      		sbiw r26,2+1
+ 1523 03e4 00C0      		rjmp .L82
+ 1524               	.LVL82:
+ 1525               	.L75:
+ 1526               	.LSM129:
+ 1527 03e6 8031      		cpi r24,lo8(16)
+ 1528 03e8 01F0      		breq .+2
+ 1529 03ea 00C0      		rjmp .L57
+ 1530               	.LSM130:
+ 1531 03ec E501      		movw r28,r10
+ 1532 03ee 4C85      		ldd r20,Y+12
+ 1533 03f0 5D85      		ldd r21,Y+13
+ 1534 03f2 6E85      		ldd r22,Y+14
+ 1535 03f4 7F85      		ldd r23,Y+15
+ 1536 03f6 F701      		movw r30,r14
+ 1537 03f8 2081      		ld r18,Z
+ 1538 03fa 3181      		ldd r19,Z+1
+ 1539 03fc 8281      		ldd r24,Z+2
+ 1540 03fe 9381      		ldd r25,Z+3
+ 1541 0400 05E0      		ldi r16,lo8(5)
+ 1542 0402 00C0      		rjmp .L84
+ 1543               	.L63:
+ 1544               	.LSM131:
+ 1545 0404 D701      		movw r26,r14
+ 1546 0406 1D96      		adiw r26,13
+ 1547 0408 8C91      		ld r24,X
+ 1548 040a 1D97      		sbiw r26,13
+ 1549 040c 8131      		cpi r24,lo8(17)
+ 1550 040e 01F0      		breq .+2
+ 1551 0410 00C0      		rjmp .L57
+ 1552               	.LSM132:
+ 1553 0412 E501      		movw r28,r10
+ 1554 0414 4C85      		ldd r20,Y+12
+ 1555 0416 5D85      		ldd r21,Y+13
+ 1556 0418 6E85      		ldd r22,Y+14
+ 1557 041a 7F85      		ldd r23,Y+15
+ 1558 041c 2D91      		ld r18,X+
+ 1559 041e 3C91      		ld r19,X
+ 1560 0420 1197      		sbiw r26,1
+ 1561 0422 1296      		adiw r26,2
+ 1562 0424 8D91      		ld r24,X+
+ 1563 0426 9C91      		ld r25,X
+ 1564 0428 1397      		sbiw r26,2+1
+ 1565 042a 0E94 0000 		call TCP_GetConnectionInfo
+ 1566 042e FC01      		movw r30,r24
+ 1567               	.LVL83:
+ 1568               	.LSM133:
+ 1569 0430 80E1      		ldi r24,lo8(16)
+ 1570 0432 D601      		movw r26,r12
+ 1571               	.LVL84:
+ 1572 0434 1D96      		adiw r26,13
+ 1573 0436 8C93      		st X,r24
+ 1574               	.LSM134:
+ 1575 0438 8081      		ld r24,Z
+ 1576 043a 9181      		ldd r25,Z+1
+ 1577 043c A281      		ldd r26,Z+2
+ 1578 043e B381      		ldd r27,Z+3
+ 1579 0440 0196      		adiw r24,1
+ 1580 0442 A11D      		adc r26,__zero_reg__
+ 1581 0444 B11D      		adc r27,__zero_reg__
+ 1582 0446 8083      		st Z,r24
+ 1583 0448 9183      		std Z+1,r25
+ 1584 044a A283      		std Z+2,r26
+ 1585 044c B383      		std Z+3,r27
+ 1586               	.LSM135:
+ 1587 044e 8481      		ldd r24,Z+4
+ 1588 0450 9581      		ldd r25,Z+5
+ 1589 0452 A681      		ldd r26,Z+6
+ 1590 0454 B781      		ldd r27,Z+7
+ 1591 0456 0196      		adiw r24,1
+ 1592 0458 A11D      		adc r26,__zero_reg__
+ 1593 045a B11D      		adc r27,__zero_reg__
+ 1594 045c 8483      		std Z+4,r24
+ 1595 045e 9583      		std Z+5,r25
+ 1596 0460 A683      		std Z+6,r26
+ 1597 0462 B783      		std Z+7,r27
+ 1598               	.LSM136:
+ 1599 0464 4C85      		ldd r20,Y+12
+ 1600 0466 5D85      		ldd r21,Y+13
+ 1601 0468 6E85      		ldd r22,Y+14
+ 1602 046a 7F85      		ldd r23,Y+15
+ 1603 046c E701      		movw r28,r14
+ 1604 046e 2881      		ld r18,Y
+ 1605 0470 3981      		ldd r19,Y+1
+ 1606 0472 8A81      		ldd r24,Y+2
+ 1607 0474 9B81      		ldd r25,Y+3
+ 1608               	.L82:
+ 1609 0476 0AE0      		ldi r16,lo8(10)
+ 1610               	.L83:
+ 1611 0478 0E94 0000 		call TCP_SetConnectionState
+ 1612               	.LVL85:
+ 1613 047c 00C0      		rjmp .L58
+ 1614               	.LVL86:
+ 1615               	.L64:
+ 1616               	.LSM137:
+ 1617 047e F701      		movw r30,r14
+ 1618 0480 8585      		ldd r24,Z+13
+ 1619 0482 8031      		cpi r24,lo8(16)
+ 1620 0484 01F0      		breq .+2
+ 1621 0486 00C0      		rjmp .L57
+ 1622               	.LSM138:
+ 1623 0488 D501      		movw r26,r10
+ 1624 048a 1C96      		adiw r26,12
+ 1625 048c 4D91      		ld r20,X+
+ 1626 048e 5D91      		ld r21,X+
+ 1627 0490 6D91      		ld r22,X+
+ 1628 0492 7C91      		ld r23,X
+ 1629 0494 1F97      		sbiw r26,12+3
+ 1630 0496 2081      		ld r18,Z
+ 1631 0498 3181      		ldd r19,Z+1
+ 1632 049a 8281      		ldd r24,Z+2
+ 1633 049c 9381      		ldd r25,Z+3
+ 1634 049e 0AE0      		ldi r16,lo8(10)
+ 1635               	.L84:
+ 1636 04a0 0E94 0000 		call TCP_SetConnectionState
+ 1637 04a4 00C0      		rjmp .L57
+ 1638               	.LVL87:
+ 1639               	.L54:
+ 1640               	.LSM139:
+ 1641 04a6 84E1      		ldi r24,lo8(20)
+ 1642 04a8 E601      		movw r28,r12
+ 1643               	.LVL88:
+ 1644 04aa 8D87      		std Y+13,r24
+ 1645 04ac 00C0      		rjmp .L58
+ 1646               	.LVL89:
+ 1647               	.L77:
+ 1648               	.LBB51:
+ 1649               	.LBB52:
+ 1650               	.LSM140:
+ 1651 04ae 82E0      		ldi r24,lo8(2)
+ 1652 04b0 90E0      		ldi r25,hi8(2)
+ 1653               	.LVL90:
+ 1654               	.LBE52:
+ 1655               	.LBE51:
+ 1656               	.LSM141:
+ 1657 04b2 F601      		movw r30,r12
+ 1658               	.LVL91:
+ 1659 04b4 9787      		std Z+15,r25
+ 1660 04b6 8687      		std Z+14,r24
+ 1661 04b8 00C0      		rjmp .L76
+ 1662               	.LVL92:
+ 1663               	.L86:
+ 1664               	.LBB53:
+ 1665               	.LBB54:
+ 1666               	.LSM142:
+ 1667 04ba 80E0      		ldi r24,lo8(512)
+ 1668 04bc 92E0      		ldi r25,hi8(512)
+ 1669 04be 2085      		ldd r18,Z+8
+ 1670 04c0 3185      		ldd r19,Z+9
+ 1671               	.LVL93:
+ 1672 04c2 821B      		sub r24,r18
+ 1673 04c4 930B      		sbc r25,r19
+ 1674               	.LBE54:
+ 1675               	.LBE53:
+ 1676               	.LSM143:
+ 1677 04c6 D601      		movw r26,r12
+ 1678 04c8 1E96      		adiw r26,14
+ 1679 04ca 9C93      		st X,r25
+ 1680 04cc 1E97      		sbiw r26,14
+ 1681               	.LVL94:
+ 1682 04ce 1F96      		adiw r26,15
+ 1683 04d0 8C93      		st X,r24
+ 1684               	.LVL95:
+ 1685               	.L76:
+ 1686               	.LSM144:
+ 1687 04d2 E601      		movw r28,r12
+ 1688 04d4 1B8A      		std Y+19,__zero_reg__
+ 1689 04d6 1A8A      		std Y+18,__zero_reg__
+ 1690               	.LSM145:
+ 1691 04d8 198A      		std Y+17,__zero_reg__
+ 1692 04da 188A      		std Y+16,__zero_reg__
+ 1693               	.LSM146:
+ 1694 04dc 8C85      		ldd r24,Y+12
+ 1695               	.LVL96:
+ 1696 04de 807F      		andi r24,lo8(-16)
+ 1697 04e0 8C87      		std Y+12,r24
+ 1698               	.LSM147:
+ 1699 04e2 F501      		movw r30,r10
+ 1700               	.LVL97:
+ 1701 04e4 4089      		ldd r20,Z+16
+ 1702 04e6 5189      		ldd r21,Z+17
+ 1703 04e8 6289      		ldd r22,Z+18
+ 1704 04ea 7389      		ldd r23,Z+19
+ 1705 04ec 0485      		ldd r16,Z+12
+ 1706 04ee 1585      		ldd r17,Z+13
+ 1707 04f0 2685      		ldd r18,Z+14
+ 1708 04f2 3785      		ldd r19,Z+15
+ 1709               	.LVL98:
+ 1710 04f4 C601      		movw r24,r12
+ 1711 04f6 E4E1      		ldi r30,lo8(20)
+ 1712 04f8 EE2E      		mov r14,r30
+ 1713 04fa F12C      		mov r15,__zero_reg__
+ 1714               	.LVL99:
+ 1715 04fc 0E94 0000 		call TCP_Checksum16
+ 1716               	.LVL100:
+ 1717 0500 998B      		std Y+17,r25
+ 1718 0502 888B      		std Y+16,r24
+ 1719 0504 24E1      		ldi r18,lo8(20)
+ 1720 0506 30E0      		ldi r19,hi8(20)
+ 1721 0508 00C0      		rjmp .L68
+ 1722               	.LVL101:
+ 1723               	.L72:
+ 1724               	.LSM148:
+ 1725 050a 2FEF      		ldi r18,lo8(-1)
+ 1726 050c 3FEF      		ldi r19,hi8(-1)
+ 1727 050e 00C0      		rjmp .L68
+ 1728               	.LVL102:
+ 1729               	.L57:
+ 1730 0510 20E0      		ldi r18,lo8(0)
+ 1731 0512 30E0      		ldi r19,hi8(0)
+ 1732               	.LVL103:
+ 1733               	.L68:
+ 1734               	.LSM149:
+ 1735 0514 C901      		movw r24,r18
+ 1736               	/* epilogue start */
+ 1737 0516 DF91      		pop r29
+ 1738 0518 CF91      		pop r28
+ 1739               	.LVL104:
+ 1740 051a 1F91      		pop r17
+ 1741               	.LVL105:
+ 1742 051c 0F91      		pop r16
+ 1743               	.LVL106:
+ 1744 051e FF90      		pop r15
+ 1745 0520 EF90      		pop r14
+ 1746               	.LVL107:
+ 1747 0522 DF90      		pop r13
+ 1748 0524 CF90      		pop r12
+ 1749               	.LVL108:
+ 1750 0526 BF90      		pop r11
+ 1751 0528 AF90      		pop r10
+ 1752               	.LVL109:
+ 1753 052a 0895      		ret
+ 1754               	.LVL110:
+ 1755               	.L58:
+ 1756               	.LSM150:
+ 1757 052c D501      		movw r26,r10
+ 1758               	.LVL111:
+ 1759 052e 1C96      		adiw r26,12
+ 1760 0530 4D91      		ld r20,X+
+ 1761 0532 5D91      		ld r21,X+
+ 1762 0534 6D91      		ld r22,X+
+ 1763 0536 7C91      		ld r23,X
+ 1764 0538 1F97      		sbiw r26,12+3
+ 1765               	.LVL112:
+ 1766 053a E701      		movw r28,r14
+ 1767 053c 2881      		ld r18,Y
+ 1768 053e 3981      		ldd r19,Y+1
+ 1769               	.LVL113:
+ 1770 0540 8A81      		ldd r24,Y+2
+ 1771 0542 9B81      		ldd r25,Y+3
+ 1772               	.LVL114:
+ 1773 0544 0E94 0000 		call TCP_GetConnectionInfo
+ 1774               	.LVL115:
+ 1775 0548 FC01      		movw r30,r24
+ 1776               	.LVL116:
+ 1777               	.LSM151:
+ 1778 054a 8A81      		ldd r24,Y+2
+ 1779 054c 9B81      		ldd r25,Y+3
+ 1780 054e D601      		movw r26,r12
+ 1781 0550 1196      		adiw r26,1
+ 1782 0552 9C93      		st X,r25
+ 1783 0554 8E93      		st -X,r24
+ 1784               	.LSM152:
+ 1785 0556 8881      		ld r24,Y
+ 1786 0558 9981      		ldd r25,Y+1
+ 1787 055a 1396      		adiw r26,2+1
+ 1788 055c 9C93      		st X,r25
+ 1789 055e 8E93      		st -X,r24
+ 1790 0560 1297      		sbiw r26,2
+ 1791               	.LBB55:
+ 1792               	.LBB56:
+ 1793               	.LSM153:
+ 1794 0562 3481      		ldd r19,Z+4
+ 1795               	.LVL117:
+ 1796 0564 2581      		ldd r18,Z+5
+ 1797               	.LVL118:
+ 1798 0566 9681      		ldd r25,Z+6
+ 1799               	.LVL119:
+ 1800 0568 8781      		ldd r24,Z+7
+ 1801               	.LVL120:
+ 1802               	.LBE56:
+ 1803               	.LBE55:
+ 1804               	.LSM154:
+ 1805 056a 1496      		adiw r26,4
+ 1806 056c 8C93      		st X,r24
+ 1807 056e 1497      		sbiw r26,4
+ 1808 0570 1596      		adiw r26,5
+ 1809 0572 9C93      		st X,r25
+ 1810 0574 1597      		sbiw r26,5
+ 1811 0576 1696      		adiw r26,6
+ 1812 0578 2C93      		st X,r18
+ 1813 057a 1697      		sbiw r26,6
+ 1814 057c 1796      		adiw r26,7
+ 1815 057e 3C93      		st X,r19
+ 1816 0580 1797      		sbiw r26,7
+ 1817               	.LBB57:
+ 1818               	.LBB58:
+ 1819               	.LSM155:
+ 1820 0582 3081      		ld r19,Z
+ 1821               	.LVL121:
+ 1822 0584 2181      		ldd r18,Z+1
+ 1823               	.LVL122:
+ 1824 0586 9281      		ldd r25,Z+2
+ 1825               	.LVL123:
+ 1826 0588 8381      		ldd r24,Z+3
+ 1827               	.LVL124:
+ 1828               	.LBE58:
+ 1829               	.LBE57:
+ 1830               	.LSM156:
+ 1831 058a 1896      		adiw r26,8
+ 1832 058c 8C93      		st X,r24
+ 1833 058e 1897      		sbiw r26,8
+ 1834 0590 1996      		adiw r26,9
+ 1835 0592 9C93      		st X,r25
+ 1836 0594 1997      		sbiw r26,9
+ 1837 0596 1A96      		adiw r26,10
+ 1838 0598 2C93      		st X,r18
+ 1839 059a 1A97      		sbiw r26,10
+ 1840 059c 1B96      		adiw r26,11
+ 1841 059e 3C93      		st X,r19
+ 1842 05a0 1B97      		sbiw r26,11
+ 1843               	.LSM157:
+ 1844 05a2 1C96      		adiw r26,12
+ 1845 05a4 8C91      		ld r24,X
+ 1846 05a6 1C97      		sbiw r26,12
+ 1847               	.LVL125:
+ 1848 05a8 8F70      		andi r24,lo8(15)
+ 1849 05aa 8065      		ori r24,lo8(80)
+ 1850 05ac 1C96      		adiw r26,12
+ 1851 05ae 8C93      		st X,r24
+ 1852               	.LSM158:
+ 1853 05b0 E45F      		subi r30,lo8(-(524))
+ 1854 05b2 FD4F      		sbci r31,hi8(-(524))
+ 1855 05b4 8081      		ld r24,Z
+ 1856 05b6 EC50      		subi r30,lo8(-(-524))
+ 1857 05b8 F240      		sbci r31,hi8(-(-524))
+ 1858 05ba 8823      		tst r24
+ 1859 05bc 01F4      		brne .+2
+ 1860 05be 00C0      		rjmp .L77
+ 1861 05c0 00C0      		rjmp .L86
+ 1862               	.LFE110:
+ 1864               		.section	.text.TCP_TCPTask,"ax",@progbits
+ 1865               	.global	TCP_TCPTask
+ 1867               	TCP_TCPTask:
+ 1868               	.LFB103:
+ 1869               	.LSM159:
+ 1870               	.LVL126:
+ 1871 0000 2F92      		push r2
+ 1872 0002 3F92      		push r3
+ 1873 0004 4F92      		push r4
+ 1874 0006 5F92      		push r5
+ 1875 0008 6F92      		push r6
+ 1876 000a 7F92      		push r7
+ 1877 000c 8F92      		push r8
+ 1878 000e 9F92      		push r9
+ 1879 0010 AF92      		push r10
+ 1880 0012 BF92      		push r11
+ 1881 0014 CF92      		push r12
+ 1882 0016 DF92      		push r13
+ 1883 0018 EF92      		push r14
+ 1884 001a FF92      		push r15
+ 1885 001c 0F93      		push r16
+ 1886 001e 1F93      		push r17
+ 1887 0020 DF93      		push r29
+ 1888 0022 CF93      		push r28
+ 1889 0024 00D0      		rcall .
+ 1890 0026 00D0      		rcall .
+ 1891 0028 CDB7      		in r28,__SP_L__
+ 1892 002a DEB7      		in r29,__SP_H__
+ 1893               	/* prologue: function */
+ 1894               	/* frame size = 4 */
+ 1895 002c 7C83      		std Y+4,r23
+ 1896 002e 6B83      		std Y+3,r22
+ 1897               	.LSM160:
+ 1898 0030 90E0      		ldi r25,lo8(ConnectionStateTable)
+ 1899 0032 C92E      		mov r12,r25
+ 1900 0034 90E0      		ldi r25,hi8(ConnectionStateTable)
+ 1901 0036 D92E      		mov r13,r25
+ 1902 0038 00E0      		ldi r16,lo8(0)
+ 1903 003a 10E0      		ldi r17,hi8(0)
+ 1904               	.LBB59:
+ 1905               	.LBB60:
+ 1906               	.LSM161:
+ 1907 003c 86E1      		ldi r24,lo8(534)
+ 1908 003e E82E      		mov r14,r24
+ 1909 0040 82E0      		ldi r24,hi8(534)
+ 1910 0042 F82E      		mov r15,r24
+ 1911               	.LVL127:
+ 1912 0044 00C0      		rjmp .L88
+ 1913               	.LVL128:
+ 1914               	.L102:
+ 1915               	.LSM162:
+ 1916 0046 8091 0000 		lds r24,PortStateTable+2
+ 1917 004a 8130      		cpi r24,lo8(1)
+ 1918 004c 01F4      		brne .L89
+ 1919               	.LSM163:
+ 1920 004e 0E9D      		mul r16,r14
+ 1921 0050 B001      		movw r22,r0
+ 1922 0052 0F9D      		mul r16,r15
+ 1923 0054 700D      		add r23,r0
+ 1924 0056 1E9D      		mul r17,r14
+ 1925 0058 700D      		add r23,r0
+ 1926 005a 1124      		clr r1
+ 1927 005c 6050      		subi r22,lo8(-(ConnectionStateTable+16))
+ 1928 005e 7040      		sbci r23,hi8(-(ConnectionStateTable+16))
+ 1929 0060 E091 0000 		lds r30,PortStateTable+3
+ 1930 0064 F091 0000 		lds r31,(PortStateTable+3)+1
+ 1931 0068 C601      		movw r24,r12
+ 1932 006a 0995      		icall
+ 1933               	.LVL129:
+ 1934               	.L89:
+ 1935 006c 0F5F      		subi r16,lo8(-(1))
+ 1936 006e 1F4F      		sbci r17,hi8(-(1))
+ 1937 0070 26E1      		ldi r18,lo8(534)
+ 1938 0072 32E0      		ldi r19,hi8(534)
+ 1939 0074 C20E      		add r12,r18
+ 1940 0076 D31E      		adc r13,r19
+ 1941               	.LBE60:
+ 1942               	.LSM164:
+ 1943 0078 0330      		cpi r16,3
+ 1944 007a 1105      		cpc r17,__zero_reg__
+ 1945 007c 01F0      		breq .L90
+ 1946               	.L88:
+ 1947               	.LBB61:
+ 1948               	.LSM165:
+ 1949 007e 2091 0000 		lds r18,PortStateTable
+ 1950 0082 3091 0000 		lds r19,(PortStateTable)+1
+ 1951 0086 D601      		movw r26,r12
+ 1952 0088 8D91      		ld r24,X+
+ 1953 008a 9C91      		ld r25,X
+ 1954 008c 2817      		cp r18,r24
+ 1955 008e 3907      		cpc r19,r25
+ 1956 0090 01F4      		brne .L89
+ 1957 0092 00C0      		rjmp .L102
+ 1958               	.L90:
+ 1959               	.LBE61:
+ 1960               	.LBE59:
+ 1961               	.LSM166:
+ 1962 0094 EB81      		ldd r30,Y+3
+ 1963 0096 FC81      		ldd r31,Y+4
+ 1964 0098 E452      		subi r30,lo8(-(1500))
+ 1965 009a FA4F      		sbci r31,hi8(-(1500))
+ 1966 009c 8081      		ld r24,Z
+ 1967 009e 9181      		ldd r25,Z+1
+ 1968 00a0 EC5D      		subi r30,lo8(-(-1500))
+ 1969 00a2 F540      		sbci r31,hi8(-(-1500))
+ 1970 00a4 FC83      		std Y+4,r31
+ 1971 00a6 EB83      		std Y+3,r30
+ 1972               	.LVL130:
+ 1973 00a8 892B      		or r24,r25
+ 1974 00aa 01F0      		breq .+2
+ 1975 00ac 00C0      		rjmp .L99
+ 1976               	.LBB62:
+ 1977               	.LSM167:
+ 1978 00ae 8091 0000 		lds r24,ConnectionStateTable+530
+ 1979 00b2 8823      		tst r24
+ 1980 00b4 01F0      		breq .L93
+ 1981 00b6 8091 0000 		lds r24,ConnectionStateTable+531
+ 1982 00ba 8823      		tst r24
+ 1983 00bc 01F0      		breq .L93
+ 1984 00be 1A82      		std Y+2,__zero_reg__
+ 1985 00c0 1982      		std Y+1,__zero_reg__
+ 1986 00c2 00C0      		rjmp .L94
+ 1987               	.L93:
+ 1988 00c4 8091 0000 		lds r24,ConnectionStateTable+1064
+ 1989 00c8 8823      		tst r24
+ 1990 00ca 01F0      		breq .L95
+ 1991 00cc 8091 0000 		lds r24,ConnectionStateTable+1065
+ 1992 00d0 8823      		tst r24
+ 1993 00d2 01F0      		breq .L95
+ 1994 00d4 21E0      		ldi r18,lo8(1)
+ 1995 00d6 30E0      		ldi r19,hi8(1)
+ 1996 00d8 3A83      		std Y+2,r19
+ 1997 00da 2983      		std Y+1,r18
+ 1998 00dc 00C0      		rjmp .L94
+ 1999               	.L95:
+ 2000 00de 8091 0000 		lds r24,ConnectionStateTable+1598
+ 2001 00e2 8823      		tst r24
+ 2002 00e4 01F4      		brne .+2
+ 2003 00e6 00C0      		rjmp .L99
+ 2004 00e8 8091 0000 		lds r24,ConnectionStateTable+1599
+ 2005 00ec 8823      		tst r24
+ 2006 00ee 01F4      		brne .+2
+ 2007 00f0 00C0      		rjmp .L99
+ 2008 00f2 82E0      		ldi r24,lo8(2)
+ 2009 00f4 90E0      		ldi r25,hi8(2)
+ 2010 00f6 9A83      		std Y+2,r25
+ 2011 00f8 8983      		std Y+1,r24
+ 2012               	.L94:
+ 2013               	.LBB63:
+ 2014               	.LSM168:
+ 2015 00fa AB80      		ldd r10,Y+3
+ 2016 00fc BC80      		ldd r11,Y+4
+ 2017               	.LVL131:
+ 2018 00fe AEE0      		ldi r26,lo8(14)
+ 2019 0100 B0E0      		ldi r27,hi8(14)
+ 2020 0102 AA0E      		add r10,r26
+ 2021 0104 BB1E      		adc r11,r27
+ 2022               	.LSM169:
+ 2023 0106 CB80      		ldd r12,Y+3
+ 2024 0108 DC80      		ldd r13,Y+4
+ 2025               	.LVL132:
+ 2026 010a E2E2      		ldi r30,lo8(34)
+ 2027 010c F0E0      		ldi r31,hi8(34)
+ 2028 010e CE0E      		add r12,r30
+ 2029 0110 DF1E      		adc r13,r31
+ 2030               	.LSM170:
+ 2031 0112 86E1      		ldi r24,lo8(534)
+ 2032 0114 92E0      		ldi r25,hi8(534)
+ 2033 0116 2981      		ldd r18,Y+1
+ 2034 0118 3A81      		ldd r19,Y+2
+ 2035 011a 289F      		mul r18,r24
+ 2036 011c A001      		movw r20,r0
+ 2037 011e 299F      		mul r18,r25
+ 2038 0120 500D      		add r21,r0
+ 2039 0122 389F      		mul r19,r24
+ 2040 0124 500D      		add r21,r0
+ 2041 0126 1124      		clr r1
+ 2042 0128 00E0      		ldi r16,lo8(ConnectionStateTable)
+ 2043 012a 802E      		mov r8,r16
+ 2044 012c 00E0      		ldi r16,hi8(ConnectionStateTable)
+ 2045 012e 902E      		mov r9,r16
+ 2046 0130 840E      		add r8,r20
+ 2047 0132 951E      		adc r9,r21
+ 2048 0134 D401      		movw r26,r8
+ 2049 0136 5096      		adiw r26,16
+ 2050 0138 6D90      		ld r6,X+
+ 2051 013a 7C90      		ld r7,X
+ 2052 013c 5197      		sbiw r26,16+1
+ 2053               	.LVL133:
+ 2054               	.LSM171:
+ 2055 013e 8D91      		ld r24,X+
+ 2056 0140 9C91      		ld r25,X
+ 2057 0142 EB81      		ldd r30,Y+3
+ 2058 0144 FC81      		ldd r31,Y+4
+ 2059 0146 93A3      		std Z+35,r25
+ 2060 0148 82A3      		std Z+34,r24
+ 2061               	.LSM172:
+ 2062 014a 8BE0      		ldi r24,lo8(267)
+ 2063 014c 91E0      		ldi r25,hi8(267)
+ 2064 014e 289F      		mul r18,r24
+ 2065 0150 F001      		movw r30,r0
+ 2066 0152 299F      		mul r18,r25
+ 2067 0154 F00D      		add r31,r0
+ 2068 0156 389F      		mul r19,r24
+ 2069 0158 F00D      		add r31,r0
+ 2070 015a 1124      		clr r1
+ 2071 015c EE0F      		lsl r30
+ 2072 015e FF1F      		rol r31
+ 2073 0160 E050      		subi r30,lo8(-(ConnectionStateTable+2))
+ 2074 0162 F040      		sbci r31,hi8(-(ConnectionStateTable+2))
+ 2075 0164 8081      		ld r24,Z
+ 2076 0166 9181      		ldd r25,Z+1
+ 2077 0168 D601      		movw r26,r12
+ 2078 016a 1396      		adiw r26,2+1
+ 2079 016c 9C93      		st X,r25
+ 2080 016e 8E93      		st -X,r24
+ 2081 0170 1297      		sbiw r26,2
+ 2082               	.LBB64:
+ 2083               	.LBB65:
+ 2084               	.LSM173:
+ 2085 0172 F401      		movw r30,r8
+ 2086 0174 3C96      		adiw r30,12
+ 2087 0176 D401      		movw r26,r8
+ 2088 0178 1C96      		adiw r26,12
+ 2089 017a 3C91      		ld r19,X
+ 2090 017c 1C97      		sbiw r26,12
+ 2091               	.LVL134:
+ 2092 017e 2181      		ldd r18,Z+1
+ 2093               	.LVL135:
+ 2094 0180 9281      		ldd r25,Z+2
+ 2095               	.LVL136:
+ 2096 0182 8381      		ldd r24,Z+3
+ 2097               	.LVL137:
+ 2098               	.LBE65:
+ 2099               	.LBE64:
+ 2100               	.LSM174:
+ 2101 0184 F601      		movw r30,r12
+ 2102 0186 8483      		std Z+4,r24
+ 2103 0188 9583      		std Z+5,r25
+ 2104 018a 2683      		std Z+6,r18
+ 2105 018c 3783      		std Z+7,r19
+ 2106               	.LBB66:
+ 2107               	.LBB67:
+ 2108               	.LSM175:
+ 2109 018e F401      		movw r30,r8
+ 2110 0190 3896      		adiw r30,8
+ 2111 0192 1896      		adiw r26,8
+ 2112 0194 3C91      		ld r19,X
+ 2113               	.LVL138:
+ 2114 0196 2181      		ldd r18,Z+1
+ 2115               	.LVL139:
+ 2116 0198 9281      		ldd r25,Z+2
+ 2117               	.LVL140:
+ 2118 019a 8381      		ldd r24,Z+3
+ 2119               	.LVL141:
+ 2120               	.LBE67:
+ 2121               	.LBE66:
+ 2122               	.LSM176:
+ 2123 019c F601      		movw r30,r12
+ 2124 019e 8087      		std Z+8,r24
+ 2125 01a0 9187      		std Z+9,r25
+ 2126 01a2 2287      		std Z+10,r18
+ 2127 01a4 3387      		std Z+11,r19
+ 2128               	.LBB68:
+ 2129               	.LBB69:
+ 2130               	.LSM177:
+ 2131 01a6 82E0      		ldi r24,lo8(2)
+ 2132 01a8 90E0      		ldi r25,hi8(2)
+ 2133               	.LVL142:
+ 2134               	.LBE69:
+ 2135               	.LBE68:
+ 2136               	.LSM178:
+ 2137 01aa 9787      		std Z+15,r25
+ 2138 01ac 8687      		std Z+14,r24
+ 2139               	.LSM179:
+ 2140 01ae 80E1      		ldi r24,lo8(16)
+ 2141               	.LVL143:
+ 2142 01b0 8587      		std Z+13,r24
+ 2143               	.LSM180:
+ 2144 01b2 138A      		std Z+19,__zero_reg__
+ 2145 01b4 128A      		std Z+18,__zero_reg__
+ 2146               	.LSM181:
+ 2147 01b6 118A      		std Z+17,__zero_reg__
+ 2148 01b8 108A      		std Z+16,__zero_reg__
+ 2149               	.LSM182:
+ 2150 01ba 80E5      		ldi r24,lo8(80)
+ 2151 01bc 8487      		std Z+12,r24
+ 2152               	.LSM183:
+ 2153 01be 2B81      		ldd r18,Y+3
+ 2154 01c0 3C81      		ldd r19,Y+4
+ 2155               	.LVL144:
+ 2156 01c2 2A5C      		subi r18,lo8(-(54))
+ 2157 01c4 3F4F      		sbci r19,hi8(-(54))
+ 2158 01c6 4050      		subi r20,lo8(-(ConnectionStateTable+18))
+ 2159 01c8 5040      		sbci r21,hi8(-(ConnectionStateTable+18))
+ 2160 01ca C901      		movw r24,r18
+ 2161 01cc BA01      		movw r22,r20
+ 2162 01ce A301      		movw r20,r6
+ 2163               	.LVL145:
+ 2164 01d0 0E94 0000 		call memcpy
+ 2165               	.LVL146:
+ 2166               	.LSM184:
+ 2167 01d4 C301      		movw r24,r6
+ 2168               	.LVL147:
+ 2169 01d6 A0E0      		ldi r26,lo8(0)
+ 2170 01d8 B0E0      		ldi r27,hi8(0)
+ 2171               	.LVL148:
+ 2172 01da F401      		movw r30,r8
+ 2173 01dc 2485      		ldd r18,Z+12
+ 2174 01de 3585      		ldd r19,Z+13
+ 2175 01e0 4685      		ldd r20,Z+14
+ 2176 01e2 5785      		ldd r21,Z+15
+ 2177 01e4 820F      		add r24,r18
+ 2178 01e6 931F      		adc r25,r19
+ 2179 01e8 A41F      		adc r26,r20
+ 2180 01ea B51F      		adc r27,r21
+ 2181               	.LVL149:
+ 2182 01ec 8487      		std Z+12,r24
+ 2183 01ee 9587      		std Z+13,r25
+ 2184 01f0 A687      		std Z+14,r26
+ 2185 01f2 B787      		std Z+15,r27
+ 2186               	.LSM185:
+ 2187 01f4 24E1      		ldi r18,lo8(20)
+ 2188 01f6 30E0      		ldi r19,hi8(20)
+ 2189 01f8 620E      		add r6,r18
+ 2190 01fa 731E      		adc r7,r19
+ 2191               	.LVL150:
+ 2192 01fc 2090 0000 		lds r2,ServerIPAddress
+ 2193 0200 3090 0000 		lds r3,(ServerIPAddress)+1
+ 2194 0204 4090 0000 		lds r4,(ServerIPAddress)+2
+ 2195 0208 5090 0000 		lds r5,(ServerIPAddress)+3
+ 2196 020c 0481      		ldd r16,Z+4
+ 2197 020e 1581      		ldd r17,Z+5
+ 2198 0210 2681      		ldd r18,Z+6
+ 2199 0212 3781      		ldd r19,Z+7
+ 2200 0214 C601      		movw r24,r12
+ 2201 0216 B201      		movw r22,r4
+ 2202 0218 A101      		movw r20,r2
+ 2203 021a 7301      		movw r14,r6
+ 2204 021c 0E94 0000 		call TCP_Checksum16
+ 2205               	.LVL151:
+ 2206 0220 D601      		movw r26,r12
+ 2207 0222 5196      		adiw r26,16+1
+ 2208 0224 9C93      		st X,r25
+ 2209 0226 8E93      		st -X,r24
+ 2210 0228 5097      		sbiw r26,16
+ 2211               	.LSM186:
+ 2212 022a 8301      		movw r16,r6
+ 2213 022c 0C5E      		subi r16,lo8(-(20))
+ 2214 022e 1F4F      		sbci r17,hi8(-(20))
+ 2215               	.LVL152:
+ 2216 0230 F501      		movw r30,r10
+ 2217 0232 1283      		std Z+2,r17
+ 2218               	.LVL153:
+ 2219 0234 0383      		std Z+3,r16
+ 2220               	.LSM187:
+ 2221 0236 1182      		std Z+1,__zero_reg__
+ 2222               	.LSM188:
+ 2223 0238 85E4      		ldi r24,lo8(69)
+ 2224 023a AB81      		ldd r26,Y+3
+ 2225 023c BC81      		ldd r27,Y+4
+ 2226 023e 1E96      		adiw r26,14
+ 2227 0240 8C93      		st X,r24
+ 2228               	.LSM189:
+ 2229 0242 1682      		std Z+6,__zero_reg__
+ 2230 0244 1782      		std Z+7,__zero_reg__
+ 2231               	.LSM190:
+ 2232 0246 1582      		std Z+5,__zero_reg__
+ 2233 0248 1482      		std Z+4,__zero_reg__
+ 2234               	.LSM191:
+ 2235 024a 1386      		std Z+11,__zero_reg__
+ 2236 024c 1286      		std Z+10,__zero_reg__
+ 2237               	.LSM192:
+ 2238 024e 86E0      		ldi r24,lo8(6)
+ 2239 0250 8187      		std Z+9,r24
+ 2240               	.LSM193:
+ 2241 0252 80E8      		ldi r24,lo8(-128)
+ 2242 0254 8087      		std Z+8,r24
+ 2243               	.LSM194:
+ 2244 0256 2486      		std Z+12,r2
+ 2245 0258 3586      		std Z+13,r3
+ 2246 025a 4686      		std Z+14,r4
+ 2247 025c 5786      		std Z+15,r5
+ 2248               	.LSM195:
+ 2249 025e F401      		movw r30,r8
+ 2250 0260 8481      		ldd r24,Z+4
+ 2251 0262 9581      		ldd r25,Z+5
+ 2252 0264 A681      		ldd r26,Z+6
+ 2253 0266 B781      		ldd r27,Z+7
+ 2254 0268 F501      		movw r30,r10
+ 2255 026a 808B      		std Z+16,r24
+ 2256 026c 918B      		std Z+17,r25
+ 2257 026e A28B      		std Z+18,r26
+ 2258 0270 B38B      		std Z+19,r27
+ 2259               	.LSM196:
+ 2260 0272 C501      		movw r24,r10
+ 2261 0274 64E1      		ldi r22,lo8(20)
+ 2262 0276 70E0      		ldi r23,hi8(20)
+ 2263 0278 0E94 0000 		call Ethernet_Checksum16
+ 2264 027c D501      		movw r26,r10
+ 2265 027e 1B96      		adiw r26,10+1
+ 2266 0280 9C93      		st X,r25
+ 2267 0282 8E93      		st -X,r24
+ 2268 0284 1A97      		sbiw r26,10
+ 2269               	.LSM197:
+ 2270 0286 AB81      		ldd r26,Y+3
+ 2271 0288 BC81      		ldd r27,Y+4
+ 2272 028a 1696      		adiw r26,6
+ 2273 028c E0E0      		ldi r30,lo8(ServerMACAddress)
+ 2274 028e F0E0      		ldi r31,hi8(ServerMACAddress)
+ 2275 0290 86E0      		ldi r24,lo8(6)
+ 2276               	.L97:
+ 2277 0292 0190      		ld r0,Z+
+ 2278 0294 0D92      		st X+,r0
+ 2279 0296 8150      		subi r24,lo8(-(-1))
+ 2280 0298 01F4      		brne .L97
+ 2281               	.LSM198:
+ 2282 029a AB81      		ldd r26,Y+3
+ 2283 029c BC81      		ldd r27,Y+4
+ 2284               	.LVL154:
+ 2285 029e E0E0      		ldi r30,lo8(C.13.4106)
+ 2286 02a0 F0E0      		ldi r31,hi8(C.13.4106)
+ 2287 02a2 86E0      		ldi r24,lo8(6)
+ 2288               	.L98:
+ 2289 02a4 0190      		ld r0,Z+
+ 2290 02a6 0D92      		st X+,r0
+ 2291 02a8 8150      		subi r24,lo8(-(-1))
+ 2292 02aa 01F4      		brne .L98
+ 2293               	.LBB70:
+ 2294               	.LBB71:
+ 2295               	.LSM199:
+ 2296 02ac 88E0      		ldi r24,lo8(8)
+ 2297 02ae 90E0      		ldi r25,hi8(8)
+ 2298               	.LVL155:
+ 2299               	.LBE71:
+ 2300               	.LBE70:
+ 2301               	.LSM200:
+ 2302 02b0 EB81      		ldd r30,Y+3
+ 2303 02b2 FC81      		ldd r31,Y+4
+ 2304 02b4 9587      		std Z+13,r25
+ 2305 02b6 8487      		std Z+12,r24
+ 2306               	.LSM201:
+ 2307 02b8 E452      		subi r30,lo8(-(1500))
+ 2308 02ba FA4F      		sbci r31,hi8(-(1500))
+ 2309 02bc 025F      		subi r16,lo8(-(14))
+ 2310 02be 1F4F      		sbci r17,hi8(-(14))
+ 2311 02c0 1183      		std Z+1,r17
+ 2312 02c2 0083      		st Z,r16
+ 2313               	.LSM202:
+ 2314 02c4 86E1      		ldi r24,lo8(534)
+ 2315 02c6 92E0      		ldi r25,hi8(534)
+ 2316               	.LVL156:
+ 2317 02c8 2981      		ldd r18,Y+1
+ 2318 02ca 3A81      		ldd r19,Y+2
+ 2319 02cc 289F      		mul r18,r24
+ 2320 02ce F001      		movw r30,r0
+ 2321 02d0 299F      		mul r18,r25
+ 2322 02d2 F00D      		add r31,r0
+ 2323 02d4 389F      		mul r19,r24
+ 2324 02d6 F00D      		add r31,r0
+ 2325 02d8 1124      		clr r1
+ 2326 02da E050      		subi r30,lo8(-(ConnectionStateTable+531))
+ 2327 02dc F040      		sbci r31,hi8(-(ConnectionStateTable+531))
+ 2328 02de 1082      		st Z,__zero_reg__
+ 2329               	.L99:
+ 2330               	/* epilogue start */
+ 2331               	.LBE63:
+ 2332               	.LBE62:
+ 2333               	.LSM203:
+ 2334 02e0 0F90      		pop __tmp_reg__
+ 2335 02e2 0F90      		pop __tmp_reg__
+ 2336 02e4 0F90      		pop __tmp_reg__
+ 2337 02e6 0F90      		pop __tmp_reg__
+ 2338 02e8 CF91      		pop r28
+ 2339 02ea DF91      		pop r29
+ 2340 02ec 1F91      		pop r17
+ 2341               	.LVL157:
+ 2342 02ee 0F91      		pop r16
+ 2343               	.LVL158:
+ 2344 02f0 FF90      		pop r15
+ 2345 02f2 EF90      		pop r14
+ 2346 02f4 DF90      		pop r13
+ 2347 02f6 CF90      		pop r12
+ 2348               	.LVL159:
+ 2349 02f8 BF90      		pop r11
+ 2350 02fa AF90      		pop r10
+ 2351               	.LVL160:
+ 2352 02fc 9F90      		pop r9
+ 2353 02fe 8F90      		pop r8
+ 2354 0300 7F90      		pop r7
+ 2355 0302 6F90      		pop r6
+ 2356 0304 5F90      		pop r5
+ 2357 0306 4F90      		pop r4
+ 2358 0308 3F90      		pop r3
+ 2359 030a 2F90      		pop r2
+ 2360 030c 0895      		ret
+ 2361               	.LFE103:
+ 2363               		.data
+ 2366               	C.13.4106:
+ 2367 0000 02        		.byte	2
+ 2368 0001 00        		.byte	0
+ 2369 0002 02        		.byte	2
+ 2370 0003 00        		.byte	0
+ 2371 0004 02        		.byte	2
+ 2372 0005 00        		.byte	0
+ 2373               		.comm PortStateTable,5,1
+ 2374               		.comm ConnectionStateTable,1602,1
+ 2463               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 TCP.c
+C:\Users\Frankie\AppData\Local\Temp/ccQJgDD4.s:2      *ABS*:0000003f __SREG__
+C:\Users\Frankie\AppData\Local\Temp/ccQJgDD4.s:3      *ABS*:0000003e __SP_H__
+C:\Users\Frankie\AppData\Local\Temp/ccQJgDD4.s:4      *ABS*:0000003d __SP_L__
+C:\Users\Frankie\AppData\Local\Temp/ccQJgDD4.s:5      *ABS*:00000034 __CCP__
+C:\Users\Frankie\AppData\Local\Temp/ccQJgDD4.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Frankie\AppData\Local\Temp/ccQJgDD4.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Frankie\AppData\Local\Temp/ccQJgDD4.s:19     .text.TCP_Init:00000000 TCP_Init
+                            *COM*:00000005 PortStateTable
+                            *COM*:00000642 ConnectionStateTable
+C:\Users\Frankie\AppData\Local\Temp/ccQJgDD4.s:43     .text.TCP_SetPortState:00000000 TCP_SetPortState
+C:\Users\Frankie\AppData\Local\Temp/ccQJgDD4.s:155    .text.TCP_GetPortState:00000000 TCP_GetPortState
+C:\Users\Frankie\AppData\Local\Temp/ccQJgDD4.s:212    .text.TCP_Checksum16:00000000 TCP_Checksum16
+C:\Users\Frankie\AppData\Local\Temp/ccQJgDD4.s:430    .text.TCP_GetConnectionInfo:00000000 TCP_GetConnectionInfo
+C:\Users\Frankie\AppData\Local\Temp/ccQJgDD4.s:561    .text.TCP_GetConnectionState:00000000 TCP_GetConnectionState
+C:\Users\Frankie\AppData\Local\Temp/ccQJgDD4.s:691    .text.TCP_SetConnectionState:00000000 TCP_SetConnectionState
+C:\Users\Frankie\AppData\Local\Temp/ccQJgDD4.s:901    .text.TCP_ProcessTCPPacket:00000000 TCP_ProcessTCPPacket
+C:\Users\Frankie\AppData\Local\Temp/ccQJgDD4.s:1867   .text.TCP_TCPTask:00000000 TCP_TCPTask
+C:\Users\Frankie\AppData\Local\Temp/ccQJgDD4.s:2366   .data:00000000 C.13.4106
+
+UNDEFINED SYMBOLS
+memcmp
+DecodeTCPHeader
+memcpy
+ServerIPAddress
+Ethernet_Checksum16
+ServerMACAddress
+__do_copy_data
+__do_clear_bss

@@ -1,0 +1,2796 @@
+   1               		.file	"DataflashManager.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               		.section	.text.Dataflash_SelectChipFromPage,"ax",@progbits
+  18               	Dataflash_SelectChipFromPage:
+  19               	.LFB115:
+  20               	.LSM0:
+  21               	.LVL0:
+  22               	/* prologue: function */
+  23               	/* frame size = 0 */
+  24 0000 9C01      		movw r18,r24
+  25               	.LBB498:
+  26               	.LBB499:
+  27               	.LBB500:
+  28               	.LBB501:
+  29               	.LSM1:
+  30 0002 8EB1      		in r24,46-32
+  31               	.LVL1:
+  32 0004 8360      		ori r24,lo8(3)
+  33 0006 8EB9      		out 46-32,r24
+  34               	.LBE501:
+  35               	.LBE500:
+  36               	.LBE499:
+  37               	.LBE498:
+  38               	.LSM2:
+  39 0008 80E4      		ldi r24,hi8(16384)
+  40 000a 2030      		cpi r18,lo8(16384)
+  41 000c 3807      		cpc r19,r24
+  42 000e 00F4      		brsh .L4
+  43               	.LSM3:
+  44 0010 20FF      		sbrs r18,0
+  45 0012 00C0      		rjmp .L3
+  46               	.LBB502:
+  47               	.LBB503:
+  48               	.LSM4:
+  49 0014 8EB1      		in r24,46-32
+  50 0016 8C7F      		andi r24,lo8(-4)
+  51 0018 8160      		ori r24,lo8(1)
+  52 001a 8EB9      		out 46-32,r24
+  53 001c 0895      		ret
+  54               	.L3:
+  55               	.LBE503:
+  56               	.LBE502:
+  57               	.LBB504:
+  58               	.LBB505:
+  59 001e 8EB1      		in r24,46-32
+  60 0020 8C7F      		andi r24,lo8(-4)
+  61 0022 8260      		ori r24,lo8(2)
+  62 0024 8EB9      		out 46-32,r24
+  63               	.L4:
+  64 0026 0895      		ret
+  65               	.LBE505:
+  66               	.LBE504:
+  67               	.LFE115:
+  69               		.section	.text.Dataflash_ToggleSelectedChipCS,"ax",@progbits
+  71               	Dataflash_ToggleSelectedChipCS:
+  72               	.LFB116:
+  73               	.LSM5:
+  74               	/* prologue: function */
+  75               	/* frame size = 0 */
+  76               	.LBB506:
+  77               	.LBB507:
+  78               	.LSM6:
+  79 0000 8EB1      		in r24,46-32
+  80               	.LBE507:
+  81               	.LBE506:
+  82               	.LBB508:
+  83               	.LBB509:
+  84               	.LBB510:
+  85               	.LBB511:
+  86               	.LSM7:
+  87 0002 9EB1      		in r25,46-32
+  88 0004 9360      		ori r25,lo8(3)
+  89 0006 9EB9      		out 46-32,r25
+  90               	.LBE511:
+  91               	.LBE510:
+  92               	.LBE509:
+  93               	.LBE508:
+  94               	.LBB512:
+  95               	.LBB513:
+  96 0008 9EB1      		in r25,46-32
+  97 000a 8370      		andi r24,lo8(3)
+  98 000c 9C7F      		andi r25,lo8(-4)
+  99 000e 892B      		or r24,r25
+ 100 0010 8EB9      		out 46-32,r24
+ 101               	/* epilogue start */
+ 102               	.LBE513:
+ 103               	.LBE512:
+ 104               	.LSM8:
+ 105 0012 0895      		ret
+ 106               	.LFE116:
+ 108               		.section	.text.Dataflash_WaitWhileBusy,"ax",@progbits
+ 110               	Dataflash_WaitWhileBusy:
+ 111               	.LFB117:
+ 112               	.LSM9:
+ 113               	/* prologue: function */
+ 114               	/* frame size = 0 */
+ 115               	.LSM10:
+ 116 0000 0E94 0000 		call Dataflash_ToggleSelectedChipCS
+ 117               	.LBB514:
+ 118               	.LBB515:
+ 119               	.LBB516:
+ 120               	.LBB517:
+ 121               	.LSM11:
+ 122 0004 87ED      		ldi r24,lo8(-41)
+ 123 0006 8EBD      		out 78-32,r24
+ 124               	.L8:
+ 125               	.LSM12:
+ 126 0008 0DB4      		in __tmp_reg__,77-32
+ 127 000a 07FE      		sbrs __tmp_reg__,7
+ 128 000c 00C0      		rjmp .L8
+ 129               	.L12:
+ 130               	.LBE517:
+ 131               	.LBE516:
+ 132               	.LBE515:
+ 133               	.LBE514:
+ 134               	.LBB518:
+ 135               	.LBB519:
+ 136               	.LBB520:
+ 137               	.LBB521:
+ 138               	.LSM13:
+ 139 000e 1EBC      		out 78-32,__zero_reg__
+ 140               	.L9:
+ 141               	.LSM14:
+ 142 0010 0DB4      		in __tmp_reg__,77-32
+ 143 0012 07FE      		sbrs __tmp_reg__,7
+ 144 0014 00C0      		rjmp .L9
+ 145               	.LBE521:
+ 146               	.LBE520:
+ 147               	.LBE519:
+ 148               	.LBE518:
+ 149               	.LSM15:
+ 150 0016 0EB4      		in __tmp_reg__,78-32
+ 151 0018 07FE      		sbrs __tmp_reg__,7
+ 152 001a 00C0      		rjmp .L12
+ 153               	.LSM16:
+ 154 001c 0E94 0000 		call Dataflash_ToggleSelectedChipCS
+ 155               	/* epilogue start */
+ 156               	.LSM17:
+ 157 0020 0895      		ret
+ 158               	.LFE117:
+ 160               		.section	.text.Dataflash_SendAddressBytes,"ax",@progbits
+ 162               	Dataflash_SendAddressBytes:
+ 163               	.LFB118:
+ 164               	.LSM18:
+ 165               	.LVL2:
+ 166               	/* prologue: function */
+ 167               	/* frame size = 0 */
+ 168               	.LSM19:
+ 169 0000 9C01      		movw r18,r24
+ 170 0002 3695      		lsr r19
+ 171 0004 2795      		ror r18
+ 172               	.LVL3:
+ 173               	.LSM20:
+ 174 0006 36E0      		ldi r19,6
+ 175 0008 9695      	1:	lsr r25
+ 176 000a 8795      		ror r24
+ 177 000c 3A95      		dec r19
+ 178 000e 01F4      		brne 1b
+ 179               	.LVL4:
+ 180               	.LBB522:
+ 181               	.LBB523:
+ 182               	.LBB524:
+ 183               	.LBB525:
+ 184               	.LSM21:
+ 185 0010 8EBD      		out 78-32,r24
+ 186               	.L17:
+ 187               	.LSM22:
+ 188 0012 0DB4      		in __tmp_reg__,77-32
+ 189 0014 07FE      		sbrs __tmp_reg__,7
+ 190 0016 00C0      		rjmp .L17
+ 191               	.LBE525:
+ 192               	.LBE524:
+ 193               	.LBE523:
+ 194               	.LBE522:
+ 195               	.LSM23:
+ 196 0018 822F      		mov r24,r18
+ 197               	.LVL5:
+ 198 001a 880F      		lsl r24
+ 199 001c 880F      		lsl r24
+ 200 001e 880F      		lsl r24
+ 201 0020 872B      		or r24,r23
+ 202               	.LVL6:
+ 203               	.LBB526:
+ 204               	.LBB527:
+ 205               	.LBB528:
+ 206               	.LBB529:
+ 207               	.LSM24:
+ 208 0022 8EBD      		out 78-32,r24
+ 209               	.L18:
+ 210               	.LSM25:
+ 211 0024 0DB4      		in __tmp_reg__,77-32
+ 212 0026 07FE      		sbrs __tmp_reg__,7
+ 213 0028 00C0      		rjmp .L18
+ 214               	.LBE529:
+ 215               	.LBE528:
+ 216               	.LBE527:
+ 217               	.LBE526:
+ 218               	.LBB530:
+ 219               	.LBB531:
+ 220               	.LBB532:
+ 221               	.LBB533:
+ 222               	.LSM26:
+ 223 002a 6EBD      		out 78-32,r22
+ 224               	.L19:
+ 225               	.LSM27:
+ 226 002c 0DB4      		in __tmp_reg__,77-32
+ 227 002e 07FE      		sbrs __tmp_reg__,7
+ 228 0030 00C0      		rjmp .L19
+ 229               	/* epilogue start */
+ 230               	.LBE533:
+ 231               	.LBE532:
+ 232               	.LBE531:
+ 233               	.LBE530:
+ 234               	.LSM28:
+ 235 0032 0895      		ret
+ 236               	.LFE118:
+ 238               		.section	.text.DataflashManager_WriteBlocks_RAM,"ax",@progbits
+ 239               	.global	DataflashManager_WriteBlocks_RAM
+ 241               	DataflashManager_WriteBlocks_RAM:
+ 242               	.LFB121:
+ 243               	.LSM29:
+ 244               	.LVL7:
+ 245 0000 6F92      		push r6
+ 246 0002 7F92      		push r7
+ 247 0004 8F92      		push r8
+ 248 0006 9F92      		push r9
+ 249 0008 AF92      		push r10
+ 250 000a BF92      		push r11
+ 251 000c CF92      		push r12
+ 252 000e DF92      		push r13
+ 253 0010 EF92      		push r14
+ 254 0012 FF92      		push r15
+ 255 0014 0F93      		push r16
+ 256 0016 1F93      		push r17
+ 257 0018 CF93      		push r28
+ 258 001a DF93      		push r29
+ 259               	/* prologue: function */
+ 260               	/* frame size = 0 */
+ 261 001c 5A01      		movw r10,r20
+ 262 001e 4901      		movw r8,r18
+ 263               	.LSM30:
+ 264 0020 F9E0      		ldi r31,9
+ 265 0022 660F      	1:	lsl r22
+ 266 0024 771F      		rol r23
+ 267 0026 881F      		rol r24
+ 268 0028 991F      		rol r25
+ 269 002a FA95      		dec r31
+ 270 002c 01F4      		brne 1b
+ 271               	.LVL8:
+ 272 002e 9B01      		movw r18,r22
+ 273 0030 AC01      		movw r20,r24
+ 274               	.LVL9:
+ 275 0032 EAE0      		ldi r30,10
+ 276 0034 5695      	1:	lsr r21
+ 277 0036 4795      		ror r20
+ 278 0038 3795      		ror r19
+ 279 003a 2795      		ror r18
+ 280 003c EA95      		dec r30
+ 281 003e 01F4      		brne 1b
+ 282 0040 E901      		movw r28,r18
+ 283               	.LVL10:
+ 284               	.LSM31:
+ 285 0042 8B01      		movw r16,r22
+ 286               	.LVL11:
+ 287 0044 1370      		andi r17,hi8(1023)
+ 288               	.LSM32:
+ 289 0046 C901      		movw r24,r18
+ 290 0048 0E94 0000 		call Dataflash_SelectChipFromPage
+ 291               	.LVL12:
+ 292               	.LBB534:
+ 293               	.LBB535:
+ 294               	.LBB536:
+ 295               	.LBB537:
+ 296               	.LSM33:
+ 297 004c 83E5      		ldi r24,lo8(83)
+ 298 004e 8EBD      		out 78-32,r24
+ 299               	.L25:
+ 300               	.LSM34:
+ 301 0050 0DB4      		in __tmp_reg__,77-32
+ 302 0052 07FE      		sbrs __tmp_reg__,7
+ 303 0054 00C0      		rjmp .L25
+ 304               	.LBE537:
+ 305               	.LBE536:
+ 306               	.LBE535:
+ 307               	.LBE534:
+ 308               	.LSM35:
+ 309 0056 CE01      		movw r24,r28
+ 310 0058 60E0      		ldi r22,lo8(0)
+ 311 005a 70E0      		ldi r23,hi8(0)
+ 312 005c 0E94 0000 		call Dataflash_SendAddressBytes
+ 313               	.LSM36:
+ 314 0060 0E94 0000 		call Dataflash_WaitWhileBusy
+ 315               	.LBB538:
+ 316               	.LBB539:
+ 317               	.LBB540:
+ 318               	.LBB541:
+ 319               	.LSM37:
+ 320 0064 84E8      		ldi r24,lo8(-124)
+ 321 0066 8EBD      		out 78-32,r24
+ 322               	.L26:
+ 323               	.LSM38:
+ 324 0068 0DB4      		in __tmp_reg__,77-32
+ 325 006a 07FE      		sbrs __tmp_reg__,7
+ 326 006c 00C0      		rjmp .L26
+ 327               	.LBE541:
+ 328               	.LBE540:
+ 329               	.LBE539:
+ 330               	.LBE538:
+ 331               	.LSM39:
+ 332 006e C801      		movw r24,r16
+ 333 0070 74E0      		ldi r23,4
+ 334 0072 9695      	1:	lsr r25
+ 335 0074 8795      		ror r24
+ 336 0076 7A95      		dec r23
+ 337 0078 01F4      		brne 1b
+ 338 007a F82E      		mov r15,r24
+ 339               	.LVL13:
+ 340               	.LSM40:
+ 341 007c 80E0      		ldi r24,lo8(0)
+ 342 007e 90E0      		ldi r25,hi8(0)
+ 343 0080 B801      		movw r22,r16
+ 344 0082 0E94 0000 		call Dataflash_SendAddressBytes
+ 345 0086 6501      		movw r12,r10
+ 346 0088 65E0      		ldi r22,5
+ 347 008a CC0C      	1:	lsl r12
+ 348 008c DD1C      		rol r13
+ 349 008e 6A95      		dec r22
+ 350 0090 01F4      		brne 1b
+ 351 0092 EE24      		clr r14
+ 352               	.LVL14:
+ 353               	.LBB542:
+ 354               	.LBB543:
+ 355               	.LBB544:
+ 356               	.LBB545:
+ 357               	.LBB546:
+ 358               	.LSM41:
+ 359 0094 54E8      		ldi r21,lo8(-124)
+ 360 0096 652E      		mov r6,r21
+ 361 0098 00C0      		rjmp .L27
+ 362               	.LVL15:
+ 363               	.L41:
+ 364               	.LBE546:
+ 365               	.LBE545:
+ 366               	.LBE544:
+ 367               	.LBE543:
+ 368               	.LBE542:
+ 369               	.LSM42:
+ 370 009a 8401      		movw r16,r8
+ 371               	.LVL16:
+ 372 009c 7724      		clr r7
+ 373               	.LVL17:
+ 374               	.L40:
+ 375               	.LBB566:
+ 376               	.LSM43:
+ 377 009e 80E4      		ldi r24,lo8(64)
+ 378 00a0 F816      		cp r15,r24
+ 379 00a2 01F4      		brne .L28
+ 380               	.LSM44:
+ 381 00a4 0E94 0000 		call Dataflash_WaitWhileBusy
+ 382               	.LVL18:
+ 383               	.LSM45:
+ 384 00a8 EE20      		tst r14
+ 385 00aa 01F4      		brne .L29
+ 386 00ac 83E8      		ldi r24,lo8(-125)
+ 387 00ae 00C0      		rjmp .L30
+ 388               	.L29:
+ 389 00b0 86E8      		ldi r24,lo8(-122)
+ 390               	.L30:
+ 391               	.LBB550:
+ 392               	.LBB551:
+ 393               	.LBB552:
+ 394               	.LBB553:
+ 395               	.LSM46:
+ 396 00b2 8EBD      		out 78-32,r24
+ 397               	.L31:
+ 398               	.LSM47:
+ 399 00b4 0DB4      		in __tmp_reg__,77-32
+ 400 00b6 07FE      		sbrs __tmp_reg__,7
+ 401 00b8 00C0      		rjmp .L31
+ 402               	.LBE553:
+ 403               	.LBE552:
+ 404               	.LBE551:
+ 405               	.LBE550:
+ 406               	.LSM48:
+ 407 00ba CE01      		movw r24,r28
+ 408 00bc 60E0      		ldi r22,lo8(0)
+ 409 00be 70E0      		ldi r23,hi8(0)
+ 410 00c0 0E94 0000 		call Dataflash_SendAddressBytes
+ 411               	.LSM49:
+ 412 00c4 2196      		adiw r28,1
+ 413               	.LBB554:
+ 414               	.LBB555:
+ 415               	.LSM50:
+ 416 00c6 8EB1      		in r24,46-32
+ 417               	.LBE555:
+ 418               	.LBE554:
+ 419               	.LSM51:
+ 420 00c8 8370      		andi r24,lo8(3)
+ 421 00ca 8130      		cpi r24,lo8(1)
+ 422 00cc 01F4      		brne .L32
+ 423               	.LSM52:
+ 424 00ce E826      		eor r14,r24
+ 425               	.L32:
+ 426               	.LSM53:
+ 427 00d0 CE01      		movw r24,r28
+ 428 00d2 0E94 0000 		call Dataflash_SelectChipFromPage
+ 429               	.LSM54:
+ 430 00d6 90E4      		ldi r25,lo8(64)
+ 431 00d8 C916      		cp r12,r25
+ 432 00da D104      		cpc r13,__zero_reg__
+ 433 00dc 00F4      		brsh .L33
+ 434               	.LSM55:
+ 435 00de 0E94 0000 		call Dataflash_WaitWhileBusy
+ 436               	.LSM56:
+ 437 00e2 EE20      		tst r14
+ 438 00e4 01F4      		brne .L34
+ 439 00e6 83E5      		ldi r24,lo8(83)
+ 440 00e8 00C0      		rjmp .L35
+ 441               	.L34:
+ 442 00ea 85E5      		ldi r24,lo8(85)
+ 443               	.L35:
+ 444               	.LBB556:
+ 445               	.LBB557:
+ 446               	.LBB558:
+ 447               	.LBB559:
+ 448               	.LSM57:
+ 449 00ec 8EBD      		out 78-32,r24
+ 450               	.L36:
+ 451               	.LSM58:
+ 452 00ee 0DB4      		in __tmp_reg__,77-32
+ 453 00f0 07FE      		sbrs __tmp_reg__,7
+ 454 00f2 00C0      		rjmp .L36
+ 455               	.LBE559:
+ 456               	.LBE558:
+ 457               	.LBE557:
+ 458               	.LBE556:
+ 459               	.LSM59:
+ 460 00f4 CE01      		movw r24,r28
+ 461 00f6 60E0      		ldi r22,lo8(0)
+ 462 00f8 70E0      		ldi r23,hi8(0)
+ 463 00fa 0E94 0000 		call Dataflash_SendAddressBytes
+ 464               	.LSM60:
+ 465 00fe 0E94 0000 		call Dataflash_WaitWhileBusy
+ 466               	.L33:
+ 467               	.LSM61:
+ 468 0102 0E94 0000 		call Dataflash_ToggleSelectedChipCS
+ 469               	.LBB560:
+ 470               	.LBB549:
+ 471               	.LBB548:
+ 472               	.LBB547:
+ 473               	.LSM62:
+ 474 0106 6EBC      		out 78-32,r6
+ 475               	.L37:
+ 476               	.LSM63:
+ 477 0108 0DB4      		in __tmp_reg__,77-32
+ 478 010a 07FE      		sbrs __tmp_reg__,7
+ 479 010c 00C0      		rjmp .L37
+ 480               	.LBE547:
+ 481               	.LBE548:
+ 482               	.LBE549:
+ 483               	.LBE560:
+ 484               	.LSM64:
+ 485 010e 80E0      		ldi r24,lo8(0)
+ 486 0110 90E0      		ldi r25,hi8(0)
+ 487 0112 60E0      		ldi r22,lo8(0)
+ 488 0114 70E0      		ldi r23,hi8(0)
+ 489 0116 0E94 0000 		call Dataflash_SendAddressBytes
+ 490 011a FF24      		clr r15
+ 491               	.LVL19:
+ 492               	.L28:
+ 493 011c F801      		movw r30,r16
+ 494 011e 90E0      		ldi r25,lo8(0)
+ 495               	.LVL20:
+ 496               	.L39:
+ 497               	.LBB561:
+ 498               	.LSM65:
+ 499 0120 8191      		ld r24,Z+
+ 500               	.LBB562:
+ 501               	.LBB563:
+ 502               	.LBB564:
+ 503               	.LBB565:
+ 504               	.LSM66:
+ 505 0122 8EBD      		out 78-32,r24
+ 506               	.L38:
+ 507               	.LSM67:
+ 508 0124 0DB4      		in __tmp_reg__,77-32
+ 509 0126 07FE      		sbrs __tmp_reg__,7
+ 510 0128 00C0      		rjmp .L38
+ 511               	.LBE565:
+ 512               	.LBE564:
+ 513               	.LBE563:
+ 514               	.LBE562:
+ 515               	.LSM68:
+ 516 012a 9F5F      		subi r25,lo8(-(1))
+ 517 012c 9031      		cpi r25,lo8(16)
+ 518 012e 01F4      		brne .L39
+ 519 0130 005F      		subi r16,lo8(-(16))
+ 520 0132 1F4F      		sbci r17,hi8(-(16))
+ 521               	.LVL21:
+ 522               	.LBE561:
+ 523               	.LSM69:
+ 524 0134 F394      		inc r15
+ 525               	.LSM70:
+ 526 0136 7394      		inc r7
+ 527               	.LSM71:
+ 528 0138 80E2      		ldi r24,lo8(32)
+ 529 013a 7816      		cp r7,r24
+ 530 013c 01F0      		breq .+2
+ 531 013e 00C0      		rjmp .L40
+ 532 0140 80E0      		ldi r24,lo8(512)
+ 533 0142 92E0      		ldi r25,hi8(512)
+ 534 0144 880E      		add r8,r24
+ 535 0146 991E      		adc r9,r25
+ 536               	.LVL22:
+ 537               	.LSM72:
+ 538 0148 0894      		sec
+ 539 014a A108      		sbc r10,__zero_reg__
+ 540 014c B108      		sbc r11,__zero_reg__
+ 541 014e 80EE      		ldi r24,lo8(-32)
+ 542 0150 9FEF      		ldi r25,hi8(-32)
+ 543 0152 C80E      		add r12,r24
+ 544 0154 D91E      		adc r13,r25
+ 545               	.LVL23:
+ 546               	.L27:
+ 547               	.LBE566:
+ 548               	.LSM73:
+ 549 0156 A114      		cp r10,__zero_reg__
+ 550 0158 B104      		cpc r11,__zero_reg__
+ 551 015a 01F0      		breq .+2
+ 552 015c 00C0      		rjmp .L41
+ 553               	.LSM74:
+ 554 015e 0E94 0000 		call Dataflash_WaitWhileBusy
+ 555               	.LVL24:
+ 556               	.LSM75:
+ 557 0162 EE20      		tst r14
+ 558 0164 01F4      		brne .L42
+ 559 0166 83E8      		ldi r24,lo8(-125)
+ 560 0168 00C0      		rjmp .L43
+ 561               	.L42:
+ 562 016a 86E8      		ldi r24,lo8(-122)
+ 563               	.L43:
+ 564               	.LBB567:
+ 565               	.LBB568:
+ 566               	.LBB569:
+ 567               	.LBB570:
+ 568               	.LSM76:
+ 569 016c 8EBD      		out 78-32,r24
+ 570               	.L44:
+ 571               	.LSM77:
+ 572 016e 0DB4      		in __tmp_reg__,77-32
+ 573 0170 07FE      		sbrs __tmp_reg__,7
+ 574 0172 00C0      		rjmp .L44
+ 575               	.LBE570:
+ 576               	.LBE569:
+ 577               	.LBE568:
+ 578               	.LBE567:
+ 579               	.LSM78:
+ 580 0174 CE01      		movw r24,r28
+ 581 0176 60E0      		ldi r22,lo8(0)
+ 582 0178 70E0      		ldi r23,hi8(0)
+ 583 017a 0E94 0000 		call Dataflash_SendAddressBytes
+ 584               	.LSM79:
+ 585 017e 0E94 0000 		call Dataflash_WaitWhileBusy
+ 586               	.LBB571:
+ 587               	.LBB572:
+ 588               	.LBB573:
+ 589               	.LBB574:
+ 590               	.LSM80:
+ 591 0182 8EB1      		in r24,46-32
+ 592 0184 8360      		ori r24,lo8(3)
+ 593 0186 8EB9      		out 46-32,r24
+ 594               	/* epilogue start */
+ 595               	.LBE574:
+ 596               	.LBE573:
+ 597               	.LBE572:
+ 598               	.LBE571:
+ 599               	.LSM81:
+ 600 0188 DF91      		pop r29
+ 601 018a CF91      		pop r28
+ 602               	.LVL25:
+ 603 018c 1F91      		pop r17
+ 604 018e 0F91      		pop r16
+ 605               	.LVL26:
+ 606 0190 FF90      		pop r15
+ 607               	.LVL27:
+ 608 0192 EF90      		pop r14
+ 609               	.LVL28:
+ 610 0194 DF90      		pop r13
+ 611 0196 CF90      		pop r12
+ 612 0198 BF90      		pop r11
+ 613 019a AF90      		pop r10
+ 614               	.LVL29:
+ 615 019c 9F90      		pop r9
+ 616 019e 8F90      		pop r8
+ 617               	.LVL30:
+ 618 01a0 7F90      		pop r7
+ 619               	.LVL31:
+ 620 01a2 6F90      		pop r6
+ 621 01a4 0895      		ret
+ 622               	.LFE121:
+ 624               		.section	.text.DataflashManager_ReadBlocks_RAM,"ax",@progbits
+ 625               	.global	DataflashManager_ReadBlocks_RAM
+ 627               	DataflashManager_ReadBlocks_RAM:
+ 628               	.LFB122:
+ 629               	.LSM82:
+ 630               	.LVL32:
+ 631 0000 AF92      		push r10
+ 632 0002 BF92      		push r11
+ 633 0004 CF92      		push r12
+ 634 0006 DF92      		push r13
+ 635 0008 EF92      		push r14
+ 636 000a FF92      		push r15
+ 637 000c 0F93      		push r16
+ 638 000e 1F93      		push r17
+ 639 0010 CF93      		push r28
+ 640 0012 DF93      		push r29
+ 641               	/* prologue: function */
+ 642               	/* frame size = 0 */
+ 643 0014 6A01      		movw r12,r20
+ 644 0016 7901      		movw r14,r18
+ 645               	.LSM83:
+ 646 0018 09E0      		ldi r16,9
+ 647 001a 660F      	1:	lsl r22
+ 648 001c 771F      		rol r23
+ 649 001e 881F      		rol r24
+ 650 0020 991F      		rol r25
+ 651 0022 0A95      		dec r16
+ 652 0024 01F4      		brne 1b
+ 653               	.LVL33:
+ 654 0026 9B01      		movw r18,r22
+ 655 0028 AC01      		movw r20,r24
+ 656               	.LVL34:
+ 657 002a 1AE0      		ldi r17,10
+ 658 002c 5695      	1:	lsr r21
+ 659 002e 4795      		ror r20
+ 660 0030 3795      		ror r19
+ 661 0032 2795      		ror r18
+ 662 0034 1A95      		dec r17
+ 663 0036 01F4      		brne 1b
+ 664 0038 8901      		movw r16,r18
+ 665               	.LVL35:
+ 666               	.LSM84:
+ 667 003a EB01      		movw r28,r22
+ 668               	.LVL36:
+ 669 003c D370      		andi r29,hi8(1023)
+ 670               	.LSM85:
+ 671 003e C901      		movw r24,r18
+ 672 0040 0E94 0000 		call Dataflash_SelectChipFromPage
+ 673               	.LVL37:
+ 674               	.LBB575:
+ 675               	.LBB576:
+ 676               	.LBB577:
+ 677               	.LBB578:
+ 678               	.LSM86:
+ 679 0044 82ED      		ldi r24,lo8(-46)
+ 680 0046 8EBD      		out 78-32,r24
+ 681               	.L56:
+ 682               	.LSM87:
+ 683 0048 0DB4      		in __tmp_reg__,77-32
+ 684 004a 07FE      		sbrs __tmp_reg__,7
+ 685 004c 00C0      		rjmp .L56
+ 686               	.LBE578:
+ 687               	.LBE577:
+ 688               	.LBE576:
+ 689               	.LBE575:
+ 690               	.LSM88:
+ 691 004e C801      		movw r24,r16
+ 692 0050 BE01      		movw r22,r28
+ 693 0052 0E94 0000 		call Dataflash_SendAddressBytes
+ 694               	.LBB579:
+ 695               	.LBB580:
+ 696               	.LBB581:
+ 697               	.LBB582:
+ 698               	.LSM89:
+ 699 0056 1EBC      		out 78-32,__zero_reg__
+ 700               	.L57:
+ 701               	.LSM90:
+ 702 0058 0DB4      		in __tmp_reg__,77-32
+ 703 005a 07FE      		sbrs __tmp_reg__,7
+ 704 005c 00C0      		rjmp .L57
+ 705               	.LBE582:
+ 706               	.LBE581:
+ 707               	.LBE580:
+ 708               	.LBE579:
+ 709               	.LBB583:
+ 710               	.LBB584:
+ 711               	.LBB585:
+ 712               	.LBB586:
+ 713               	.LSM91:
+ 714 005e 1EBC      		out 78-32,__zero_reg__
+ 715               	.L58:
+ 716               	.LSM92:
+ 717 0060 0DB4      		in __tmp_reg__,77-32
+ 718 0062 07FE      		sbrs __tmp_reg__,7
+ 719 0064 00C0      		rjmp .L58
+ 720               	.LBE586:
+ 721               	.LBE585:
+ 722               	.LBE584:
+ 723               	.LBE583:
+ 724               	.LBB587:
+ 725               	.LBB588:
+ 726               	.LBB589:
+ 727               	.LBB590:
+ 728               	.LSM93:
+ 729 0066 1EBC      		out 78-32,__zero_reg__
+ 730               	.L59:
+ 731               	.LSM94:
+ 732 0068 0DB4      		in __tmp_reg__,77-32
+ 733 006a 07FE      		sbrs __tmp_reg__,7
+ 734 006c 00C0      		rjmp .L59
+ 735               	.LBE590:
+ 736               	.LBE589:
+ 737               	.LBE588:
+ 738               	.LBE587:
+ 739               	.LBB591:
+ 740               	.LBB592:
+ 741               	.LBB593:
+ 742               	.LBB594:
+ 743               	.LSM95:
+ 744 006e 1EBC      		out 78-32,__zero_reg__
+ 745               	.L60:
+ 746               	.LSM96:
+ 747 0070 0DB4      		in __tmp_reg__,77-32
+ 748 0072 07FE      		sbrs __tmp_reg__,7
+ 749 0074 00C0      		rjmp .L60
+ 750               	.LBE594:
+ 751               	.LBE593:
+ 752               	.LBE592:
+ 753               	.LBE591:
+ 754               	.LSM97:
+ 755 0076 B4E0      		ldi r27,4
+ 756 0078 D695      	1:	lsr r29
+ 757 007a C795      		ror r28
+ 758 007c BA95      		dec r27
+ 759 007e 01F4      		brne 1b
+ 760 0080 6C2F      		mov r22,r28
+ 761               	.LVL38:
+ 762               	.LBB595:
+ 763               	.LBB596:
+ 764               	.LBB597:
+ 765               	.LBB598:
+ 766               	.LBB599:
+ 767               	.LSM98:
+ 768 0082 A2ED      		ldi r26,lo8(-46)
+ 769 0084 AA2E      		mov r10,r26
+ 770 0086 00C0      		rjmp .L61
+ 771               	.LVL39:
+ 772               	.L71:
+ 773               	.LBE599:
+ 774               	.LBE598:
+ 775               	.LBE597:
+ 776               	.LBE596:
+ 777               	.LBE595:
+ 778               	.LSM99:
+ 779 0088 E701      		movw r28,r14
+ 780               	.LVL40:
+ 781 008a BB24      		clr r11
+ 782               	.LVL41:
+ 783               	.L70:
+ 784               	.LBB625:
+ 785               	.LSM100:
+ 786 008c 6034      		cpi r22,lo8(64)
+ 787 008e 01F4      		brne .L62
+ 788               	.LSM101:
+ 789 0090 0F5F      		subi r16,lo8(-(1))
+ 790 0092 1F4F      		sbci r17,hi8(-(1))
+ 791               	.LSM102:
+ 792 0094 C801      		movw r24,r16
+ 793 0096 0E94 0000 		call Dataflash_SelectChipFromPage
+ 794               	.LVL42:
+ 795               	.LBB603:
+ 796               	.LBB602:
+ 797               	.LBB601:
+ 798               	.LBB600:
+ 799               	.LSM103:
+ 800 009a AEBC      		out 78-32,r10
+ 801               	.L63:
+ 802               	.LSM104:
+ 803 009c 0DB4      		in __tmp_reg__,77-32
+ 804 009e 07FE      		sbrs __tmp_reg__,7
+ 805 00a0 00C0      		rjmp .L63
+ 806               	.LBE600:
+ 807               	.LBE601:
+ 808               	.LBE602:
+ 809               	.LBE603:
+ 810               	.LSM105:
+ 811 00a2 C801      		movw r24,r16
+ 812 00a4 60E0      		ldi r22,lo8(0)
+ 813 00a6 70E0      		ldi r23,hi8(0)
+ 814 00a8 0E94 0000 		call Dataflash_SendAddressBytes
+ 815               	.LBB604:
+ 816               	.LBB605:
+ 817               	.LBB606:
+ 818               	.LBB607:
+ 819               	.LSM106:
+ 820 00ac 1EBC      		out 78-32,__zero_reg__
+ 821               	.L64:
+ 822               	.LSM107:
+ 823 00ae 0DB4      		in __tmp_reg__,77-32
+ 824 00b0 07FE      		sbrs __tmp_reg__,7
+ 825 00b2 00C0      		rjmp .L64
+ 826               	.LBE607:
+ 827               	.LBE606:
+ 828               	.LBE605:
+ 829               	.LBE604:
+ 830               	.LBB608:
+ 831               	.LBB609:
+ 832               	.LBB610:
+ 833               	.LBB611:
+ 834               	.LSM108:
+ 835 00b4 1EBC      		out 78-32,__zero_reg__
+ 836               	.L65:
+ 837               	.LSM109:
+ 838 00b6 0DB4      		in __tmp_reg__,77-32
+ 839 00b8 07FE      		sbrs __tmp_reg__,7
+ 840 00ba 00C0      		rjmp .L65
+ 841               	.LBE611:
+ 842               	.LBE610:
+ 843               	.LBE609:
+ 844               	.LBE608:
+ 845               	.LBB612:
+ 846               	.LBB613:
+ 847               	.LBB614:
+ 848               	.LBB615:
+ 849               	.LSM110:
+ 850 00bc 1EBC      		out 78-32,__zero_reg__
+ 851               	.L66:
+ 852               	.LSM111:
+ 853 00be 0DB4      		in __tmp_reg__,77-32
+ 854 00c0 07FE      		sbrs __tmp_reg__,7
+ 855 00c2 00C0      		rjmp .L66
+ 856               	.LBE615:
+ 857               	.LBE614:
+ 858               	.LBE613:
+ 859               	.LBE612:
+ 860               	.LBB616:
+ 861               	.LBB617:
+ 862               	.LBB618:
+ 863               	.LBB619:
+ 864               	.LSM112:
+ 865 00c4 1EBC      		out 78-32,__zero_reg__
+ 866               	.L67:
+ 867               	.LSM113:
+ 868 00c6 0DB4      		in __tmp_reg__,77-32
+ 869 00c8 07FE      		sbrs __tmp_reg__,7
+ 870 00ca 00C0      		rjmp .L67
+ 871 00cc 60E0      		ldi r22,lo8(0)
+ 872               	.LVL43:
+ 873               	.L62:
+ 874 00ce FE01      		movw r30,r28
+ 875 00d0 90E0      		ldi r25,lo8(0)
+ 876               	.LVL44:
+ 877               	.L69:
+ 878               	.LBE619:
+ 879               	.LBE618:
+ 880               	.LBE617:
+ 881               	.LBE616:
+ 882               	.LBB620:
+ 883               	.LBB621:
+ 884               	.LBB622:
+ 885               	.LBB623:
+ 886               	.LBB624:
+ 887               	.LSM114:
+ 888 00d2 1EBC      		out 78-32,__zero_reg__
+ 889               	.L68:
+ 890               	.LSM115:
+ 891 00d4 0DB4      		in __tmp_reg__,77-32
+ 892 00d6 07FE      		sbrs __tmp_reg__,7
+ 893 00d8 00C0      		rjmp .L68
+ 894               	.LSM116:
+ 895 00da 8EB5      		in r24,78-32
+ 896               	.LBE624:
+ 897               	.LBE623:
+ 898               	.LBE622:
+ 899               	.LBE621:
+ 900               	.LSM117:
+ 901 00dc 8193      		st Z+,r24
+ 902               	.LSM118:
+ 903 00de 9F5F      		subi r25,lo8(-(1))
+ 904 00e0 9031      		cpi r25,lo8(16)
+ 905 00e2 01F4      		brne .L69
+ 906 00e4 6096      		adiw r28,16
+ 907               	.LVL45:
+ 908               	.LBE620:
+ 909               	.LSM119:
+ 910 00e6 6F5F      		subi r22,lo8(-(1))
+ 911               	.LSM120:
+ 912 00e8 B394      		inc r11
+ 913               	.LSM121:
+ 914 00ea 80E2      		ldi r24,lo8(32)
+ 915 00ec B816      		cp r11,r24
+ 916 00ee 01F4      		brne .L70
+ 917 00f0 80E0      		ldi r24,lo8(512)
+ 918 00f2 92E0      		ldi r25,hi8(512)
+ 919 00f4 E80E      		add r14,r24
+ 920 00f6 F91E      		adc r15,r25
+ 921               	.LVL46:
+ 922               	.LSM122:
+ 923 00f8 0894      		sec
+ 924 00fa C108      		sbc r12,__zero_reg__
+ 925 00fc D108      		sbc r13,__zero_reg__
+ 926               	.LVL47:
+ 927               	.L61:
+ 928               	.LBE625:
+ 929               	.LSM123:
+ 930 00fe C114      		cp r12,__zero_reg__
+ 931 0100 D104      		cpc r13,__zero_reg__
+ 932 0102 01F4      		brne .L71
+ 933               	.LBB626:
+ 934               	.LBB627:
+ 935               	.LBB628:
+ 936               	.LBB629:
+ 937               	.LSM124:
+ 938 0104 8EB1      		in r24,46-32
+ 939 0106 8360      		ori r24,lo8(3)
+ 940 0108 8EB9      		out 46-32,r24
+ 941               	/* epilogue start */
+ 942               	.LBE629:
+ 943               	.LBE628:
+ 944               	.LBE627:
+ 945               	.LBE626:
+ 946               	.LSM125:
+ 947 010a DF91      		pop r29
+ 948 010c CF91      		pop r28
+ 949               	.LVL48:
+ 950 010e 1F91      		pop r17
+ 951 0110 0F91      		pop r16
+ 952               	.LVL49:
+ 953 0112 FF90      		pop r15
+ 954 0114 EF90      		pop r14
+ 955               	.LVL50:
+ 956 0116 DF90      		pop r13
+ 957 0118 CF90      		pop r12
+ 958               	.LVL51:
+ 959 011a BF90      		pop r11
+ 960               	.LVL52:
+ 961 011c AF90      		pop r10
+ 962 011e 0895      		ret
+ 963               	.LFE122:
+ 965               		.section	.text.DataflashManager_ResetDataflashProtections,"ax",@progbits
+ 966               	.global	DataflashManager_ResetDataflashProtections
+ 968               	DataflashManager_ResetDataflashProtections:
+ 969               	.LFB123:
+ 970               	.LSM126:
+ 971               	/* prologue: function */
+ 972               	/* frame size = 0 */
+ 973               	.LBB630:
+ 974               	.LBB631:
+ 975               	.LSM127:
+ 976 0000 8EB1      		in r24,46-32
+ 977 0002 8C7F      		andi r24,lo8(-4)
+ 978 0004 8260      		ori r24,lo8(2)
+ 979 0006 8EB9      		out 46-32,r24
+ 980               	.LBE631:
+ 981               	.LBE630:
+ 982               	.LBB632:
+ 983               	.LBB633:
+ 984               	.LBB634:
+ 985               	.LBB635:
+ 986               	.LSM128:
+ 987 0008 87ED      		ldi r24,lo8(-41)
+ 988 000a 8EBD      		out 78-32,r24
+ 989               	.L87:
+ 990               	.LSM129:
+ 991 000c 0DB4      		in __tmp_reg__,77-32
+ 992 000e 07FE      		sbrs __tmp_reg__,7
+ 993 0010 00C0      		rjmp .L87
+ 994               	.LBE635:
+ 995               	.LBE634:
+ 996               	.LBE633:
+ 997               	.LBE632:
+ 998               	.LBB636:
+ 999               	.LBB637:
+ 1000               	.LBB638:
+ 1001               	.LBB639:
+ 1002               	.LSM130:
+ 1003 0012 1EBC      		out 78-32,__zero_reg__
+ 1004               	.L88:
+ 1005               	.LSM131:
+ 1006 0014 0DB4      		in __tmp_reg__,77-32
+ 1007 0016 07FE      		sbrs __tmp_reg__,7
+ 1008 0018 00C0      		rjmp .L88
+ 1009               	.LBE639:
+ 1010               	.LBE638:
+ 1011               	.LBE637:
+ 1012               	.LBE636:
+ 1013               	.LSM132:
+ 1014 001a 0EB4      		in __tmp_reg__,78-32
+ 1015 001c 01FE      		sbrs __tmp_reg__,1
+ 1016 001e 00C0      		rjmp .L89
+ 1017               	.LSM133:
+ 1018 0020 0E94 0000 		call Dataflash_ToggleSelectedChipCS
+ 1019               	.LBB640:
+ 1020               	.LBB641:
+ 1021               	.LBB642:
+ 1022               	.LBB643:
+ 1023               	.LSM134:
+ 1024 0024 8DE3      		ldi r24,lo8(61)
+ 1025 0026 8EBD      		out 78-32,r24
+ 1026               	.L90:
+ 1027               	.LSM135:
+ 1028 0028 0DB4      		in __tmp_reg__,77-32
+ 1029 002a 07FE      		sbrs __tmp_reg__,7
+ 1030 002c 00C0      		rjmp .L90
+ 1031               	.LBE643:
+ 1032               	.LBE642:
+ 1033               	.LBE641:
+ 1034               	.LBE640:
+ 1035               	.LBB644:
+ 1036               	.LBB645:
+ 1037               	.LBB646:
+ 1038               	.LBB647:
+ 1039               	.LSM136:
+ 1040 002e 8AE2      		ldi r24,lo8(42)
+ 1041 0030 8EBD      		out 78-32,r24
+ 1042               	.L91:
+ 1043               	.LSM137:
+ 1044 0032 0DB4      		in __tmp_reg__,77-32
+ 1045 0034 07FE      		sbrs __tmp_reg__,7
+ 1046 0036 00C0      		rjmp .L91
+ 1047               	.LBE647:
+ 1048               	.LBE646:
+ 1049               	.LBE645:
+ 1050               	.LBE644:
+ 1051               	.LBB648:
+ 1052               	.LBB649:
+ 1053               	.LBB650:
+ 1054               	.LBB651:
+ 1055               	.LSM138:
+ 1056 0038 8FE7      		ldi r24,lo8(127)
+ 1057 003a 8EBD      		out 78-32,r24
+ 1058               	.L92:
+ 1059               	.LSM139:
+ 1060 003c 0DB4      		in __tmp_reg__,77-32
+ 1061 003e 07FE      		sbrs __tmp_reg__,7
+ 1062 0040 00C0      		rjmp .L92
+ 1063               	.LBE651:
+ 1064               	.LBE650:
+ 1065               	.LBE649:
+ 1066               	.LBE648:
+ 1067               	.LBB652:
+ 1068               	.LBB653:
+ 1069               	.LBB654:
+ 1070               	.LBB655:
+ 1071               	.LSM140:
+ 1072 0042 8AE9      		ldi r24,lo8(-102)
+ 1073 0044 8EBD      		out 78-32,r24
+ 1074               	.L93:
+ 1075               	.LSM141:
+ 1076 0046 0DB4      		in __tmp_reg__,77-32
+ 1077 0048 07FE      		sbrs __tmp_reg__,7
+ 1078 004a 00C0      		rjmp .L93
+ 1079               	.L89:
+ 1080               	.LBE655:
+ 1081               	.LBE654:
+ 1082               	.LBE653:
+ 1083               	.LBE652:
+ 1084               	.LBB656:
+ 1085               	.LBB657:
+ 1086               	.LSM142:
+ 1087 004c 8EB1      		in r24,46-32
+ 1088 004e 8C7F      		andi r24,lo8(-4)
+ 1089 0050 8160      		ori r24,lo8(1)
+ 1090 0052 8EB9      		out 46-32,r24
+ 1091               	.LBE657:
+ 1092               	.LBE656:
+ 1093               	.LBB658:
+ 1094               	.LBB659:
+ 1095               	.LBB660:
+ 1096               	.LBB661:
+ 1097               	.LSM143:
+ 1098 0054 87ED      		ldi r24,lo8(-41)
+ 1099 0056 8EBD      		out 78-32,r24
+ 1100               	.L94:
+ 1101               	.LSM144:
+ 1102 0058 0DB4      		in __tmp_reg__,77-32
+ 1103 005a 07FE      		sbrs __tmp_reg__,7
+ 1104 005c 00C0      		rjmp .L94
+ 1105               	.LBE661:
+ 1106               	.LBE660:
+ 1107               	.LBE659:
+ 1108               	.LBE658:
+ 1109               	.LBB662:
+ 1110               	.LBB663:
+ 1111               	.LBB664:
+ 1112               	.LBB665:
+ 1113               	.LSM145:
+ 1114 005e 1EBC      		out 78-32,__zero_reg__
+ 1115               	.L95:
+ 1116               	.LSM146:
+ 1117 0060 0DB4      		in __tmp_reg__,77-32
+ 1118 0062 07FE      		sbrs __tmp_reg__,7
+ 1119 0064 00C0      		rjmp .L95
+ 1120               	.LBE665:
+ 1121               	.LBE664:
+ 1122               	.LBE663:
+ 1123               	.LBE662:
+ 1124               	.LSM147:
+ 1125 0066 0EB4      		in __tmp_reg__,78-32
+ 1126 0068 01FE      		sbrs __tmp_reg__,1
+ 1127 006a 00C0      		rjmp .L96
+ 1128               	.LSM148:
+ 1129 006c 0E94 0000 		call Dataflash_ToggleSelectedChipCS
+ 1130               	.LBB666:
+ 1131               	.LBB667:
+ 1132               	.LBB668:
+ 1133               	.LBB669:
+ 1134               	.LSM149:
+ 1135 0070 8DE3      		ldi r24,lo8(61)
+ 1136 0072 8EBD      		out 78-32,r24
+ 1137               	.L97:
+ 1138               	.LSM150:
+ 1139 0074 0DB4      		in __tmp_reg__,77-32
+ 1140 0076 07FE      		sbrs __tmp_reg__,7
+ 1141 0078 00C0      		rjmp .L97
+ 1142               	.LBE669:
+ 1143               	.LBE668:
+ 1144               	.LBE667:
+ 1145               	.LBE666:
+ 1146               	.LBB670:
+ 1147               	.LBB671:
+ 1148               	.LBB672:
+ 1149               	.LBB673:
+ 1150               	.LSM151:
+ 1151 007a 8AE2      		ldi r24,lo8(42)
+ 1152 007c 8EBD      		out 78-32,r24
+ 1153               	.L98:
+ 1154               	.LSM152:
+ 1155 007e 0DB4      		in __tmp_reg__,77-32
+ 1156 0080 07FE      		sbrs __tmp_reg__,7
+ 1157 0082 00C0      		rjmp .L98
+ 1158               	.LBE673:
+ 1159               	.LBE672:
+ 1160               	.LBE671:
+ 1161               	.LBE670:
+ 1162               	.LBB674:
+ 1163               	.LBB675:
+ 1164               	.LBB676:
+ 1165               	.LBB677:
+ 1166               	.LSM153:
+ 1167 0084 8FE7      		ldi r24,lo8(127)
+ 1168 0086 8EBD      		out 78-32,r24
+ 1169               	.L99:
+ 1170               	.LSM154:
+ 1171 0088 0DB4      		in __tmp_reg__,77-32
+ 1172 008a 07FE      		sbrs __tmp_reg__,7
+ 1173 008c 00C0      		rjmp .L99
+ 1174               	.LBE677:
+ 1175               	.LBE676:
+ 1176               	.LBE675:
+ 1177               	.LBE674:
+ 1178               	.LBB678:
+ 1179               	.LBB679:
+ 1180               	.LBB680:
+ 1181               	.LBB681:
+ 1182               	.LSM155:
+ 1183 008e 8AE9      		ldi r24,lo8(-102)
+ 1184 0090 8EBD      		out 78-32,r24
+ 1185               	.L100:
+ 1186               	.LSM156:
+ 1187 0092 0DB4      		in __tmp_reg__,77-32
+ 1188 0094 07FE      		sbrs __tmp_reg__,7
+ 1189 0096 00C0      		rjmp .L100
+ 1190               	.L96:
+ 1191               	.LBE681:
+ 1192               	.LBE680:
+ 1193               	.LBE679:
+ 1194               	.LBE678:
+ 1195               	.LBB682:
+ 1196               	.LBB683:
+ 1197               	.LBB684:
+ 1198               	.LBB685:
+ 1199               	.LSM157:
+ 1200 0098 8EB1      		in r24,46-32
+ 1201 009a 8360      		ori r24,lo8(3)
+ 1202 009c 8EB9      		out 46-32,r24
+ 1203               	/* epilogue start */
+ 1204               	.LBE685:
+ 1205               	.LBE684:
+ 1206               	.LBE683:
+ 1207               	.LBE682:
+ 1208               	.LSM158:
+ 1209 009e 0895      		ret
+ 1210               	.LFE123:
+ 1212               		.section	.text.DataflashManager_CheckDataflashOperation,"ax",@progbits
+ 1213               	.global	DataflashManager_CheckDataflashOperation
+ 1215               	DataflashManager_CheckDataflashOperation:
+ 1216               	.LFB124:
+ 1217               	.LSM159:
+ 1218               	/* prologue: function */
+ 1219               	/* frame size = 0 */
+ 1220               	.LBB686:
+ 1221               	.LBB687:
+ 1222               	.LSM160:
+ 1223 0000 8EB1      		in r24,46-32
+ 1224 0002 8C7F      		andi r24,lo8(-4)
+ 1225 0004 8260      		ori r24,lo8(2)
+ 1226 0006 8EB9      		out 46-32,r24
+ 1227               	.LBE687:
+ 1228               	.LBE686:
+ 1229               	.LBB688:
+ 1230               	.LBB689:
+ 1231               	.LBB690:
+ 1232               	.LBB691:
+ 1233               	.LSM161:
+ 1234 0008 8FE9      		ldi r24,lo8(-97)
+ 1235 000a 8EBD      		out 78-32,r24
+ 1236               	.L115:
+ 1237               	.LSM162:
+ 1238 000c 0DB4      		in __tmp_reg__,77-32
+ 1239 000e 07FE      		sbrs __tmp_reg__,7
+ 1240 0010 00C0      		rjmp .L115
+ 1241               	.LBE691:
+ 1242               	.LBE690:
+ 1243               	.LBE689:
+ 1244               	.LBE688:
+ 1245               	.LBB692:
+ 1246               	.LBB693:
+ 1247               	.LBB694:
+ 1248               	.LBB695:
+ 1249               	.LSM163:
+ 1250 0012 1EBC      		out 78-32,__zero_reg__
+ 1251               	.L116:
+ 1252               	.LSM164:
+ 1253 0014 0DB4      		in __tmp_reg__,77-32
+ 1254 0016 07FE      		sbrs __tmp_reg__,7
+ 1255 0018 00C0      		rjmp .L116
+ 1256               	.LSM165:
+ 1257 001a 9EB5      		in r25,78-32
+ 1258               	.LVL53:
+ 1259               	.LBE695:
+ 1260               	.LBE694:
+ 1261               	.LBE693:
+ 1262               	.LBE692:
+ 1263               	.LBB696:
+ 1264               	.LBB697:
+ 1265               	.LBB698:
+ 1266               	.LBB699:
+ 1267               	.LSM166:
+ 1268 001c 8EB1      		in r24,46-32
+ 1269 001e 8360      		ori r24,lo8(3)
+ 1270 0020 8EB9      		out 46-32,r24
+ 1271               	.LBE699:
+ 1272               	.LBE698:
+ 1273               	.LBE697:
+ 1274               	.LBE696:
+ 1275               	.LSM167:
+ 1276 0022 9F31      		cpi r25,lo8(31)
+ 1277 0024 01F0      		breq .L117
+ 1278 0026 80E0      		ldi r24,lo8(0)
+ 1279 0028 0895      		ret
+ 1280               	.L117:
+ 1281               	.LBB700:
+ 1282               	.LBB701:
+ 1283               	.LSM168:
+ 1284 002a 8EB1      		in r24,46-32
+ 1285 002c 8C7F      		andi r24,lo8(-4)
+ 1286 002e 8160      		ori r24,lo8(1)
+ 1287 0030 8EB9      		out 46-32,r24
+ 1288               	.LBE701:
+ 1289               	.LBE700:
+ 1290               	.LBB702:
+ 1291               	.LBB703:
+ 1292               	.LBB704:
+ 1293               	.LBB705:
+ 1294               	.LSM169:
+ 1295 0032 8FE9      		ldi r24,lo8(-97)
+ 1296 0034 8EBD      		out 78-32,r24
+ 1297               	.L119:
+ 1298               	.LSM170:
+ 1299 0036 0DB4      		in __tmp_reg__,77-32
+ 1300 0038 07FE      		sbrs __tmp_reg__,7
+ 1301 003a 00C0      		rjmp .L119
+ 1302               	.LBE705:
+ 1303               	.LBE704:
+ 1304               	.LBE703:
+ 1305               	.LBE702:
+ 1306               	.LBB706:
+ 1307               	.LBB707:
+ 1308               	.LBB708:
+ 1309               	.LBB709:
+ 1310               	.LSM171:
+ 1311 003c 1EBC      		out 78-32,__zero_reg__
+ 1312               	.L120:
+ 1313               	.LSM172:
+ 1314 003e 0DB4      		in __tmp_reg__,77-32
+ 1315 0040 07FE      		sbrs __tmp_reg__,7
+ 1316 0042 00C0      		rjmp .L120
+ 1317               	.LSM173:
+ 1318 0044 9EB5      		in r25,78-32
+ 1319               	.LVL54:
+ 1320               	.LBE709:
+ 1321               	.LBE708:
+ 1322               	.LBE707:
+ 1323               	.LBE706:
+ 1324               	.LBB710:
+ 1325               	.LBB711:
+ 1326               	.LBB712:
+ 1327               	.LBB713:
+ 1328               	.LSM174:
+ 1329 0046 8EB1      		in r24,46-32
+ 1330 0048 8360      		ori r24,lo8(3)
+ 1331 004a 8EB9      		out 46-32,r24
+ 1332 004c 80E0      		ldi r24,lo8(0)
+ 1333 004e 9F31      		cpi r25,lo8(31)
+ 1334 0050 01F4      		brne .L118
+ 1335 0052 81E0      		ldi r24,lo8(1)
+ 1336               	.L118:
+ 1337               	.LBE713:
+ 1338               	.LBE712:
+ 1339               	.LBE711:
+ 1340               	.LBE710:
+ 1341               	.LSM175:
+ 1342 0054 0895      		ret
+ 1343               	.LFE124:
+ 1345               		.section	.text.DataflashManager_ReadBlocks,"ax",@progbits
+ 1346               	.global	DataflashManager_ReadBlocks
+ 1348               	DataflashManager_ReadBlocks:
+ 1349               	.LFB120:
+ 1350               	.LSM176:
+ 1351               	.LVL55:
+ 1352 0000 CF92      		push r12
+ 1353 0002 DF92      		push r13
+ 1354 0004 EF92      		push r14
+ 1355 0006 FF92      		push r15
+ 1356 0008 0F93      		push r16
+ 1357 000a 1F93      		push r17
+ 1358 000c DF93      		push r29
+ 1359 000e CF93      		push r28
+ 1360 0010 0F92      		push __tmp_reg__
+ 1361 0012 CDB7      		in r28,__SP_L__
+ 1362 0014 DEB7      		in r29,__SP_H__
+ 1363               	/* prologue: function */
+ 1364               	/* frame size = 1 */
+ 1365 0016 7A01      		movw r14,r20
+ 1366               	.LSM177:
+ 1367 0018 F9E0      		ldi r31,9
+ 1368 001a 660F      	1:	lsl r22
+ 1369 001c 771F      		rol r23
+ 1370 001e 881F      		rol r24
+ 1371 0020 991F      		rol r25
+ 1372 0022 FA95      		dec r31
+ 1373 0024 01F4      		brne 1b
+ 1374               	.LVL56:
+ 1375 0026 9B01      		movw r18,r22
+ 1376 0028 AC01      		movw r20,r24
+ 1377 002a EAE0      		ldi r30,10
+ 1378 002c 5695      	1:	lsr r21
+ 1379 002e 4795      		ror r20
+ 1380 0030 3795      		ror r19
+ 1381 0032 2795      		ror r18
+ 1382 0034 EA95      		dec r30
+ 1383 0036 01F4      		brne 1b
+ 1384 0038 8901      		movw r16,r18
+ 1385               	.LVL57:
+ 1386               	.LSM178:
+ 1387 003a 4FEF      		ldi r20,lo8(1023)
+ 1388 003c C42E      		mov r12,r20
+ 1389 003e 43E0      		ldi r20,hi8(1023)
+ 1390 0040 D42E      		mov r13,r20
+ 1391               	.LVL58:
+ 1392 0042 C622      		and r12,r22
+ 1393 0044 D722      		and r13,r23
+ 1394               	.LSM179:
+ 1395 0046 C901      		movw r24,r18
+ 1396 0048 0E94 0000 		call Dataflash_SelectChipFromPage
+ 1397               	.LBB714:
+ 1398               	.LBB715:
+ 1399               	.LBB716:
+ 1400               	.LBB717:
+ 1401               	.LSM180:
+ 1402 004c 82ED      		ldi r24,lo8(-46)
+ 1403 004e 8EBD      		out 78-32,r24
+ 1404               	.L128:
+ 1405               	.LSM181:
+ 1406 0050 0DB4      		in __tmp_reg__,77-32
+ 1407 0052 07FE      		sbrs __tmp_reg__,7
+ 1408 0054 00C0      		rjmp .L128
+ 1409               	.LBE717:
+ 1410               	.LBE716:
+ 1411               	.LBE715:
+ 1412               	.LBE714:
+ 1413               	.LSM182:
+ 1414 0056 C801      		movw r24,r16
+ 1415 0058 B601      		movw r22,r12
+ 1416 005a 0E94 0000 		call Dataflash_SendAddressBytes
+ 1417               	.LBB718:
+ 1418               	.LBB719:
+ 1419               	.LBB720:
+ 1420               	.LBB721:
+ 1421               	.LSM183:
+ 1422 005e 1EBC      		out 78-32,__zero_reg__
+ 1423               	.L129:
+ 1424               	.LSM184:
+ 1425 0060 0DB4      		in __tmp_reg__,77-32
+ 1426 0062 07FE      		sbrs __tmp_reg__,7
+ 1427 0064 00C0      		rjmp .L129
+ 1428               	.LBE721:
+ 1429               	.LBE720:
+ 1430               	.LBE719:
+ 1431               	.LBE718:
+ 1432               	.LBB722:
+ 1433               	.LBB723:
+ 1434               	.LBB724:
+ 1435               	.LBB725:
+ 1436               	.LSM185:
+ 1437 0066 1EBC      		out 78-32,__zero_reg__
+ 1438               	.L130:
+ 1439               	.LSM186:
+ 1440 0068 0DB4      		in __tmp_reg__,77-32
+ 1441 006a 07FE      		sbrs __tmp_reg__,7
+ 1442 006c 00C0      		rjmp .L130
+ 1443               	.LBE725:
+ 1444               	.LBE724:
+ 1445               	.LBE723:
+ 1446               	.LBE722:
+ 1447               	.LBB726:
+ 1448               	.LBB727:
+ 1449               	.LBB728:
+ 1450               	.LBB729:
+ 1451               	.LSM187:
+ 1452 006e 1EBC      		out 78-32,__zero_reg__
+ 1453               	.L131:
+ 1454               	.LSM188:
+ 1455 0070 0DB4      		in __tmp_reg__,77-32
+ 1456 0072 07FE      		sbrs __tmp_reg__,7
+ 1457 0074 00C0      		rjmp .L131
+ 1458               	.LBE729:
+ 1459               	.LBE728:
+ 1460               	.LBE727:
+ 1461               	.LBE726:
+ 1462               	.LBB730:
+ 1463               	.LBB731:
+ 1464               	.LBB732:
+ 1465               	.LBB733:
+ 1466               	.LSM189:
+ 1467 0076 1EBC      		out 78-32,__zero_reg__
+ 1468               	.L132:
+ 1469               	.LSM190:
+ 1470 0078 0DB4      		in __tmp_reg__,77-32
+ 1471 007a 07FE      		sbrs __tmp_reg__,7
+ 1472 007c 00C0      		rjmp .L132
+ 1473               	.LBE733:
+ 1474               	.LBE732:
+ 1475               	.LBE731:
+ 1476               	.LBE730:
+ 1477               	.LSM191:
+ 1478 007e 0E94 0000 		call Endpoint_WaitUntilReady
+ 1479 0082 8823      		tst r24
+ 1480 0084 01F0      		breq .+2
+ 1481 0086 00C0      		rjmp .L161
+ 1482               	.LSM192:
+ 1483 0088 94E0      		ldi r25,4
+ 1484 008a D694      	1:	lsr r13
+ 1485 008c C794      		ror r12
+ 1486 008e 9A95      		dec r25
+ 1487 0090 01F4      		brne 1b
+ 1488 0092 9C2D      		mov r25,r12
+ 1489               	.LVL59:
+ 1490               	.LBB734:
+ 1491               	.LBB735:
+ 1492               	.LBB736:
+ 1493               	.LBB737:
+ 1494               	.LBB738:
+ 1495               	.LSM193:
+ 1496 0094 82ED      		ldi r24,lo8(-46)
+ 1497 0096 C82E      		mov r12,r24
+ 1498               	.LVL60:
+ 1499 0098 00C0      		rjmp .L134
+ 1500               	.LVL61:
+ 1501               	.L159:
+ 1502               	.LBE738:
+ 1503               	.LBE737:
+ 1504               	.LBE736:
+ 1505               	.LBE735:
+ 1506               	.LBE734:
+ 1507               	.LSM194:
+ 1508 009a DD24      		clr r13
+ 1509               	.L158:
+ 1510               	.LBB859:
+ 1511               	.LBB742:
+ 1512               	.LBB743:
+ 1513               	.LSM195:
+ 1514 009c 8091 E800 		lds r24,232
+ 1515               	.LBE743:
+ 1516               	.LBE742:
+ 1517               	.LSM196:
+ 1518 00a0 85FD      		sbrc r24,5
+ 1519 00a2 00C0      		rjmp .L135
+ 1520               	.LBB744:
+ 1521               	.LBB745:
+ 1522               	.LSM197:
+ 1523 00a4 8091 E800 		lds r24,232
+ 1524 00a8 8E77      		andi r24,lo8(126)
+ 1525 00aa 8093 E800 		sts 232,r24
+ 1526               	.LBE745:
+ 1527               	.LBE744:
+ 1528               	.LSM198:
+ 1529 00ae 9983      		std Y+1,r25
+ 1530               	.LVL62:
+ 1531 00b0 0E94 0000 		call Endpoint_WaitUntilReady
+ 1532 00b4 9981      		ldd r25,Y+1
+ 1533 00b6 8823      		tst r24
+ 1534 00b8 01F0      		breq .+2
+ 1535 00ba 00C0      		rjmp .L161
+ 1536               	.LVL63:
+ 1537               	.L135:
+ 1538               	.LSM199:
+ 1539 00bc 9034      		cpi r25,lo8(64)
+ 1540 00be 01F4      		brne .L136
+ 1541               	.LSM200:
+ 1542 00c0 0F5F      		subi r16,lo8(-(1))
+ 1543 00c2 1F4F      		sbci r17,hi8(-(1))
+ 1544               	.LSM201:
+ 1545 00c4 C801      		movw r24,r16
+ 1546 00c6 0E94 0000 		call Dataflash_SelectChipFromPage
+ 1547               	.LVL64:
+ 1548               	.LBB746:
+ 1549               	.LBB741:
+ 1550               	.LBB740:
+ 1551               	.LBB739:
+ 1552               	.LSM202:
+ 1553 00ca CEBC      		out 78-32,r12
+ 1554               	.L137:
+ 1555               	.LSM203:
+ 1556 00cc 0DB4      		in __tmp_reg__,77-32
+ 1557 00ce 07FE      		sbrs __tmp_reg__,7
+ 1558 00d0 00C0      		rjmp .L137
+ 1559               	.LBE739:
+ 1560               	.LBE740:
+ 1561               	.LBE741:
+ 1562               	.LBE746:
+ 1563               	.LSM204:
+ 1564 00d2 C801      		movw r24,r16
+ 1565 00d4 60E0      		ldi r22,lo8(0)
+ 1566 00d6 70E0      		ldi r23,hi8(0)
+ 1567 00d8 0E94 0000 		call Dataflash_SendAddressBytes
+ 1568               	.LBB747:
+ 1569               	.LBB748:
+ 1570               	.LBB749:
+ 1571               	.LBB750:
+ 1572               	.LSM205:
+ 1573 00dc 1EBC      		out 78-32,__zero_reg__
+ 1574               	.L138:
+ 1575               	.LSM206:
+ 1576 00de 0DB4      		in __tmp_reg__,77-32
+ 1577 00e0 07FE      		sbrs __tmp_reg__,7
+ 1578 00e2 00C0      		rjmp .L138
+ 1579               	.LBE750:
+ 1580               	.LBE749:
+ 1581               	.LBE748:
+ 1582               	.LBE747:
+ 1583               	.LBB751:
+ 1584               	.LBB752:
+ 1585               	.LBB753:
+ 1586               	.LBB754:
+ 1587               	.LSM207:
+ 1588 00e4 1EBC      		out 78-32,__zero_reg__
+ 1589               	.L139:
+ 1590               	.LSM208:
+ 1591 00e6 0DB4      		in __tmp_reg__,77-32
+ 1592 00e8 07FE      		sbrs __tmp_reg__,7
+ 1593 00ea 00C0      		rjmp .L139
+ 1594               	.LBE754:
+ 1595               	.LBE753:
+ 1596               	.LBE752:
+ 1597               	.LBE751:
+ 1598               	.LBB755:
+ 1599               	.LBB756:
+ 1600               	.LBB757:
+ 1601               	.LBB758:
+ 1602               	.LSM209:
+ 1603 00ec 1EBC      		out 78-32,__zero_reg__
+ 1604               	.L140:
+ 1605               	.LSM210:
+ 1606 00ee 0DB4      		in __tmp_reg__,77-32
+ 1607 00f0 07FE      		sbrs __tmp_reg__,7
+ 1608 00f2 00C0      		rjmp .L140
+ 1609               	.LBE758:
+ 1610               	.LBE757:
+ 1611               	.LBE756:
+ 1612               	.LBE755:
+ 1613               	.LBB759:
+ 1614               	.LBB760:
+ 1615               	.LBB761:
+ 1616               	.LBB762:
+ 1617               	.LSM211:
+ 1618 00f4 1EBC      		out 78-32,__zero_reg__
+ 1619               	.L141:
+ 1620               	.LSM212:
+ 1621 00f6 0DB4      		in __tmp_reg__,77-32
+ 1622 00f8 07FE      		sbrs __tmp_reg__,7
+ 1623 00fa 00C0      		rjmp .L141
+ 1624 00fc 90E0      		ldi r25,lo8(0)
+ 1625               	.LVL65:
+ 1626               	.L136:
+ 1627               	.LBE762:
+ 1628               	.LBE761:
+ 1629               	.LBE760:
+ 1630               	.LBE759:
+ 1631               	.LBB763:
+ 1632               	.LBB764:
+ 1633               	.LBB765:
+ 1634               	.LBB766:
+ 1635               	.LSM213:
+ 1636 00fe 1EBC      		out 78-32,__zero_reg__
+ 1637               	.L142:
+ 1638               	.LSM214:
+ 1639 0100 0DB4      		in __tmp_reg__,77-32
+ 1640 0102 07FE      		sbrs __tmp_reg__,7
+ 1641 0104 00C0      		rjmp .L142
+ 1642               	.LSM215:
+ 1643 0106 8EB5      		in r24,78-32
+ 1644               	.LBE766:
+ 1645               	.LBE765:
+ 1646               	.LBE764:
+ 1647               	.LBE763:
+ 1648               	.LBB767:
+ 1649               	.LBB768:
+ 1650               	.LSM216:
+ 1651 0108 8093 F100 		sts 241,r24
+ 1652               	.LBE768:
+ 1653               	.LBE767:
+ 1654               	.LBB769:
+ 1655               	.LBB770:
+ 1656               	.LBB771:
+ 1657               	.LBB772:
+ 1658               	.LSM217:
+ 1659 010c 1EBC      		out 78-32,__zero_reg__
+ 1660               	.L143:
+ 1661               	.LSM218:
+ 1662 010e 0DB4      		in __tmp_reg__,77-32
+ 1663 0110 07FE      		sbrs __tmp_reg__,7
+ 1664 0112 00C0      		rjmp .L143
+ 1665               	.LSM219:
+ 1666 0114 8EB5      		in r24,78-32
+ 1667               	.LBE772:
+ 1668               	.LBE771:
+ 1669               	.LBE770:
+ 1670               	.LBE769:
+ 1671               	.LBB773:
+ 1672               	.LBB774:
+ 1673               	.LSM220:
+ 1674 0116 8093 F100 		sts 241,r24
+ 1675               	.LBE774:
+ 1676               	.LBE773:
+ 1677               	.LBB775:
+ 1678               	.LBB776:
+ 1679               	.LBB777:
+ 1680               	.LBB778:
+ 1681               	.LSM221:
+ 1682 011a 1EBC      		out 78-32,__zero_reg__
+ 1683               	.L144:
+ 1684               	.LSM222:
+ 1685 011c 0DB4      		in __tmp_reg__,77-32
+ 1686 011e 07FE      		sbrs __tmp_reg__,7
+ 1687 0120 00C0      		rjmp .L144
+ 1688               	.LSM223:
+ 1689 0122 8EB5      		in r24,78-32
+ 1690               	.LBE778:
+ 1691               	.LBE777:
+ 1692               	.LBE776:
+ 1693               	.LBE775:
+ 1694               	.LBB779:
+ 1695               	.LBB780:
+ 1696               	.LSM224:
+ 1697 0124 8093 F100 		sts 241,r24
+ 1698               	.LBE780:
+ 1699               	.LBE779:
+ 1700               	.LBB781:
+ 1701               	.LBB782:
+ 1702               	.LBB783:
+ 1703               	.LBB784:
+ 1704               	.LSM225:
+ 1705 0128 1EBC      		out 78-32,__zero_reg__
+ 1706               	.L145:
+ 1707               	.LSM226:
+ 1708 012a 0DB4      		in __tmp_reg__,77-32
+ 1709 012c 07FE      		sbrs __tmp_reg__,7
+ 1710 012e 00C0      		rjmp .L145
+ 1711               	.LSM227:
+ 1712 0130 8EB5      		in r24,78-32
+ 1713               	.LBE784:
+ 1714               	.LBE783:
+ 1715               	.LBE782:
+ 1716               	.LBE781:
+ 1717               	.LBB785:
+ 1718               	.LBB786:
+ 1719               	.LSM228:
+ 1720 0132 8093 F100 		sts 241,r24
+ 1721               	.LBE786:
+ 1722               	.LBE785:
+ 1723               	.LBB787:
+ 1724               	.LBB788:
+ 1725               	.LBB789:
+ 1726               	.LBB790:
+ 1727               	.LSM229:
+ 1728 0136 1EBC      		out 78-32,__zero_reg__
+ 1729               	.L146:
+ 1730               	.LSM230:
+ 1731 0138 0DB4      		in __tmp_reg__,77-32
+ 1732 013a 07FE      		sbrs __tmp_reg__,7
+ 1733 013c 00C0      		rjmp .L146
+ 1734               	.LSM231:
+ 1735 013e 8EB5      		in r24,78-32
+ 1736               	.LBE790:
+ 1737               	.LBE789:
+ 1738               	.LBE788:
+ 1739               	.LBE787:
+ 1740               	.LBB791:
+ 1741               	.LBB792:
+ 1742               	.LSM232:
+ 1743 0140 8093 F100 		sts 241,r24
+ 1744               	.LBE792:
+ 1745               	.LBE791:
+ 1746               	.LBB793:
+ 1747               	.LBB794:
+ 1748               	.LBB795:
+ 1749               	.LBB796:
+ 1750               	.LSM233:
+ 1751 0144 1EBC      		out 78-32,__zero_reg__
+ 1752               	.L147:
+ 1753               	.LSM234:
+ 1754 0146 0DB4      		in __tmp_reg__,77-32
+ 1755 0148 07FE      		sbrs __tmp_reg__,7
+ 1756 014a 00C0      		rjmp .L147
+ 1757               	.LSM235:
+ 1758 014c 8EB5      		in r24,78-32
+ 1759               	.LBE796:
+ 1760               	.LBE795:
+ 1761               	.LBE794:
+ 1762               	.LBE793:
+ 1763               	.LBB797:
+ 1764               	.LBB798:
+ 1765               	.LSM236:
+ 1766 014e 8093 F100 		sts 241,r24
+ 1767               	.LBE798:
+ 1768               	.LBE797:
+ 1769               	.LBB799:
+ 1770               	.LBB800:
+ 1771               	.LBB801:
+ 1772               	.LBB802:
+ 1773               	.LSM237:
+ 1774 0152 1EBC      		out 78-32,__zero_reg__
+ 1775               	.L148:
+ 1776               	.LSM238:
+ 1777 0154 0DB4      		in __tmp_reg__,77-32
+ 1778 0156 07FE      		sbrs __tmp_reg__,7
+ 1779 0158 00C0      		rjmp .L148
+ 1780               	.LSM239:
+ 1781 015a 8EB5      		in r24,78-32
+ 1782               	.LBE802:
+ 1783               	.LBE801:
+ 1784               	.LBE800:
+ 1785               	.LBE799:
+ 1786               	.LBB803:
+ 1787               	.LBB804:
+ 1788               	.LSM240:
+ 1789 015c 8093 F100 		sts 241,r24
+ 1790               	.LBE804:
+ 1791               	.LBE803:
+ 1792               	.LBB805:
+ 1793               	.LBB806:
+ 1794               	.LBB807:
+ 1795               	.LBB808:
+ 1796               	.LSM241:
+ 1797 0160 1EBC      		out 78-32,__zero_reg__
+ 1798               	.L149:
+ 1799               	.LSM242:
+ 1800 0162 0DB4      		in __tmp_reg__,77-32
+ 1801 0164 07FE      		sbrs __tmp_reg__,7
+ 1802 0166 00C0      		rjmp .L149
+ 1803               	.LSM243:
+ 1804 0168 8EB5      		in r24,78-32
+ 1805               	.LBE808:
+ 1806               	.LBE807:
+ 1807               	.LBE806:
+ 1808               	.LBE805:
+ 1809               	.LBB809:
+ 1810               	.LBB810:
+ 1811               	.LSM244:
+ 1812 016a 8093 F100 		sts 241,r24
+ 1813               	.LBE810:
+ 1814               	.LBE809:
+ 1815               	.LBB811:
+ 1816               	.LBB812:
+ 1817               	.LBB813:
+ 1818               	.LBB814:
+ 1819               	.LSM245:
+ 1820 016e 1EBC      		out 78-32,__zero_reg__
+ 1821               	.L150:
+ 1822               	.LSM246:
+ 1823 0170 0DB4      		in __tmp_reg__,77-32
+ 1824 0172 07FE      		sbrs __tmp_reg__,7
+ 1825 0174 00C0      		rjmp .L150
+ 1826               	.LSM247:
+ 1827 0176 8EB5      		in r24,78-32
+ 1828               	.LBE814:
+ 1829               	.LBE813:
+ 1830               	.LBE812:
+ 1831               	.LBE811:
+ 1832               	.LBB815:
+ 1833               	.LBB816:
+ 1834               	.LSM248:
+ 1835 0178 8093 F100 		sts 241,r24
+ 1836               	.LBE816:
+ 1837               	.LBE815:
+ 1838               	.LBB817:
+ 1839               	.LBB818:
+ 1840               	.LBB819:
+ 1841               	.LBB820:
+ 1842               	.LSM249:
+ 1843 017c 1EBC      		out 78-32,__zero_reg__
+ 1844               	.L151:
+ 1845               	.LSM250:
+ 1846 017e 0DB4      		in __tmp_reg__,77-32
+ 1847 0180 07FE      		sbrs __tmp_reg__,7
+ 1848 0182 00C0      		rjmp .L151
+ 1849               	.LSM251:
+ 1850 0184 8EB5      		in r24,78-32
+ 1851               	.LBE820:
+ 1852               	.LBE819:
+ 1853               	.LBE818:
+ 1854               	.LBE817:
+ 1855               	.LBB821:
+ 1856               	.LBB822:
+ 1857               	.LSM252:
+ 1858 0186 8093 F100 		sts 241,r24
+ 1859               	.LBE822:
+ 1860               	.LBE821:
+ 1861               	.LBB823:
+ 1862               	.LBB824:
+ 1863               	.LBB825:
+ 1864               	.LBB826:
+ 1865               	.LSM253:
+ 1866 018a 1EBC      		out 78-32,__zero_reg__
+ 1867               	.L152:
+ 1868               	.LSM254:
+ 1869 018c 0DB4      		in __tmp_reg__,77-32
+ 1870 018e 07FE      		sbrs __tmp_reg__,7
+ 1871 0190 00C0      		rjmp .L152
+ 1872               	.LSM255:
+ 1873 0192 8EB5      		in r24,78-32
+ 1874               	.LBE826:
+ 1875               	.LBE825:
+ 1876               	.LBE824:
+ 1877               	.LBE823:
+ 1878               	.LBB827:
+ 1879               	.LBB828:
+ 1880               	.LSM256:
+ 1881 0194 8093 F100 		sts 241,r24
+ 1882               	.LBE828:
+ 1883               	.LBE827:
+ 1884               	.LBB829:
+ 1885               	.LBB830:
+ 1886               	.LBB831:
+ 1887               	.LBB832:
+ 1888               	.LSM257:
+ 1889 0198 1EBC      		out 78-32,__zero_reg__
+ 1890               	.L153:
+ 1891               	.LSM258:
+ 1892 019a 0DB4      		in __tmp_reg__,77-32
+ 1893 019c 07FE      		sbrs __tmp_reg__,7
+ 1894 019e 00C0      		rjmp .L153
+ 1895               	.LSM259:
+ 1896 01a0 8EB5      		in r24,78-32
+ 1897               	.LBE832:
+ 1898               	.LBE831:
+ 1899               	.LBE830:
+ 1900               	.LBE829:
+ 1901               	.LBB833:
+ 1902               	.LBB834:
+ 1903               	.LSM260:
+ 1904 01a2 8093 F100 		sts 241,r24
+ 1905               	.LBE834:
+ 1906               	.LBE833:
+ 1907               	.LBB835:
+ 1908               	.LBB836:
+ 1909               	.LBB837:
+ 1910               	.LBB838:
+ 1911               	.LSM261:
+ 1912 01a6 1EBC      		out 78-32,__zero_reg__
+ 1913               	.L154:
+ 1914               	.LSM262:
+ 1915 01a8 0DB4      		in __tmp_reg__,77-32
+ 1916 01aa 07FE      		sbrs __tmp_reg__,7
+ 1917 01ac 00C0      		rjmp .L154
+ 1918               	.LSM263:
+ 1919 01ae 8EB5      		in r24,78-32
+ 1920               	.LBE838:
+ 1921               	.LBE837:
+ 1922               	.LBE836:
+ 1923               	.LBE835:
+ 1924               	.LBB839:
+ 1925               	.LBB840:
+ 1926               	.LSM264:
+ 1927 01b0 8093 F100 		sts 241,r24
+ 1928               	.LBE840:
+ 1929               	.LBE839:
+ 1930               	.LBB841:
+ 1931               	.LBB842:
+ 1932               	.LBB843:
+ 1933               	.LBB844:
+ 1934               	.LSM265:
+ 1935 01b4 1EBC      		out 78-32,__zero_reg__
+ 1936               	.L155:
+ 1937               	.LSM266:
+ 1938 01b6 0DB4      		in __tmp_reg__,77-32
+ 1939 01b8 07FE      		sbrs __tmp_reg__,7
+ 1940 01ba 00C0      		rjmp .L155
+ 1941               	.LSM267:
+ 1942 01bc 8EB5      		in r24,78-32
+ 1943               	.LBE844:
+ 1944               	.LBE843:
+ 1945               	.LBE842:
+ 1946               	.LBE841:
+ 1947               	.LBB845:
+ 1948               	.LBB846:
+ 1949               	.LSM268:
+ 1950 01be 8093 F100 		sts 241,r24
+ 1951               	.LBE846:
+ 1952               	.LBE845:
+ 1953               	.LBB847:
+ 1954               	.LBB848:
+ 1955               	.LBB849:
+ 1956               	.LBB850:
+ 1957               	.LSM269:
+ 1958 01c2 1EBC      		out 78-32,__zero_reg__
+ 1959               	.L156:
+ 1960               	.LSM270:
+ 1961 01c4 0DB4      		in __tmp_reg__,77-32
+ 1962 01c6 07FE      		sbrs __tmp_reg__,7
+ 1963 01c8 00C0      		rjmp .L156
+ 1964               	.LSM271:
+ 1965 01ca 8EB5      		in r24,78-32
+ 1966               	.LBE850:
+ 1967               	.LBE849:
+ 1968               	.LBE848:
+ 1969               	.LBE847:
+ 1970               	.LBB851:
+ 1971               	.LBB852:
+ 1972               	.LSM272:
+ 1973 01cc 8093 F100 		sts 241,r24
+ 1974               	.LBE852:
+ 1975               	.LBE851:
+ 1976               	.LBB853:
+ 1977               	.LBB854:
+ 1978               	.LBB855:
+ 1979               	.LBB856:
+ 1980               	.LSM273:
+ 1981 01d0 1EBC      		out 78-32,__zero_reg__
+ 1982               	.L157:
+ 1983               	.LSM274:
+ 1984 01d2 0DB4      		in __tmp_reg__,77-32
+ 1985 01d4 07FE      		sbrs __tmp_reg__,7
+ 1986 01d6 00C0      		rjmp .L157
+ 1987               	.LSM275:
+ 1988 01d8 8EB5      		in r24,78-32
+ 1989               	.LBE856:
+ 1990               	.LBE855:
+ 1991               	.LBE854:
+ 1992               	.LBE853:
+ 1993               	.LBB857:
+ 1994               	.LBB858:
+ 1995               	.LSM276:
+ 1996 01da 8093 F100 		sts 241,r24
+ 1997               	.LBE858:
+ 1998               	.LBE857:
+ 1999               	.LSM277:
+ 2000 01de 8091 0000 		lds r24,IsMassStoreReset
+ 2001 01e2 8823      		tst r24
+ 2002 01e4 01F4      		brne .L161
+ 2003               	.LSM278:
+ 2004 01e6 9F5F      		subi r25,lo8(-(1))
+ 2005               	.LSM279:
+ 2006 01e8 D394      		inc r13
+ 2007               	.LSM280:
+ 2008 01ea 80E2      		ldi r24,lo8(32)
+ 2009 01ec D816      		cp r13,r24
+ 2010 01ee 01F0      		breq .+2
+ 2011 01f0 00C0      		rjmp .L158
+ 2012               	.LSM281:
+ 2013 01f2 0894      		sec
+ 2014 01f4 E108      		sbc r14,__zero_reg__
+ 2015 01f6 F108      		sbc r15,__zero_reg__
+ 2016               	.L134:
+ 2017               	.LBE859:
+ 2018               	.LSM282:
+ 2019 01f8 E114      		cp r14,__zero_reg__
+ 2020 01fa F104      		cpc r15,__zero_reg__
+ 2021 01fc 01F0      		breq .+2
+ 2022 01fe 00C0      		rjmp .L159
+ 2023               	.LBB860:
+ 2024               	.LBB861:
+ 2025               	.LSM283:
+ 2026 0200 8091 E800 		lds r24,232
+ 2027               	.LBE861:
+ 2028               	.LBE860:
+ 2029               	.LSM284:
+ 2030 0204 85FD      		sbrc r24,5
+ 2031 0206 00C0      		rjmp .L160
+ 2032               	.LBB862:
+ 2033               	.LBB863:
+ 2034               	.LSM285:
+ 2035 0208 8091 E800 		lds r24,232
+ 2036 020c 8E77      		andi r24,lo8(126)
+ 2037 020e 8093 E800 		sts 232,r24
+ 2038               	.L160:
+ 2039               	.LBE863:
+ 2040               	.LBE862:
+ 2041               	.LBB864:
+ 2042               	.LBB865:
+ 2043               	.LBB866:
+ 2044               	.LBB867:
+ 2045               	.LSM286:
+ 2046 0212 8EB1      		in r24,46-32
+ 2047 0214 8360      		ori r24,lo8(3)
+ 2048 0216 8EB9      		out 46-32,r24
+ 2049               	.LVL66:
+ 2050               	.L161:
+ 2051               	/* epilogue start */
+ 2052               	.LBE867:
+ 2053               	.LBE866:
+ 2054               	.LBE865:
+ 2055               	.LBE864:
+ 2056               	.LSM287:
+ 2057 0218 0F90      		pop __tmp_reg__
+ 2058 021a CF91      		pop r28
+ 2059 021c DF91      		pop r29
+ 2060 021e 1F91      		pop r17
+ 2061 0220 0F91      		pop r16
+ 2062               	.LVL67:
+ 2063 0222 FF90      		pop r15
+ 2064 0224 EF90      		pop r14
+ 2065               	.LVL68:
+ 2066 0226 DF90      		pop r13
+ 2067               	.LVL69:
+ 2068 0228 CF90      		pop r12
+ 2069               	.LVL70:
+ 2070 022a 0895      		ret
+ 2071               	.LFE120:
+ 2073               		.section	.text.DataflashManager_WriteBlocks,"ax",@progbits
+ 2074               	.global	DataflashManager_WriteBlocks
+ 2076               	DataflashManager_WriteBlocks:
+ 2077               	.LFB119:
+ 2078               	.LSM288:
+ 2079               	.LVL71:
+ 2080 0000 AF92      		push r10
+ 2081 0002 BF92      		push r11
+ 2082 0004 CF92      		push r12
+ 2083 0006 DF92      		push r13
+ 2084 0008 EF92      		push r14
+ 2085 000a FF92      		push r15
+ 2086 000c 0F93      		push r16
+ 2087 000e 1F93      		push r17
+ 2088 0010 DF93      		push r29
+ 2089 0012 CF93      		push r28
+ 2090 0014 0F92      		push __tmp_reg__
+ 2091 0016 CDB7      		in r28,__SP_L__
+ 2092 0018 DEB7      		in r29,__SP_H__
+ 2093               	/* prologue: function */
+ 2094               	/* frame size = 1 */
+ 2095 001a 7A01      		movw r14,r20
+ 2096               	.LSM289:
+ 2097 001c 29E0      		ldi r18,9
+ 2098 001e 660F      	1:	lsl r22
+ 2099 0020 771F      		rol r23
+ 2100 0022 881F      		rol r24
+ 2101 0024 991F      		rol r25
+ 2102 0026 2A95      		dec r18
+ 2103 0028 01F4      		brne 1b
+ 2104               	.LVL72:
+ 2105 002a 9B01      		movw r18,r22
+ 2106 002c AC01      		movw r20,r24
+ 2107 002e 9AE0      		ldi r25,10
+ 2108 0030 5695      	1:	lsr r21
+ 2109 0032 4795      		ror r20
+ 2110 0034 3795      		ror r19
+ 2111 0036 2795      		ror r18
+ 2112 0038 9A95      		dec r25
+ 2113 003a 01F4      		brne 1b
+ 2114 003c 8901      		movw r16,r18
+ 2115               	.LVL73:
+ 2116               	.LSM290:
+ 2117 003e 8FEF      		ldi r24,lo8(1023)
+ 2118 0040 C82E      		mov r12,r24
+ 2119 0042 83E0      		ldi r24,hi8(1023)
+ 2120 0044 D82E      		mov r13,r24
+ 2121               	.LVL74:
+ 2122 0046 C622      		and r12,r22
+ 2123 0048 D722      		and r13,r23
+ 2124               	.LSM291:
+ 2125 004a C901      		movw r24,r18
+ 2126 004c 0E94 0000 		call Dataflash_SelectChipFromPage
+ 2127               	.LVL75:
+ 2128               	.LBB868:
+ 2129               	.LBB869:
+ 2130               	.LBB870:
+ 2131               	.LBB871:
+ 2132               	.LSM292:
+ 2133 0050 83E5      		ldi r24,lo8(83)
+ 2134 0052 8EBD      		out 78-32,r24
+ 2135               	.L190:
+ 2136               	.LSM293:
+ 2137 0054 0DB4      		in __tmp_reg__,77-32
+ 2138 0056 07FE      		sbrs __tmp_reg__,7
+ 2139 0058 00C0      		rjmp .L190
+ 2140               	.LBE871:
+ 2141               	.LBE870:
+ 2142               	.LBE869:
+ 2143               	.LBE868:
+ 2144               	.LSM294:
+ 2145 005a C801      		movw r24,r16
+ 2146 005c 60E0      		ldi r22,lo8(0)
+ 2147 005e 70E0      		ldi r23,hi8(0)
+ 2148 0060 0E94 0000 		call Dataflash_SendAddressBytes
+ 2149               	.LSM295:
+ 2150 0064 0E94 0000 		call Dataflash_WaitWhileBusy
+ 2151               	.LBB872:
+ 2152               	.LBB873:
+ 2153               	.LBB874:
+ 2154               	.LBB875:
+ 2155               	.LSM296:
+ 2156 0068 84E8      		ldi r24,lo8(-124)
+ 2157 006a 8EBD      		out 78-32,r24
+ 2158               	.L191:
+ 2159               	.LSM297:
+ 2160 006c 0DB4      		in __tmp_reg__,77-32
+ 2161 006e 07FE      		sbrs __tmp_reg__,7
+ 2162 0070 00C0      		rjmp .L191
+ 2163               	.LBE875:
+ 2164               	.LBE874:
+ 2165               	.LBE873:
+ 2166               	.LBE872:
+ 2167               	.LSM298:
+ 2168 0072 80E0      		ldi r24,lo8(0)
+ 2169 0074 90E0      		ldi r25,hi8(0)
+ 2170 0076 B601      		movw r22,r12
+ 2171 0078 0E94 0000 		call Dataflash_SendAddressBytes
+ 2172               	.LSM299:
+ 2173 007c 0E94 0000 		call Endpoint_WaitUntilReady
+ 2174 0080 8823      		tst r24
+ 2175 0082 01F0      		breq .+2
+ 2176 0084 00C0      		rjmp .L229
+ 2177               	.LSM300:
+ 2178 0086 B4E0      		ldi r27,4
+ 2179 0088 D694      	1:	lsr r13
+ 2180 008a C794      		ror r12
+ 2181 008c BA95      		dec r27
+ 2182 008e 01F4      		brne 1b
+ 2183 0090 9C2D      		mov r25,r12
+ 2184               	.LVL76:
+ 2185 0092 5701      		movw r10,r14
+ 2186 0094 A5E0      		ldi r26,5
+ 2187 0096 AA0C      	1:	lsl r10
+ 2188 0098 BB1C      		rol r11
+ 2189 009a AA95      		dec r26
+ 2190 009c 01F4      		brne 1b
+ 2191 009e DD24      		clr r13
+ 2192               	.LVL77:
+ 2193 00a0 00C0      		rjmp .L193
+ 2194               	.LVL78:
+ 2195               	.L224:
+ 2196 00a2 CC24      		clr r12
+ 2197               	.LVL79:
+ 2198               	.L223:
+ 2199               	.LBB876:
+ 2200               	.LBB877:
+ 2201               	.LBB878:
+ 2202               	.LSM301:
+ 2203 00a4 8091 E800 		lds r24,232
+ 2204               	.LBE878:
+ 2205               	.LBE877:
+ 2206               	.LSM302:
+ 2207 00a8 85FD      		sbrc r24,5
+ 2208 00aa 00C0      		rjmp .L194
+ 2209               	.LBB879:
+ 2210               	.LBB880:
+ 2211               	.LSM303:
+ 2212 00ac 8091 E800 		lds r24,232
+ 2213 00b0 8B77      		andi r24,lo8(123)
+ 2214 00b2 8093 E800 		sts 232,r24
+ 2215               	.LBE880:
+ 2216               	.LBE879:
+ 2217               	.LSM304:
+ 2218 00b6 9983      		std Y+1,r25
+ 2219               	.LVL80:
+ 2220 00b8 0E94 0000 		call Endpoint_WaitUntilReady
+ 2221 00bc 9981      		ldd r25,Y+1
+ 2222 00be 8823      		tst r24
+ 2223 00c0 01F0      		breq .+2
+ 2224 00c2 00C0      		rjmp .L229
+ 2225               	.LVL81:
+ 2226               	.L194:
+ 2227               	.LSM305:
+ 2228 00c4 9034      		cpi r25,lo8(64)
+ 2229 00c6 01F0      		breq .+2
+ 2230 00c8 00C0      		rjmp .L195
+ 2231               	.LSM306:
+ 2232 00ca 0E94 0000 		call Dataflash_WaitWhileBusy
+ 2233               	.LVL82:
+ 2234               	.LSM307:
+ 2235 00ce DD20      		tst r13
+ 2236 00d0 01F4      		brne .L196
+ 2237 00d2 83E8      		ldi r24,lo8(-125)
+ 2238 00d4 00C0      		rjmp .L197
+ 2239               	.L196:
+ 2240 00d6 86E8      		ldi r24,lo8(-122)
+ 2241               	.L197:
+ 2242               	.LBB881:
+ 2243               	.LBB882:
+ 2244               	.LBB883:
+ 2245               	.LBB884:
+ 2246               	.LSM308:
+ 2247 00d8 8EBD      		out 78-32,r24
+ 2248               	.L198:
+ 2249               	.LSM309:
+ 2250 00da 0DB4      		in __tmp_reg__,77-32
+ 2251 00dc 07FE      		sbrs __tmp_reg__,7
+ 2252 00de 00C0      		rjmp .L198
+ 2253               	.LBE884:
+ 2254               	.LBE883:
+ 2255               	.LBE882:
+ 2256               	.LBE881:
+ 2257               	.LSM310:
+ 2258 00e0 C801      		movw r24,r16
+ 2259 00e2 60E0      		ldi r22,lo8(0)
+ 2260 00e4 70E0      		ldi r23,hi8(0)
+ 2261 00e6 0E94 0000 		call Dataflash_SendAddressBytes
+ 2262               	.LSM311:
+ 2263 00ea 0F5F      		subi r16,lo8(-(1))
+ 2264 00ec 1F4F      		sbci r17,hi8(-(1))
+ 2265               	.LBB885:
+ 2266               	.LBB886:
+ 2267               	.LSM312:
+ 2268 00ee 8EB1      		in r24,46-32
+ 2269               	.LBE886:
+ 2270               	.LBE885:
+ 2271               	.LSM313:
+ 2272 00f0 8370      		andi r24,lo8(3)
+ 2273 00f2 8130      		cpi r24,lo8(1)
+ 2274 00f4 01F4      		brne .L199
+ 2275               	.LSM314:
+ 2276 00f6 D826      		eor r13,r24
+ 2277               	.L199:
+ 2278               	.LSM315:
+ 2279 00f8 C801      		movw r24,r16
+ 2280 00fa 0E94 0000 		call Dataflash_SelectChipFromPage
+ 2281               	.LSM316:
+ 2282 00fe 20E4      		ldi r18,lo8(64)
+ 2283 0100 A216      		cp r10,r18
+ 2284 0102 B104      		cpc r11,__zero_reg__
+ 2285 0104 00F4      		brsh .L200
+ 2286               	.LSM317:
+ 2287 0106 0E94 0000 		call Dataflash_WaitWhileBusy
+ 2288               	.LSM318:
+ 2289 010a DD20      		tst r13
+ 2290 010c 01F4      		brne .L201
+ 2291 010e 83E5      		ldi r24,lo8(83)
+ 2292 0110 00C0      		rjmp .L202
+ 2293               	.L201:
+ 2294 0112 85E5      		ldi r24,lo8(85)
+ 2295               	.L202:
+ 2296               	.LBB887:
+ 2297               	.LBB888:
+ 2298               	.LBB889:
+ 2299               	.LBB890:
+ 2300               	.LSM319:
+ 2301 0114 8EBD      		out 78-32,r24
+ 2302               	.L203:
+ 2303               	.LSM320:
+ 2304 0116 0DB4      		in __tmp_reg__,77-32
+ 2305 0118 07FE      		sbrs __tmp_reg__,7
+ 2306 011a 00C0      		rjmp .L203
+ 2307               	.LBE890:
+ 2308               	.LBE889:
+ 2309               	.LBE888:
+ 2310               	.LBE887:
+ 2311               	.LSM321:
+ 2312 011c C801      		movw r24,r16
+ 2313 011e 60E0      		ldi r22,lo8(0)
+ 2314 0120 70E0      		ldi r23,hi8(0)
+ 2315 0122 0E94 0000 		call Dataflash_SendAddressBytes
+ 2316               	.LSM322:
+ 2317 0126 0E94 0000 		call Dataflash_WaitWhileBusy
+ 2318               	.L200:
+ 2319               	.LSM323:
+ 2320 012a DD20      		tst r13
+ 2321 012c 01F4      		brne .L204
+ 2322 012e 84E8      		ldi r24,lo8(-124)
+ 2323 0130 00C0      		rjmp .L205
+ 2324               	.L204:
+ 2325 0132 87E8      		ldi r24,lo8(-121)
+ 2326               	.L205:
+ 2327               	.LBB891:
+ 2328               	.LBB892:
+ 2329               	.LBB893:
+ 2330               	.LBB894:
+ 2331               	.LSM324:
+ 2332 0134 8EBD      		out 78-32,r24
+ 2333               	.L206:
+ 2334               	.LSM325:
+ 2335 0136 0DB4      		in __tmp_reg__,77-32
+ 2336 0138 07FE      		sbrs __tmp_reg__,7
+ 2337 013a 00C0      		rjmp .L206
+ 2338               	.LBE894:
+ 2339               	.LBE893:
+ 2340               	.LBE892:
+ 2341               	.LBE891:
+ 2342               	.LSM326:
+ 2343 013c 80E0      		ldi r24,lo8(0)
+ 2344 013e 90E0      		ldi r25,hi8(0)
+ 2345 0140 60E0      		ldi r22,lo8(0)
+ 2346 0142 70E0      		ldi r23,hi8(0)
+ 2347 0144 0E94 0000 		call Dataflash_SendAddressBytes
+ 2348 0148 90E0      		ldi r25,lo8(0)
+ 2349               	.LVL83:
+ 2350               	.L195:
+ 2351               	.LBB895:
+ 2352               	.LBB896:
+ 2353               	.LSM327:
+ 2354 014a 8091 F100 		lds r24,241
+ 2355               	.LBE896:
+ 2356               	.LBE895:
+ 2357               	.LBB897:
+ 2358               	.LBB898:
+ 2359               	.LBB899:
+ 2360               	.LBB900:
+ 2361               	.LSM328:
+ 2362 014e 8EBD      		out 78-32,r24
+ 2363               	.L207:
+ 2364               	.LSM329:
+ 2365 0150 0DB4      		in __tmp_reg__,77-32
+ 2366 0152 07FE      		sbrs __tmp_reg__,7
+ 2367 0154 00C0      		rjmp .L207
+ 2368               	.LBE900:
+ 2369               	.LBE899:
+ 2370               	.LBE898:
+ 2371               	.LBE897:
+ 2372               	.LBB901:
+ 2373               	.LBB902:
+ 2374               	.LSM330:
+ 2375 0156 8091 F100 		lds r24,241
+ 2376               	.LBE902:
+ 2377               	.LBE901:
+ 2378               	.LBB903:
+ 2379               	.LBB904:
+ 2380               	.LBB905:
+ 2381               	.LBB906:
+ 2382               	.LSM331:
+ 2383 015a 8EBD      		out 78-32,r24
+ 2384               	.L208:
+ 2385               	.LSM332:
+ 2386 015c 0DB4      		in __tmp_reg__,77-32
+ 2387 015e 07FE      		sbrs __tmp_reg__,7
+ 2388 0160 00C0      		rjmp .L208
+ 2389               	.LBE906:
+ 2390               	.LBE905:
+ 2391               	.LBE904:
+ 2392               	.LBE903:
+ 2393               	.LBB907:
+ 2394               	.LBB908:
+ 2395               	.LSM333:
+ 2396 0162 8091 F100 		lds r24,241
+ 2397               	.LBE908:
+ 2398               	.LBE907:
+ 2399               	.LBB909:
+ 2400               	.LBB910:
+ 2401               	.LBB911:
+ 2402               	.LBB912:
+ 2403               	.LSM334:
+ 2404 0166 8EBD      		out 78-32,r24
+ 2405               	.L209:
+ 2406               	.LSM335:
+ 2407 0168 0DB4      		in __tmp_reg__,77-32
+ 2408 016a 07FE      		sbrs __tmp_reg__,7
+ 2409 016c 00C0      		rjmp .L209
+ 2410               	.LBE912:
+ 2411               	.LBE911:
+ 2412               	.LBE910:
+ 2413               	.LBE909:
+ 2414               	.LBB913:
+ 2415               	.LBB914:
+ 2416               	.LSM336:
+ 2417 016e 8091 F100 		lds r24,241
+ 2418               	.LBE914:
+ 2419               	.LBE913:
+ 2420               	.LBB915:
+ 2421               	.LBB916:
+ 2422               	.LBB917:
+ 2423               	.LBB918:
+ 2424               	.LSM337:
+ 2425 0172 8EBD      		out 78-32,r24
+ 2426               	.L210:
+ 2427               	.LSM338:
+ 2428 0174 0DB4      		in __tmp_reg__,77-32
+ 2429 0176 07FE      		sbrs __tmp_reg__,7
+ 2430 0178 00C0      		rjmp .L210
+ 2431               	.LBE918:
+ 2432               	.LBE917:
+ 2433               	.LBE916:
+ 2434               	.LBE915:
+ 2435               	.LBB919:
+ 2436               	.LBB920:
+ 2437               	.LSM339:
+ 2438 017a 8091 F100 		lds r24,241
+ 2439               	.LBE920:
+ 2440               	.LBE919:
+ 2441               	.LBB921:
+ 2442               	.LBB922:
+ 2443               	.LBB923:
+ 2444               	.LBB924:
+ 2445               	.LSM340:
+ 2446 017e 8EBD      		out 78-32,r24
+ 2447               	.L211:
+ 2448               	.LSM341:
+ 2449 0180 0DB4      		in __tmp_reg__,77-32
+ 2450 0182 07FE      		sbrs __tmp_reg__,7
+ 2451 0184 00C0      		rjmp .L211
+ 2452               	.LBE924:
+ 2453               	.LBE923:
+ 2454               	.LBE922:
+ 2455               	.LBE921:
+ 2456               	.LBB925:
+ 2457               	.LBB926:
+ 2458               	.LSM342:
+ 2459 0186 8091 F100 		lds r24,241
+ 2460               	.LBE926:
+ 2461               	.LBE925:
+ 2462               	.LBB927:
+ 2463               	.LBB928:
+ 2464               	.LBB929:
+ 2465               	.LBB930:
+ 2466               	.LSM343:
+ 2467 018a 8EBD      		out 78-32,r24
+ 2468               	.L212:
+ 2469               	.LSM344:
+ 2470 018c 0DB4      		in __tmp_reg__,77-32
+ 2471 018e 07FE      		sbrs __tmp_reg__,7
+ 2472 0190 00C0      		rjmp .L212
+ 2473               	.LBE930:
+ 2474               	.LBE929:
+ 2475               	.LBE928:
+ 2476               	.LBE927:
+ 2477               	.LBB931:
+ 2478               	.LBB932:
+ 2479               	.LSM345:
+ 2480 0192 8091 F100 		lds r24,241
+ 2481               	.LBE932:
+ 2482               	.LBE931:
+ 2483               	.LBB933:
+ 2484               	.LBB934:
+ 2485               	.LBB935:
+ 2486               	.LBB936:
+ 2487               	.LSM346:
+ 2488 0196 8EBD      		out 78-32,r24
+ 2489               	.L213:
+ 2490               	.LSM347:
+ 2491 0198 0DB4      		in __tmp_reg__,77-32
+ 2492 019a 07FE      		sbrs __tmp_reg__,7
+ 2493 019c 00C0      		rjmp .L213
+ 2494               	.LBE936:
+ 2495               	.LBE935:
+ 2496               	.LBE934:
+ 2497               	.LBE933:
+ 2498               	.LBB937:
+ 2499               	.LBB938:
+ 2500               	.LSM348:
+ 2501 019e 8091 F100 		lds r24,241
+ 2502               	.LBE938:
+ 2503               	.LBE937:
+ 2504               	.LBB939:
+ 2505               	.LBB940:
+ 2506               	.LBB941:
+ 2507               	.LBB942:
+ 2508               	.LSM349:
+ 2509 01a2 8EBD      		out 78-32,r24
+ 2510               	.L214:
+ 2511               	.LSM350:
+ 2512 01a4 0DB4      		in __tmp_reg__,77-32
+ 2513 01a6 07FE      		sbrs __tmp_reg__,7
+ 2514 01a8 00C0      		rjmp .L214
+ 2515               	.LBE942:
+ 2516               	.LBE941:
+ 2517               	.LBE940:
+ 2518               	.LBE939:
+ 2519               	.LBB943:
+ 2520               	.LBB944:
+ 2521               	.LSM351:
+ 2522 01aa 8091 F100 		lds r24,241
+ 2523               	.LBE944:
+ 2524               	.LBE943:
+ 2525               	.LBB945:
+ 2526               	.LBB946:
+ 2527               	.LBB947:
+ 2528               	.LBB948:
+ 2529               	.LSM352:
+ 2530 01ae 8EBD      		out 78-32,r24
+ 2531               	.L215:
+ 2532               	.LSM353:
+ 2533 01b0 0DB4      		in __tmp_reg__,77-32
+ 2534 01b2 07FE      		sbrs __tmp_reg__,7
+ 2535 01b4 00C0      		rjmp .L215
+ 2536               	.LBE948:
+ 2537               	.LBE947:
+ 2538               	.LBE946:
+ 2539               	.LBE945:
+ 2540               	.LBB949:
+ 2541               	.LBB950:
+ 2542               	.LSM354:
+ 2543 01b6 8091 F100 		lds r24,241
+ 2544               	.LBE950:
+ 2545               	.LBE949:
+ 2546               	.LBB951:
+ 2547               	.LBB952:
+ 2548               	.LBB953:
+ 2549               	.LBB954:
+ 2550               	.LSM355:
+ 2551 01ba 8EBD      		out 78-32,r24
+ 2552               	.L216:
+ 2553               	.LSM356:
+ 2554 01bc 0DB4      		in __tmp_reg__,77-32
+ 2555 01be 07FE      		sbrs __tmp_reg__,7
+ 2556 01c0 00C0      		rjmp .L216
+ 2557               	.LBE954:
+ 2558               	.LBE953:
+ 2559               	.LBE952:
+ 2560               	.LBE951:
+ 2561               	.LBB955:
+ 2562               	.LBB956:
+ 2563               	.LSM357:
+ 2564 01c2 8091 F100 		lds r24,241
+ 2565               	.LBE956:
+ 2566               	.LBE955:
+ 2567               	.LBB957:
+ 2568               	.LBB958:
+ 2569               	.LBB959:
+ 2570               	.LBB960:
+ 2571               	.LSM358:
+ 2572 01c6 8EBD      		out 78-32,r24
+ 2573               	.L217:
+ 2574               	.LSM359:
+ 2575 01c8 0DB4      		in __tmp_reg__,77-32
+ 2576 01ca 07FE      		sbrs __tmp_reg__,7
+ 2577 01cc 00C0      		rjmp .L217
+ 2578               	.LBE960:
+ 2579               	.LBE959:
+ 2580               	.LBE958:
+ 2581               	.LBE957:
+ 2582               	.LBB961:
+ 2583               	.LBB962:
+ 2584               	.LSM360:
+ 2585 01ce 8091 F100 		lds r24,241
+ 2586               	.LBE962:
+ 2587               	.LBE961:
+ 2588               	.LBB963:
+ 2589               	.LBB964:
+ 2590               	.LBB965:
+ 2591               	.LBB966:
+ 2592               	.LSM361:
+ 2593 01d2 8EBD      		out 78-32,r24
+ 2594               	.L218:
+ 2595               	.LSM362:
+ 2596 01d4 0DB4      		in __tmp_reg__,77-32
+ 2597 01d6 07FE      		sbrs __tmp_reg__,7
+ 2598 01d8 00C0      		rjmp .L218
+ 2599               	.LBE966:
+ 2600               	.LBE965:
+ 2601               	.LBE964:
+ 2602               	.LBE963:
+ 2603               	.LBB967:
+ 2604               	.LBB968:
+ 2605               	.LSM363:
+ 2606 01da 8091 F100 		lds r24,241
+ 2607               	.LBE968:
+ 2608               	.LBE967:
+ 2609               	.LBB969:
+ 2610               	.LBB970:
+ 2611               	.LBB971:
+ 2612               	.LBB972:
+ 2613               	.LSM364:
+ 2614 01de 8EBD      		out 78-32,r24
+ 2615               	.L219:
+ 2616               	.LSM365:
+ 2617 01e0 0DB4      		in __tmp_reg__,77-32
+ 2618 01e2 07FE      		sbrs __tmp_reg__,7
+ 2619 01e4 00C0      		rjmp .L219
+ 2620               	.LBE972:
+ 2621               	.LBE971:
+ 2622               	.LBE970:
+ 2623               	.LBE969:
+ 2624               	.LBB973:
+ 2625               	.LBB974:
+ 2626               	.LSM366:
+ 2627 01e6 8091 F100 		lds r24,241
+ 2628               	.LBE974:
+ 2629               	.LBE973:
+ 2630               	.LBB975:
+ 2631               	.LBB976:
+ 2632               	.LBB977:
+ 2633               	.LBB978:
+ 2634               	.LSM367:
+ 2635 01ea 8EBD      		out 78-32,r24
+ 2636               	.L220:
+ 2637               	.LSM368:
+ 2638 01ec 0DB4      		in __tmp_reg__,77-32
+ 2639 01ee 07FE      		sbrs __tmp_reg__,7
+ 2640 01f0 00C0      		rjmp .L220
+ 2641               	.LBE978:
+ 2642               	.LBE977:
+ 2643               	.LBE976:
+ 2644               	.LBE975:
+ 2645               	.LBB979:
+ 2646               	.LBB980:
+ 2647               	.LSM369:
+ 2648 01f2 8091 F100 		lds r24,241
+ 2649               	.LBE980:
+ 2650               	.LBE979:
+ 2651               	.LBB981:
+ 2652               	.LBB982:
+ 2653               	.LBB983:
+ 2654               	.LBB984:
+ 2655               	.LSM370:
+ 2656 01f6 8EBD      		out 78-32,r24
+ 2657               	.L221:
+ 2658               	.LSM371:
+ 2659 01f8 0DB4      		in __tmp_reg__,77-32
+ 2660 01fa 07FE      		sbrs __tmp_reg__,7
+ 2661 01fc 00C0      		rjmp .L221
+ 2662               	.LBE984:
+ 2663               	.LBE983:
+ 2664               	.LBE982:
+ 2665               	.LBE981:
+ 2666               	.LBB985:
+ 2667               	.LBB986:
+ 2668               	.LSM372:
+ 2669 01fe 8091 F100 		lds r24,241
+ 2670               	.LBE986:
+ 2671               	.LBE985:
+ 2672               	.LBB987:
+ 2673               	.LBB988:
+ 2674               	.LBB989:
+ 2675               	.LBB990:
+ 2676               	.LSM373:
+ 2677 0202 8EBD      		out 78-32,r24
+ 2678               	.L222:
+ 2679               	.LSM374:
+ 2680 0204 0DB4      		in __tmp_reg__,77-32
+ 2681 0206 07FE      		sbrs __tmp_reg__,7
+ 2682 0208 00C0      		rjmp .L222
+ 2683               	.LBE990:
+ 2684               	.LBE989:
+ 2685               	.LBE988:
+ 2686               	.LBE987:
+ 2687               	.LSM375:
+ 2688 020a 8091 0000 		lds r24,IsMassStoreReset
+ 2689 020e 8823      		tst r24
+ 2690 0210 01F4      		brne .L229
+ 2691               	.LSM376:
+ 2692 0212 9F5F      		subi r25,lo8(-(1))
+ 2693               	.LSM377:
+ 2694 0214 C394      		inc r12
+ 2695               	.LSM378:
+ 2696 0216 30E2      		ldi r19,lo8(32)
+ 2697 0218 C316      		cp r12,r19
+ 2698 021a 01F0      		breq .+2
+ 2699 021c 00C0      		rjmp .L223
+ 2700               	.LSM379:
+ 2701 021e 0894      		sec
+ 2702 0220 E108      		sbc r14,__zero_reg__
+ 2703 0222 F108      		sbc r15,__zero_reg__
+ 2704 0224 E0EE      		ldi r30,lo8(-32)
+ 2705 0226 FFEF      		ldi r31,hi8(-32)
+ 2706 0228 AE0E      		add r10,r30
+ 2707 022a BF1E      		adc r11,r31
+ 2708               	.LVL84:
+ 2709               	.L193:
+ 2710               	.LBE876:
+ 2711               	.LSM380:
+ 2712 022c E114      		cp r14,__zero_reg__
+ 2713 022e F104      		cpc r15,__zero_reg__
+ 2714 0230 01F0      		breq .+2
+ 2715 0232 00C0      		rjmp .L224
+ 2716               	.LSM381:
+ 2717 0234 0E94 0000 		call Dataflash_WaitWhileBusy
+ 2718               	.LVL85:
+ 2719               	.LSM382:
+ 2720 0238 DD20      		tst r13
+ 2721 023a 01F4      		brne .L225
+ 2722 023c 83E8      		ldi r24,lo8(-125)
+ 2723 023e 00C0      		rjmp .L226
+ 2724               	.L225:
+ 2725 0240 86E8      		ldi r24,lo8(-122)
+ 2726               	.L226:
+ 2727               	.LBB991:
+ 2728               	.LBB992:
+ 2729               	.LBB993:
+ 2730               	.LBB994:
+ 2731               	.LSM383:
+ 2732 0242 8EBD      		out 78-32,r24
+ 2733               	.L227:
+ 2734               	.LSM384:
+ 2735 0244 0DB4      		in __tmp_reg__,77-32
+ 2736 0246 07FE      		sbrs __tmp_reg__,7
+ 2737 0248 00C0      		rjmp .L227
+ 2738               	.LBE994:
+ 2739               	.LBE993:
+ 2740               	.LBE992:
+ 2741               	.LBE991:
+ 2742               	.LSM385:
+ 2743 024a C801      		movw r24,r16
+ 2744 024c 60E0      		ldi r22,lo8(0)
+ 2745 024e 70E0      		ldi r23,hi8(0)
+ 2746 0250 0E94 0000 		call Dataflash_SendAddressBytes
+ 2747               	.LSM386:
+ 2748 0254 0E94 0000 		call Dataflash_WaitWhileBusy
+ 2749               	.LBB995:
+ 2750               	.LBB996:
+ 2751               	.LSM387:
+ 2752 0258 8091 E800 		lds r24,232
+ 2753               	.LBE996:
+ 2754               	.LBE995:
+ 2755               	.LSM388:
+ 2756 025c 85FD      		sbrc r24,5
+ 2757 025e 00C0      		rjmp .L228
+ 2758               	.LBB997:
+ 2759               	.LBB998:
+ 2760               	.LSM389:
+ 2761 0260 8091 E800 		lds r24,232
+ 2762 0264 8B77      		andi r24,lo8(123)
+ 2763 0266 8093 E800 		sts 232,r24
+ 2764               	.L228:
+ 2765               	.LBE998:
+ 2766               	.LBE997:
+ 2767               	.LBB999:
+ 2768               	.LBB1000:
+ 2769               	.LBB1001:
+ 2770               	.LBB1002:
+ 2771               	.LSM390:
+ 2772 026a 8EB1      		in r24,46-32
+ 2773 026c 8360      		ori r24,lo8(3)
+ 2774 026e 8EB9      		out 46-32,r24
+ 2775               	.LVL86:
+ 2776               	.L229:
+ 2777               	/* epilogue start */
+ 2778               	.LBE1002:
+ 2779               	.LBE1001:
+ 2780               	.LBE1000:
+ 2781               	.LBE999:
+ 2782               	.LSM391:
+ 2783 0270 0F90      		pop __tmp_reg__
+ 2784 0272 CF91      		pop r28
+ 2785 0274 DF91      		pop r29
+ 2786 0276 1F91      		pop r17
+ 2787 0278 0F91      		pop r16
+ 2788               	.LVL87:
+ 2789 027a FF90      		pop r15
+ 2790 027c EF90      		pop r14
+ 2791               	.LVL88:
+ 2792 027e DF90      		pop r13
+ 2793               	.LVL89:
+ 2794 0280 CF90      		pop r12
+ 2795               	.LVL90:
+ 2796 0282 BF90      		pop r11
+ 2797 0284 AF90      		pop r10
+ 2798 0286 0895      		ret
+ 2799               	.LFE119:
+ 2897               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 DataflashManager.c
+C:\Users\Frankie\AppData\Local\Temp/ccN5ZSZX.s:2      *ABS*:0000003f __SREG__
+C:\Users\Frankie\AppData\Local\Temp/ccN5ZSZX.s:3      *ABS*:0000003e __SP_H__
+C:\Users\Frankie\AppData\Local\Temp/ccN5ZSZX.s:4      *ABS*:0000003d __SP_L__
+C:\Users\Frankie\AppData\Local\Temp/ccN5ZSZX.s:5      *ABS*:00000034 __CCP__
+C:\Users\Frankie\AppData\Local\Temp/ccN5ZSZX.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Frankie\AppData\Local\Temp/ccN5ZSZX.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Frankie\AppData\Local\Temp/ccN5ZSZX.s:18     .text.Dataflash_SelectChipFromPage:00000000 Dataflash_SelectChipFromPage
+C:\Users\Frankie\AppData\Local\Temp/ccN5ZSZX.s:71     .text.Dataflash_ToggleSelectedChipCS:00000000 Dataflash_ToggleSelectedChipCS
+C:\Users\Frankie\AppData\Local\Temp/ccN5ZSZX.s:110    .text.Dataflash_WaitWhileBusy:00000000 Dataflash_WaitWhileBusy
+C:\Users\Frankie\AppData\Local\Temp/ccN5ZSZX.s:162    .text.Dataflash_SendAddressBytes:00000000 Dataflash_SendAddressBytes
+C:\Users\Frankie\AppData\Local\Temp/ccN5ZSZX.s:241    .text.DataflashManager_WriteBlocks_RAM:00000000 DataflashManager_WriteBlocks_RAM
+C:\Users\Frankie\AppData\Local\Temp/ccN5ZSZX.s:627    .text.DataflashManager_ReadBlocks_RAM:00000000 DataflashManager_ReadBlocks_RAM
+C:\Users\Frankie\AppData\Local\Temp/ccN5ZSZX.s:968    .text.DataflashManager_ResetDataflashProtections:00000000 DataflashManager_ResetDataflashProtections
+C:\Users\Frankie\AppData\Local\Temp/ccN5ZSZX.s:1215   .text.DataflashManager_CheckDataflashOperation:00000000 DataflashManager_CheckDataflashOperation
+C:\Users\Frankie\AppData\Local\Temp/ccN5ZSZX.s:1348   .text.DataflashManager_ReadBlocks:00000000 DataflashManager_ReadBlocks
+C:\Users\Frankie\AppData\Local\Temp/ccN5ZSZX.s:2076   .text.DataflashManager_WriteBlocks:00000000 DataflashManager_WriteBlocks
+
+UNDEFINED SYMBOLS
+Endpoint_WaitUntilReady
+IsMassStoreReset

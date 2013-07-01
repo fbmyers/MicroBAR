@@ -1,0 +1,46 @@
+LCD Size: 480 x 272
+LCD Manufacturer: Amulet
+LCD Part Number: STK-480272C_Serial No. ends with L
+Touch Panel: 4-Wire Resistive
+Init File: Init None
+SDRAM Part Number: IS42S32200E (64-MBit)
+Size of SDRAM: 0x800000
+Size of Serial Data Flash: 0x400000
+Serial Data Flash used by OS: 0x1c400
+Minimum Serial Data Flash Sector: 0x80
+Color Depth: 32
+
+serial_io.htm (GEM page)    Flash Index = 0x20
+=============
+      Object Name               Object Type            Flash Used (Remaining)    SDRAM Used (Remaining)
+      -----------               -----------            ----------------------    ----------------------
+      PAGE HEADER                                      0x2c       (0x3e3bd0)                                                               
+      No Name                   Rectangle              0x24       (0x3e3bac)     0x9600     (0x6e7a00)                                           
+      No Name                   Anchor                 0x48       (0x3e3b64)     0x0        (0x6e7a00)                                     
+      No Name                   Static Text            0x34       (0x3e3b30)     0x0        (0x6e7a00)                                          
+      PAGE FOOTER                                      0x2        (0x3e3b2e)                                                              
+                                                       ----------------------    ----------------------
+                                               Totals  0xce       (0x3e3b2e)     0x9600     (0x6e7a00)                               
+
+
+Arial_12.auf (Font File)    Flash Index = 0x21
+============
+                                                       Flash Used (Remaining)
+                                                       ----------------------
+                                                       0x8c4      (0x3e323c)                                               
+
+
+fontHdr.auf (Font Header File)    Flash Index = 0xf
+===========
+                                                       Flash Used (Remaining)
+                                                       ----------------------
+                                                       0x3c       (0x3e31c4)                                              
+
+
+internalRAM.bin (InternalRAM File)    Flash Index = 0x6
+===============
+                                                       Flash Used (Remaining)
+                                                       ----------------------
+                                                       0x2152     (0x3e102e)                                                
+
+

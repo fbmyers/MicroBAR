@@ -1,0 +1,289 @@
+<html>
+<head>
+<LINK REL="StyleSheet" HREF="frankie.css" TYPE="text/css" MEDIA="screen">
+<meta name="Amulet" content="DualFrameBuffer.page;noClearLCD">
+<meta http-equiv="refresh" content="0,0.01;URL=Amulet:InternalRAM.string(1).clear()">
+
+</head>
+
+<body>
+
+
+<div style="width:480px; height:90px; position:absolute; left:0px; top:0px; z-index:1; background-color:#999999" class="style2">
+
+<applet code="StringField.class" width="480" height="26" name="Prompt">
+	<param name="href" value="Amulet:InternalRAM.string(0).value()">
+	<param name="printf" value="Prompt%s">
+	<param name="updateRate" value="1">
+	<param name="horizontalAlign" value="center">
+	<param name="verticalAlign" value="middle">	
+	<param name="font" value="Bitstream Vera Sans">	
+	<param name="fontSize" value="3">
+	<param name="fontColor" value="#FFFFFF">
+	<param name="fillColor" value="#000080">		
+</applet>
+ 
+<applet code="StringField.class" width="480" height="53" name="Text">
+	<param name="href" value="Amulet:InternalRAM.string(1).value()">
+	<param name="printf" value="%s">
+	<param name="updateRate" value="1">
+	<param name="horizontalAlign" value="center">
+	<param name="verticalAlign" value="middle">	
+	<param name="font" value="Bitstream Vera Sans">	
+	<param name="fontSize" value="5">
+	<param name="fontColor" value="#000000">
+	<param name="fillColor" value="#FFFFFF">	
+ </applet>
+  
+</div>
+
+<div style="width:480px; height: 48px; position:absolute; left: 0px; top: 80px; background-color:#000000">
+<applet code="FunctionButton.class" width="48" height="48" name="n1">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('1'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="1">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	
+<applet code="FunctionButton.class" width="48" height="48" name="n2">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('2'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="2">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	
+<applet code="FunctionButton.class" width="48" height="48" name="n3">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('3'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="3">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	
+<applet code="FunctionButton.class" width="48" height="48" name="n4">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('4'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="4">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	
+<applet code="FunctionButton.class" width="48" height="48" name="n5">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('5'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="5">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	
+<applet code="FunctionButton.class" width="48" height="48" name="n6">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('6'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="6">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	
+<applet code="FunctionButton.class" width="48" height="48" name="n7">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('7'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="7">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	
+<applet code="FunctionButton.class" width="48" height="48" name="n8">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('8'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="8">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	
+<applet code="FunctionButton.class" width="48" height="48" name="n9">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('9'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="9">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>
+<applet code="FunctionButton.class" width="48" height="48" name="n0">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('0'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="0">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>
+</div>
+
+<div style="width:480px; height: 48px; position:absolute; left: 0px; top: 128px; background-color:#000000">
+<applet code="FunctionButton.class" width="48" height="48" name="Q">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('Q'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="Q">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>
+<applet code="FunctionButton.class" width="48" height="48" name="W">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('W'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="W">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>
+<applet code="FunctionButton.class" width="48" height="48" name="E">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('E'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="E">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>
+<applet code="FunctionButton.class" width="48" height="48" name="R">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('R'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="R">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>
+<applet code="FunctionButton.class" width="48" height="48" name="T">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('T'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="T">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>
+<applet code="FunctionButton.class" width="48" height="48" name="Y">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('Y'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="Y">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>
+<applet code="FunctionButton.class" width="48" height="48" name="U">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('U'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="U">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>
+<applet code="FunctionButton.class" width="48" height="48" name="I">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('I'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="I">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>
+<applet code="FunctionButton.class" width="48" height="48" name="O">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('O'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="O">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>
+<applet code="FunctionButton.class" width="48" height="48" name="P">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('P'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="P">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	
+</div>
+
+<div style="width:480px; height: 48px; position:absolute; left: 0px; top: 176px; background-color:#000000">
+<applet code="FunctionButton.class" width="48" height="48" name="A">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('A'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="A">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	 
+<applet code="FunctionButton.class" width="48" height="48" name="S">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('S'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="S">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	 
+<applet code="FunctionButton.class" width="48" height="48" name="D">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('D'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="D">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	 
+<applet code="FunctionButton.class" width="48" height="48" name="F">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('F'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="F">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	 
+<applet code="FunctionButton.class" width="48" height="48" name="G">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('G'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="G">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	 
+<applet code="FunctionButton.class" width="48" height="48" name="H">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('H'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="H">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	
+<applet code="FunctionButton.class" width="48" height="48" name="J">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('J'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="J">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	
+<applet code="FunctionButton.class" width="48" height="48" name="K">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('K'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="K">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	
+<applet code="FunctionButton.class" width="48" height="48" name="L">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('L'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="L">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	
+<applet code="FunctionButton.class" width="48" height="48" name="_">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('_'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="_">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	
+</div>
+
+<div style="width:480px; height: 48px; position:absolute; left: 0px; top: 224px; background-color:#000000">
+<applet code="FunctionButton.class" width="48" height="48" name="Z">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('Z'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="Z">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	
+<applet code="FunctionButton.class" width="48" height="48" name="X">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('X'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="X">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	
+<applet code="FunctionButton.class" width="48" height="48" name="C">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('C'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="C">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	
+<applet code="FunctionButton.class" width="48" height="48" name="V">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('V'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="V">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	
+<applet code="FunctionButton.class" width="48" height="48" name="B">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('B'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="B">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	
+<applet code="FunctionButton.class" width="48" height="48" name="N">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('N'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="N">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	
+<applet code="FunctionButton.class" width="48" height="48" name="M">
+	<param name="href" value="Amulet:InternalRAM.string(1).appendChar('M'),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="M">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	
+<applet code="FunctionButton.class" width="48" height="48" name="bksp">
+	<param name="href" value="Amulet:InternalRAM.string(1).backspace(),Amulet:document.Text.forceUpdate()">
+	<param name="label" value="<">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>	
+<applet code="FunctionButton.class" width="96" height="48" name="enter">
+	<param name="href" value="Amulet:UART.stringOut(Amulet:InternalRAM.string(0)),Amulet:UART.stringOut('='),Amulet:UART.stringOut(Amulet:InternalRAM.string(1)),Amulet:UART.byteOut(0x0A),mainmenu.htm">
+	<param name="label" value="Enter">
+	<param name="buttonType" value="SPRING-LOADED">
+	<param name="onButtonPress" value="DEPRESS">
+</applet>
+</div>
+
+</body>
+</html>
+
+

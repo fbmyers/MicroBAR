@@ -1,0 +1,124 @@
+LCD Size: 480 x 272
+LCD Manufacturer: Amulet
+LCD Part Number: STK-480272C_Serial No. ends with L
+Touch Panel: 4-Wire Resistive
+Init File: Init None
+SDRAM Part Number: IS42S32200E (64-MBit)
+Size of SDRAM: 0x800000
+Size of Serial Data Flash: 0x400000
+Serial Data Flash used by OS: 0x1c400
+Minimum Serial Data Flash Sector: 0x80
+Color Depth: 32
+
+textentry.htm (GEM page)    Flash Index = 0x20
+=============
+      Object Name               Object Type            Flash Used (Remaining)    SDRAM Used (Remaining)
+      -----------               -----------            ----------------------    ----------------------
+      PAGE HEADER                                      0x180      (0x3e3a7c)                                                                
+      No Name                   Meta Object            0x3c       (0x3e3a40)     0x0        (0x6f1000)                                          
+      No Name                   Rectangle              0x24       (0x3e3a1c)     0x2a300    (0x6c6d00)                                            
+      Prompt                    String Field           0x78       (0x3e39a4)     0x18600    (0x6ae700)                                              
+        IWC of Prompt           IWC Object             0x1c       (0x3e3988)     0x0        (0x6ae700)                                                 
+      Text                      String Field           0x74       (0x3e3914)     0x31b00    (0x67cc00)                                            
+        IWC of Text             IWC Object             0x1c       (0x3e38f8)     0x0        (0x67cc00)                                               
+      No Name                   Rectangle              0x24       (0x3e38d4)     0x16800    (0x666400)                                            
+      MultiHref7                Multiple Functions     0x1c       (0x3e38b8)     0x0        (0x666400)                                                    
+      n1                        Function Button        0x64       (0x3e3854)     0x2400     (0x664000)                                            
+      MultiHref9                Multiple Functions     0x1c       (0x3e3838)     0x0        (0x664000)                                                    
+      n2                        Function Button        0x64       (0x3e37d4)     0x2400     (0x661c00)                                            
+      MultiHref11               Multiple Functions     0x1c       (0x3e37b8)     0x0        (0x661c00)                                                     
+      n3                        Function Button        0x64       (0x3e3754)     0x2400     (0x65f800)                                            
+      MultiHref13               Multiple Functions     0x1c       (0x3e3738)     0x0        (0x65f800)                                                     
+      n4                        Function Button        0x64       (0x3e36d4)     0x2400     (0x65d400)                                            
+      MultiHref15               Multiple Functions     0x1c       (0x3e36b8)     0x0        (0x65d400)                                                     
+      n5                        Function Button        0x64       (0x3e3654)     0x2400     (0x65b000)                                            
+      MultiHref17               Multiple Functions     0x1c       (0x3e3638)     0x0        (0x65b000)                                                     
+      n6                        Function Button        0x64       (0x3e35d4)     0x2400     (0x658c00)                                            
+      MultiHref19               Multiple Functions     0x1c       (0x3e35b8)     0x0        (0x658c00)                                                     
+      n7                        Function Button        0x64       (0x3e3554)     0x2400     (0x656800)                                            
+      MultiHref21               Multiple Functions     0x1c       (0x3e3538)     0x0        (0x656800)                                                     
+      n8                        Function Button        0x64       (0x3e34d4)     0x2400     (0x654400)                                            
+      MultiHref23               Multiple Functions     0x1c       (0x3e34b8)     0x0        (0x654400)                                                     
+      n9                        Function Button        0x64       (0x3e3454)     0x2400     (0x652000)                                            
+      MultiHref25               Multiple Functions     0x1c       (0x3e3438)     0x0        (0x652000)                                                     
+      n0                        Function Button        0x64       (0x3e33d4)     0x2400     (0x64fc00)                                            
+      No Name                   Rectangle              0x24       (0x3e33b0)     0x16800    (0x639400)                                            
+      MultiHref28               Multiple Functions     0x1c       (0x3e3394)     0x0        (0x639400)                                                     
+      Q                         Function Button        0x64       (0x3e3330)     0x2400     (0x637000)                                           
+      MultiHref30               Multiple Functions     0x1c       (0x3e3314)     0x0        (0x637000)                                                     
+      W                         Function Button        0x64       (0x3e32b0)     0x2400     (0x634c00)                                           
+      MultiHref32               Multiple Functions     0x1c       (0x3e3294)     0x0        (0x634c00)                                                     
+      E                         Function Button        0x64       (0x3e3230)     0x2400     (0x632800)                                           
+      MultiHref34               Multiple Functions     0x1c       (0x3e3214)     0x0        (0x632800)                                                     
+      R                         Function Button        0x64       (0x3e31b0)     0x2400     (0x630400)                                           
+      MultiHref36               Multiple Functions     0x1c       (0x3e3194)     0x0        (0x630400)                                                     
+      T                         Function Button        0x64       (0x3e3130)     0x2400     (0x62e000)                                           
+      MultiHref38               Multiple Functions     0x1c       (0x3e3114)     0x0        (0x62e000)                                                     
+      Y                         Function Button        0x64       (0x3e30b0)     0x2400     (0x62bc00)                                           
+      MultiHref40               Multiple Functions     0x1c       (0x3e3094)     0x0        (0x62bc00)                                                     
+      U                         Function Button        0x64       (0x3e3030)     0x2400     (0x629800)                                           
+      MultiHref42               Multiple Functions     0x1c       (0x3e3014)     0x0        (0x629800)                                                     
+      I                         Function Button        0x64       (0x3e2fb0)     0x2400     (0x627400)                                           
+      MultiHref44               Multiple Functions     0x1c       (0x3e2f94)     0x0        (0x627400)                                                     
+      O                         Function Button        0x64       (0x3e2f30)     0x2400     (0x625000)                                           
+      MultiHref46               Multiple Functions     0x1c       (0x3e2f14)     0x0        (0x625000)                                                     
+      P                         Function Button        0x64       (0x3e2eb0)     0x2400     (0x622c00)                                           
+      No Name                   Rectangle              0x24       (0x3e2e8c)     0x16800    (0x60c400)                                            
+      MultiHref49               Multiple Functions     0x1c       (0x3e2e70)     0x0        (0x60c400)                                                     
+      A                         Function Button        0x64       (0x3e2e0c)     0x2400     (0x60a000)                                           
+      MultiHref51               Multiple Functions     0x1c       (0x3e2df0)     0x0        (0x60a000)                                                     
+      S                         Function Button        0x64       (0x3e2d8c)     0x2400     (0x607c00)                                           
+      MultiHref53               Multiple Functions     0x1c       (0x3e2d70)     0x0        (0x607c00)                                                     
+      D                         Function Button        0x64       (0x3e2d0c)     0x2400     (0x605800)                                           
+      MultiHref55               Multiple Functions     0x1c       (0x3e2cf0)     0x0        (0x605800)                                                     
+      F                         Function Button        0x64       (0x3e2c8c)     0x2400     (0x603400)                                           
+      MultiHref57               Multiple Functions     0x1c       (0x3e2c70)     0x0        (0x603400)                                                     
+      G                         Function Button        0x64       (0x3e2c0c)     0x2400     (0x601000)                                           
+      MultiHref59               Multiple Functions     0x1c       (0x3e2bf0)     0x0        (0x601000)                                                     
+      H                         Function Button        0x64       (0x3e2b8c)     0x2400     (0x5fec00)                                           
+      MultiHref61               Multiple Functions     0x1c       (0x3e2b70)     0x0        (0x5fec00)                                                     
+      J                         Function Button        0x64       (0x3e2b0c)     0x2400     (0x5fc800)                                           
+      MultiHref63               Multiple Functions     0x1c       (0x3e2af0)     0x0        (0x5fc800)                                                     
+      K                         Function Button        0x64       (0x3e2a8c)     0x2400     (0x5fa400)                                           
+      MultiHref65               Multiple Functions     0x1c       (0x3e2a70)     0x0        (0x5fa400)                                                     
+      L                         Function Button        0x64       (0x3e2a0c)     0x2400     (0x5f8000)                                           
+      MultiHref67               Multiple Functions     0x1c       (0x3e29f0)     0x0        (0x5f8000)                                                     
+      _                         Function Button        0x64       (0x3e298c)     0x2400     (0x5f5c00)                                           
+      No Name                   Rectangle              0x24       (0x3e2968)     0x16800    (0x5df400)                                            
+      MultiHref70               Multiple Functions     0x1c       (0x3e294c)     0x0        (0x5df400)                                                     
+      Z                         Function Button        0x64       (0x3e28e8)     0x2400     (0x5dd000)                                           
+      MultiHref72               Multiple Functions     0x1c       (0x3e28cc)     0x0        (0x5dd000)                                                     
+      X                         Function Button        0x64       (0x3e2868)     0x2400     (0x5dac00)                                           
+      MultiHref74               Multiple Functions     0x1c       (0x3e284c)     0x0        (0x5dac00)                                                     
+      C                         Function Button        0x64       (0x3e27e8)     0x2400     (0x5d8800)                                           
+      MultiHref76               Multiple Functions     0x1c       (0x3e27cc)     0x0        (0x5d8800)                                                     
+      V                         Function Button        0x64       (0x3e2768)     0x2400     (0x5d6400)                                           
+      MultiHref78               Multiple Functions     0x1c       (0x3e274c)     0x0        (0x5d6400)                                                     
+      B                         Function Button        0x64       (0x3e26e8)     0x2400     (0x5d4000)                                           
+      MultiHref80               Multiple Functions     0x1c       (0x3e26cc)     0x0        (0x5d4000)                                                     
+      N                         Function Button        0x64       (0x3e2668)     0x2400     (0x5d1c00)                                           
+      MultiHref82               Multiple Functions     0x1c       (0x3e264c)     0x0        (0x5d1c00)                                                     
+      M                         Function Button        0x64       (0x3e25e8)     0x2400     (0x5cf800)                                           
+      MultiHref84               Multiple Functions     0x14       (0x3e25d4)     0x0        (0x5cf800)                                                     
+      bksp                      Function Button        0x64       (0x3e2570)     0x2400     (0x5cd400)                                              
+      MultiHref86               Multiple Functions     0x44       (0x3e252c)     0x0        (0x5cd400)                                                     
+      enter                     Function Button        0x68       (0x3e24c4)     0x4800     (0x5c8c00)                                               
+      PAGE FOOTER                                      0x2        (0x3e24c2)                                                              
+                                                       ----------------------    ----------------------
+                                               Totals  0x173a     (0x3e24c2)     0x128400   (0x5c8c00)                                   
+
+
+fontHdr.auf (Font Header File)    Flash Index = 0xf
+===========
+                                                       Flash Used (Remaining)
+                                                       ----------------------
+                                                       0x2c       (0x3e2454)                                              
+
+
+internalRAM.bin (InternalRAM File)    Flash Index = 0x6
+===============
+                                                       Flash Used (Remaining)
+                                                       ----------------------
+                                                       0x2152     (0x3e02ae)                                                
+
+

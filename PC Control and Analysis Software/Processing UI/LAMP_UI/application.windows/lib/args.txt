@@ -1,0 +1,3 @@
+
+LAMP_UI
+LAMP_UI.jar,core.jar,serial.jar,RXTXcomm.jar,opengl.jar,jogl.jar,gluegen-rt.jar,controlP5.jar
