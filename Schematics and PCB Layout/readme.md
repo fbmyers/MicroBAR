@@ -1,3 +1,7 @@
+Schematics and PCB Layout
+========
+
+
 Schematic and PCB layout was done in Altium Designer Release 10.
 
 The MicroBAR consists of two PCBs which are stacked on top of one another.  A single header connects these two boards.  "LAMP Microcontroller PCB" contains the microcontroller and all digital electronics, and it sits on the bottom.  "LAMP Chip PCB" contains the phototransistors, amplifier, MUXes, LED driver, and heater driver.  It sits on top.

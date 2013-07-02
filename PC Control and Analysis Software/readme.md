@@ -1,3 +1,7 @@
+PC Control and Analysis Software
+========
+
+
 The Processing UI is based on processing-1.2.1.  This is the main control software for the MicroBAR, and it exposes all of the MicroBAR's current functionality (the LCD UI is not fully-functional).
 
 The Windows driver is identical to the Arduino Mega 2560 driver except the device name has been changed.  
